@@ -3,14 +3,16 @@ on:
     branches:
       main
   pull_request:
+    branches:
+      main
 
 jobs:
   example_matrix:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [X86, X64, ARM, ARM64]
-    runs-on: [${{ matrix.os }}, ${{ matrix.arch }}]
+        arch: [ x86, x64, arm, arm64 ]
+    runs-on: ["${{ matrix.os }}", "${{ matrix.arch }}"]
     steps:
       - uses: actions/checkout@v4
         with:

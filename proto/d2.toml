@@ -20,7 +20,7 @@ archive-prefix = "d2-v{version}"
 
 [platform.windows]
 download-file = "d2-v{version}-windows-{arch}.tar.gz"
-bin-path = "bin\\d2.exe"
+bin-path = "bin/d2.exe"
 archive-prefix = "d2-v{version}"
 
 [install]

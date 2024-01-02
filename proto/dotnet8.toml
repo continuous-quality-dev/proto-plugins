@@ -1,0 +1,28 @@
+name = "dotnet"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm64"
+x86_64 = "x64"
+
+[platform.linux]
+# archive-prefix = "protostar-linux"
+# bin-path = "bins/protostar"
+# checksum-file = "protostar-{arch}-unknown-linux-{libc}.sha256"
+download-file = "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-{version}-linux-{arch}-binaries.tar.gz"
+
+[platform.macos]
+# archive-prefix = "protostar-macos"
+# bin-path = "bins/protostar"
+# checksum-file = "protostar-{arch}-apple-darwin.sha256"
+download-file = "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-{version}-macos-{arch}-binaries.tar.xz"
+
+[platform.windows]
+# archive-prefix = "protostar-windows"
+# bin-path = "bins/protostar.exe"
+# checksum-file = "protostar-{arch}-pc-windows-msvc.sha256"
+download-file = "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-{version}-windows-{arch}-binaries.zip"
+
+[resolve]
+manifest-url = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json"
+manifest-version-key = "latest-release"

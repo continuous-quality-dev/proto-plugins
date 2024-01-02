@@ -1,0 +1,30 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "d2"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm64"
+x86_64 = "amd64"
+
+[platform.linux]
+download-file = "d2-v{version}-linux-{arch}.tar.gz"
+bin-path = "bin/d2"
+archive-prefix = "d2-v{version}"
+
+[platform.macos]
+download-file = "d2-v{version}-macos-{arch}.tar.gz"
+bin-path = "bin/d2"
+archive-prefix = "d2-v{version}"
+
+[platform.windows]
+download-file = "d2-v{version}-windows-{arch}.tar.gz"
+bin-path = "bin\\d2.exe"
+archive-prefix = "d2-v{version}"
+
+[install]
+download-url = "https://github.com/terrastruct/d2/releases/download/v{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/terrastruct/d2"

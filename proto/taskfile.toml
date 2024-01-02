@@ -1,0 +1,31 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "task"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm64"
+x86_64 = "amd64"
+
+[platform.linux]
+download-file = "task_linux_{arch}.tar.gz"
+bin-path = "task"
+unpack = true
+
+[platform.macos]
+download-file = "task_darwin_{arch}.tar.gz"
+bin-path = "task"
+unpack = true
+
+[platform.windows]
+download-file = "task_windows_{arch}.zip"
+bin-path = "task.exe"
+unpack = true
+
+[install]
+download-url = "https://github.com/go-task/task/releases/download/v{version}/{download_file}"
+unpack = true
+
+[resolve]
+git-url = "https://github.com/go-task/task"

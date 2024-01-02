@@ -1,0 +1,27 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "difft"
+type = "cli"
+
+
+[platform.linux]
+download-file = "difft-{arch}-unknown-linux-gnu.tar.gz"
+archive-prefix = "difft-{arch}-unknown-linux-gnu"
+bin-path = "difft"
+
+[platform.macos]
+download-file = "difft-{arch}-apple-darwin.zip"
+archive-prefix = "difft-{arch}-apple-darwin-{arch}"
+bin-path = "difft"
+
+[platform.windows]
+download-file = "difft-{arch}-pc-windows-msvc.zip"
+archive-prefix = "difft-{arch}-pc-windows-{arch}"
+bin-path = "difft.exe"
+
+[install]
+download-url = "https://github.com/Wilfred/difftastic/releases/download/{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/Wilfred/difftastic"

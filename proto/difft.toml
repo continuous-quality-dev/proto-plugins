@@ -11,7 +11,7 @@ archive-prefix = "difft-{arch}-unknown-linux-gnu"
 bin-path = "difft"
 
 [platform.macos]
-download-file = "difft-{arch}-apple-darwin.zip"
+download-file = "difft-{arch}-apple-darwin.tar.gz"
 archive-prefix = "difft-{arch}-apple-darwin-{arch}"
 bin-path = "difft"
 

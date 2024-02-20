@@ -1,0 +1,55 @@
+# https://moonrepo.dev/docs/config/template
+$schema: "https://moonrepo.dev/schemas/template.json"
+
+# REQUIRED: Name of the template in a human readable format.
+title: "Title"
+
+# REQUIRED: Description of what the template is for and other relevant information.
+description: "Description of the template."
+
+# Mapping of variables that will be interpolated and rendered within template files.
+# Users will be prompted to provide a value when running the generator.
+variables:
+  name:
+    type: string
+    default: ""
+    required: true
+    prompt: Tool name?
+  type:
+    defaut: cli
+    type: enum
+    values:
+      - language
+      - dependency-manager
+      - package-manager
+      - cli
+  url:
+    default: ""
+    required: true
+    prompt: URL?
+    type: string
+  latest-path:
+    default: ""
+    required: true
+    prompt: Path for latest release?
+    type: string
+  aarch64:
+    default: aarch64
+    required: true
+    prompt: aarch64 arch string?
+    type: string
+  x86_64:
+    default: x86_64
+    required: true
+    prompt: x86-64 arch string?
+    type: string
+  bin-path:
+    default: ""
+    required: true
+    prompt: Path for latest release?
+    type: string
+  archive-prefix:
+    default: ""
+    required: true
+    prompt: Path for latest release?
+    type: string

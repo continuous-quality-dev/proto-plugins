@@ -12,6 +12,7 @@ bin-path = "bin"
 [platform.macos]
 download-file = "hurl-{version}-{arch}-apple-darwin.tar.gz"
 archive-prefix = "hurl-{version}-{arch}-apple-darwin"
+bin-path = "bin"
 
 [platform.windows]
 download-file = "hurl-{version}-x86_64-pc-windows-msvc.zip"

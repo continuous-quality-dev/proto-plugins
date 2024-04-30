@@ -1,0 +1,29 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "bal"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm-x64"
+x86_64 = "x64"
+
+[platform.linux]
+download-file = "ballerina-{version}-swan-lake-linux-{arch}.deb"
+archive-prefix = "ballerina-{version}-swan-lake-linux-{arch}"
+
+[platform.macos]
+download-file = "ballerina-{version}-swan-lake-macos-{arch}.pkg"
+archive-prefix = "ballerina-{version}-swan-lake-macos-{arch}"
+bin-path = "ballerina"
+
+[platform.windows]
+download-file = "ballerina-{version}-swan-lake-windows.zip"
+archive-prefix = "ballerina-{version}-swan-lake-windows"
+bin-path = "bin/bal.bat"
+
+[install]
+download-url = "https://github.com/ballerina-platform/ballerina-distribution/releases/download/v{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/ballerina-platform/ballerina-distribution"

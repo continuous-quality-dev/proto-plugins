@@ -1,0 +1,30 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "tyson"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm64"
+x86_64 = "amd64"
+
+[platform.linux]
+download-file = "tyson_v{version}_linux_{arch}.tar.gz"
+archive-prefix = "tyson_v{version}_linux_{arch}"
+bin-path = "tyson"
+
+[platform.macos]
+download-file = "tyson_v{version}_darwin_{arch}.tar.gz"
+archive-prefix = "tyson_v{version}_darwin_{arch}"
+bin-path = "tyson"
+
+[platform.windows]
+download-file = "tyson_v{version}_windows_{arch}.tar.gz"
+archive-prefix = "tyson_v{version}_windows_{arch}"
+bin-path = "tyson.exe"
+
+[install]
+download-url = "https://github.com/jetify-com/tyson/releases/download/v{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/jetify-com/tyson"

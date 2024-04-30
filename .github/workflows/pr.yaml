@@ -20,3 +20,7 @@ jobs:
       - uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: true
+      - name: debug
+        shell: pwsh
+        if: failure()
+        run: Get-ChildItem -Path ~\.proto\tools  -Depth 2

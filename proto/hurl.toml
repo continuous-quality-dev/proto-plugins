@@ -7,6 +7,7 @@ type = "cli"
 [platform.linux]
 download-file = "hurl-{version}-{arch}-unknown-linux-gnu.tar.gz"
 archive-prefix = "hurl-{version}-{arch}-unknown-linux-gnu"
+bin-path = "bin"
 
 [platform.macos]
 download-file = "hurl-{version}-{arch}-apple-darwin.tar.gz"
@@ -21,3 +22,9 @@ download-url = "https://github.com/Orange-OpenSource/hurl/releases/download/{ver
 
 [resolve]
 git-url = "https://github.com/Orange-OpenSource/hurl"
+
+[install.primary]
+exe-path = "hurl"
+
+[install.secondary.hurlfmt]
+exe-path = "hurlfmt"

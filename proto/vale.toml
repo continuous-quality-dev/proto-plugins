@@ -1,0 +1,30 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "vale"
+type = "cli"
+
+[install.arch]
+aarch64 = "arm64"
+x86_64 = "64-bit"
+
+[platform.linux]
+download-file = "vale_{version}_Linux_{arch}.tar.gz"
+archive-prefix = "vale_{version}_Linux_{arch}"
+bin-path = "vale"
+
+[platform.macos]
+download-file = "vale_{version}_macOS_{arch}.tar.gz"
+archive-prefix = "vale_{version}_macOS_{arch}"
+bin-path = "vale"
+
+[platform.windows]
+download-file = "vale_{version}_Windows_{arch}.zip"
+archive-prefix = "vale_{version}_Windows_{arch}"
+bin-path = "vale.exe"
+
+[install]
+download-url = "https://github.com/errata-ai/vale/releases/download/v{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/errata-ai/vale"

@@ -15,7 +15,7 @@ archive-prefix = "ballerina-{version}-swan-lake-linux-{arch}"
 [platform.macos]
 download-file = "ballerina-{version}-swan-lake-macos-{arch}.pkg"
 archive-prefix = "ballerina-{version}-swan-lake-macos-{arch}"
-bin-path = "bin/bal"
+bin-path = "ballerina"
 
 [platform.windows]
 download-file = "ballerina-{version}-swan-lake-windows.zip"

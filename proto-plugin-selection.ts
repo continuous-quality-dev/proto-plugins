@@ -37,40 +37,42 @@ const LocalProtoPlugins = [...$.path("proto").walkSync()].filter(
 
 const deets = await LocalProtoPlugins.map(({ path, name, ...rest }) => {
 	const contents = $.path(path).readTextSync();
-	const parsedContents = parse(contents) || "";
+	const parsedContents: Record<string, unknown> = parse(contents) || "";
 	const properName = name.split(".")[0];
+	const { description } = parsedContents;
 
 	return {
 		path,
-		parsedContents,
+		description: description as string,
 		name: properName,
-		locator: `https://raw.githubusercontent.com/${repoOwner}/${repo}/${branch}/${name}.toml`,
+		locator: `https://raw.githubusercontent.com/${repoOwner}/${repo}/${branch}/${name}`,
 		author: "self",
 	};
 });
+const currentPrototools = parse($.path(".prototools").readTextSync())
+const currentTools = Object.values(currentPrototools.plugins)
+console.log(deets);
+console.log(currentTools);
 
-for (const {
-	name,
-	locator,
-	author,
-	parsedContents: { description },
-} of deets) {
+for (const { name, locator, author, description } of deets) {
 	plugins.push({ id: name, locator, author, description });
 }
 const options: MultiSelectOption[] = plugins.map(
 	({ id, author, description, locator }) => {
+		const selected = currentTools.includes(locator) || currentTools.includes(`file://./proto/${id}.toml`)
+		
 		return {
 			text: `${id}   ${author}   ${description}`,
-			selected: false,
+			selected,
 			locator,
 			id,
 		};
 	},
 );
-const selected = await $.maybeMultiSelect({
+const toSelect = await $.maybeMultiSelect({
 	message: "Select the plugins to install",
 	options,
 });
 
-// console.log(plugins)
-console.log(selected);
+console.log(options)
+console.log(toSelect);

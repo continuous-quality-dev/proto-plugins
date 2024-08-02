@@ -3,6 +3,10 @@
 
 name = "dnscontrol"
 type = "cli"
+description = "Infrastructure as code for DNS!"
+
+[install]
+download-url = "https://github.com/StackExchange/dnscontrol/releases/download/v{version}/{download_file}"
 
 [install.arch]
 aarch64 = "arm64"
@@ -16,9 +20,6 @@ download-file = "dnscontrol_{version}_darwin_all.tar.gz"
 
 [platform.windows]
 download-file = "dnscontrol_{version}_windows_{arch}.zip"
-
-[install]
-download-url = "https://github.com/StackExchange/dnscontrol/releases/download/v{version}/{download_file}"
 
 [resolve]
 git-url = "https://github.com/StackExchange/dnscontrol"

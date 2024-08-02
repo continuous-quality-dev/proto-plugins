@@ -3,6 +3,7 @@
 
 name = "difft"
 type = "cli"
+description = "a structural diff that understands syntax 🟥🟩"
 
 
 [platform.linux]

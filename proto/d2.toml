@@ -3,6 +3,13 @@
 
 name = "d2"
 type = "cli"
+description = "D2 is a modern diagram scripting language that turns text to diagrams."
+
+[install]
+download-url = "https://github.com/terrastruct/d2/releases/download/v{version}/{download_file}"
+
+[resolve]
+git-url = "https://github.com/terrastruct/d2"
 
 [install.arch]
 aarch64 = "arm64"
@@ -23,8 +30,3 @@ download-file = "d2-v{version}-windows-{arch}.tar.gz"
 bin-path = "bin/d2.exe"
 archive-prefix = "d2-v{version}"
 
-[install]
-download-url = "https://github.com/terrastruct/d2/releases/download/v{version}/{download_file}"
-
-[resolve]
-git-url = "https://github.com/terrastruct/d2"

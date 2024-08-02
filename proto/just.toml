@@ -3,6 +3,7 @@
 
 name = "just"
 type = "cli"
+description = "🤖 Just a command runner"
 
 [platform.linux]
 download-file = "just-{version}-{arch}-unknown-linux-musl.tar.gz"

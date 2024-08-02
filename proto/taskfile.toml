@@ -3,6 +3,11 @@
 
 name = "task"
 type = "cli"
+description = "A task runner / simpler Make alternative written in Go"
+
+[install]
+download-url = "https://github.com/go-task/task/releases/download/v{version}/{download_file}"
+unpack = true
 
 [install.arch]
 aarch64 = "arm64"
@@ -21,10 +26,6 @@ unpack = true
 [platform.windows]
 download-file = "task_windows_{arch}.zip"
 bin-path = "task.exe"
-unpack = true
-
-[install]
-download-url = "https://github.com/go-task/task/releases/download/v{version}/{download_file}"
 unpack = true
 
 [resolve]

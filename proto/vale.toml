@@ -3,6 +3,10 @@
 
 name = "vale"
 type = "cli"
+description = "📝 A markup-aware linter for prose built with speed and extensibility in mind."
+
+[install]
+download-url = "https://github.com/errata-ai/vale/releases/download/v{version}/{download_file}"
 
 [install.arch]
 aarch64 = "arm64"
@@ -22,9 +26,6 @@ bin-path = "vale"
 download-file = "vale_{version}_Windows_{arch}.zip"
 archive-prefix = "vale_{version}_Windows_{arch}"
 bin-path = "vale.exe"
-
-[install]
-download-url = "https://github.com/errata-ai/vale/releases/download/v{version}/{download_file}"
 
 [resolve]
 git-url = "https://github.com/errata-ai/vale"

@@ -3,6 +3,10 @@
 
 name = "tyson"
 type = "cli"
+description = "🥊 TypeScript as a Configuration Language. TySON stands for TypeScript Object Notation"
+
+[install]
+download-url = "https://github.com/jetify-com/tyson/releases/download/v{version}/{download_file}"
 
 [install.arch]
 aarch64 = "arm64"
@@ -22,9 +26,6 @@ bin-path = "tyson"
 download-file = "tyson_v{version}_windows_{arch}.tar.gz"
 archive-prefix = "tyson_v{version}_windows_{arch}"
 bin-path = "tyson.exe"
-
-[install]
-download-url = "https://github.com/jetify-com/tyson/releases/download/v{version}/{download_file}"
 
 [resolve]
 git-url = "https://github.com/jetify-com/tyson"

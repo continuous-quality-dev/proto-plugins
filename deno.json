@@ -1,5 +1,6 @@
 {
   "imports": {
+    "@biomejs/biome": "npm:@biomejs/biome@^1.8.3",
     "@david/dax": "jsr:@david/dax@^0.41.0"
   }
 }

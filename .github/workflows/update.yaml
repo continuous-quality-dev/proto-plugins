@@ -16,8 +16,10 @@ jobs:
         with:
           auto-install: true
       - name: update proto dependencies
-        run: proto outdated --update && proto use
+        run: proto outdated --update
       - name: create pull request
-        run: gh pr create -B main -H chore/deps --title 'Deps Update' --body 'Created by Github action'
+        run: |
+          git add .prototools
+          gh pr create -B main -H chore/deps --title 'Deps Update' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

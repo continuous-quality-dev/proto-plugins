@@ -23,7 +23,7 @@ jobs:
           git config user.email github-actions@github.com
           git add .prototools
           git commit -m "updates"
-          git push origin chore/deps
+          git push
       - name: create pull request
         run: gh pr create -B main --title 'Deps Update' --body 'Created by Github action'
         env:

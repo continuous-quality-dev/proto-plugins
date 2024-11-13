@@ -21,6 +21,6 @@ jobs:
           git add .prototools
           git commit -m "updates"
       - name: create pull request
-        run: gh pr create -B main -H chore/deps --title 'Deps Update' --body 'Created by Github action'
+        run: gh pr create -B main --title 'Deps Update' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

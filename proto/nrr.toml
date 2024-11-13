@@ -6,7 +6,7 @@ type = "cli"
 description = "A modern load testing tool, using Go and JavaScript - https://nrr.io"
 
 [install]
-download-url = "https://github.com/ryanccn/nrr/releases/download/{arch}/{download_file}"
+download-url = "https://github.com/ryanccn/nrr/releases/download/v{version}/{download_file}"
 
 [platform.linux]
 download-file = "nrr-{arch}-linux-musl.zip"

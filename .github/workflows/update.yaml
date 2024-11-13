@@ -15,7 +15,11 @@ jobs:
           auto-install: true
       - name: update proto dependencies
         run: proto outdated --update 
-      - run: git add .prototools && git commit -m "updates"
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .prototools
+          git commit -m "updates"
       - name: create pull request
         run: gh pr create -B main -H chore/deps --title 'Deps Update' --body 'Created by Github action'
         env:

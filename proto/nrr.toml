@@ -13,7 +13,7 @@ download-file = "nrr-{arch}-linux-musl.zip"
 archive-prefix = "nrr-{arch}-linux-musl"
 bin-path = "nrr"
 
-[platform.apple-carwin]
+[platform.macos]
 download-file = "nrr-{arch}-apple-darwin.zip"
 archive-prefix = "nrr-{arch}-apple-darwin"
 bin-path = "nrr"

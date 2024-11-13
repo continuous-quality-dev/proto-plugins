@@ -1,0 +1,27 @@
+# A TOML plugin for proto:
+# https://moonrepo.dev/docs/proto/plugins#toml-plugin
+
+name = "nrr"
+type = "cli"
+description = "A modern load testing tool, using Go and JavaScript - https://nrr.io"
+
+[install]
+download-url = "https://github.com/ryanccn/nrr/releases/download/{arch}/{download_file}"
+
+[platform.linux]
+download-file = "nrr-{arch}-linux-musl.zip"
+archive-prefix = "nrr-{arch}-linux-musl"
+bin-path = "nrr"
+
+[platform.macos]
+download-file = "nrr-{arch}-apple-darwin.zip"
+archive-prefix = "nrr-{arch}-apple-darwin"
+bin-path = "nrr"
+
+[platform.windows]
+download-file = "nrr-{arch}-windows-msvc.zip"
+archive-prefix = "nrr-{arch}-windowsmsvc"
+bin-path = "nrr.exe"
+
+[resolve]
+git-url = "https://github.com/ryanccn/nrr"

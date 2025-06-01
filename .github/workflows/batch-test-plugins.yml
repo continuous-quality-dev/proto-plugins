@@ -13,9 +13,9 @@ on:
           - macos-latest
           - windows-latest
       plugin_pattern:
-        description: 'Plugin pattern to test (e.g., "*auto.json" or "d2-auto.json")'
+        description: 'Plugin pattern to test (e.g., "d2.json")'
         required: false
-        default: "*auto.json"
+        default: "*.json"
         type: string
       timeout_minutes:
         description: "Timeout in minutes for each plugin test"
@@ -102,13 +102,13 @@ jobs:
           while IFS= read -r plugin_file; do
             current=$((current + 1))
             plugin_name=$(basename "$plugin_file" .json | sed 's/-auto$//')
-            
+
             echo "[$current/$total_plugins] Testing: $plugin_name ($plugin_file)"
             echo "----------------------------------------"
-            
+
             # Set timeout based on input
             timeout_seconds=$(($(echo "${{ inputs.timeout_minutes }}" | tr -d '"') * 60))
-            
+
             if [[ "${{ runner.os }}" == "Windows" ]]; then
               # Windows - run without timeout for now
               if npm run test-plugin-with-proto -- "$plugin_file"; then
@@ -133,7 +133,7 @@ jobs:
                 failed=$((failed + 1))
               fi
             fi
-            
+
             echo ""
           done < plugins_to_test.txt
 
@@ -170,7 +170,7 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "## Plugin List" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            
+
             while IFS= read -r plugin_file; do
               plugin_name=$(basename "$plugin_file" .json | sed 's/-auto$//')
               echo "- \`$plugin_name\` (\`$plugin_file\`)" >> $GITHUB_STEP_SUMMARY

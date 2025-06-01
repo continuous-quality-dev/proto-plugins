@@ -2,7 +2,7 @@ name: Test Proto Plugins
 
 on:
   push:
-    branches: [main, feat/grit]
+    branches: [main]
     paths:
       - "plugins/**/*.json"
       - "scripts/**"
@@ -20,9 +20,6 @@ on:
 
 permissions:
   contents: read
-
-env:
-  NODE_VERSION: "22.6.0"
 
 jobs:
   detect-plugins:
@@ -75,30 +72,12 @@ jobs:
         plugin: ${{ fromJson(needs.detect-plugins.outputs.plugins) }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Proto
-        shell: bash
-        run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            # Windows installation
-            powershell -c "irm https://moonrepo.dev/install/proto.ps1 | iex"
-            echo "$HOME/.proto/bin" >> $GITHUB_PATH
-          else
-            # Unix-like installation
-            curl -fsSL https://moonrepo.dev/install/proto.sh | bash
-            echo "$HOME/.proto/bin" >> $GITHUB_PATH
-          fi
+          fetch-depth: 0
+      - uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
 
       - name: Verify Proto installation
         run: proto --version

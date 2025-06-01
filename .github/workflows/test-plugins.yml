@@ -4,13 +4,13 @@ on:
   push:
     branches: [main, feat/grit]
     paths:
-      - "proto/**/*.json"
+      - "plugins/**/*.json"
       - "scripts/**"
       - ".github/workflows/test-plugins.yml"
   pull_request:
     branches: [main]
     paths:
-      - "proto/**/*.json"
+      - "plugins/**/*.json"
       - "scripts/**"
       - ".github/workflows/test-plugins.yml"
   schedule:
@@ -42,10 +42,10 @@ jobs:
           if [ "${{ github.event.inputs.plugin_pattern }}" != "" ]; then
             pattern="${{ github.event.inputs.plugin_pattern }}"
           else
-            pattern="*auto.json"
+            pattern="*.json"
           fi
 
-          plugins=$(find proto -name "$pattern" -type f | sort)
+          plugins=$(find plugins -name "$pattern" -type f | sort)
 
           if [ -z "$plugins" ]; then
             echo "No plugins found matching pattern: $pattern"

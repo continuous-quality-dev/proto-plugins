@@ -235,7 +235,7 @@ function runActCommand(options: ActTestOptions): void {
   if (event === "workflow_dispatch") {
     if (workflow.includes("test-single-plugin")) {
       eventInputs = {
-        plugin_file: "proto/d2-auto.json",
+        plugin_file: "plugins/d2.json",
         test_os: "ubuntu-latest",
         specific_version: "",
       };

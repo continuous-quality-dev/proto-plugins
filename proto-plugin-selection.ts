@@ -63,7 +63,7 @@ const options: MultiSelectOption[] = plugins.map(
   ({ id, author, description, locator }) => {
     const selected =
       currentTools.includes(locator) ||
-      currentTools.includes(`file://./proto/${id}.toml`);
+      currentTools.includes(`file://./plugins/${id}.json`);
 
     return {
       text: `${id}   ${author}`,

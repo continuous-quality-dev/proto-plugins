@@ -479,10 +479,10 @@ async function main(): Promise<void> {
       if (!filename) {
         if (options.interactive) {
           filename =
-            (await prompt(`Filename [proto/${plugin.name}.json]: `)) ||
-            `proto/${plugin.name}.json`;
+            (await prompt(`Filename [plugins/${plugin.name}.json]: `)) ||
+            `plugins/${plugin.name}.json`;
         } else {
-          filename = `proto/${plugin.name}-auto.json`;
+          filename = `plugins/${plugin.name}-auto.json`;
         }
       }
 

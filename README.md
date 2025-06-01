@@ -13,7 +13,7 @@ All plugins are automatically tested across Linux, macOS, and Windows. To use a 
 1. **Copy the plugin file** to your proto plugins directory:
 
    ```bash
-   cp proto/d2-auto.json ~/.proto/plugins/d2.json
+   cp plugins/d2-auto.json ~/.proto/plugins/d2.json
    ```
 
 2. **Install the tool**:
@@ -70,10 +70,10 @@ npm run generate-interactive
 
 ```bash
 # Test a specific plugin
-npm run test-plugin-with-proto -- proto/d2-auto.json
+npm run test-plugin-with-proto -- plugins/d2.json
 
 # Test with specific version
-npm run test-plugin-with-proto -- --version 0.7.0 proto/d2-auto.json
+npm run test-plugin-with-proto -- --version 0.7.0 plugins/d2.json
 
 # Batch test all plugins
 npm run batch-test

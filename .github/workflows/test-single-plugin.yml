@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       plugin_file:
-        description: 'Plugin file to test (e.g., "proto/d2-auto.json")'
+        description: 'Plugin file to test (e.g., "plugins/d2.json")'
         required: true
         type: string
       test_os:
@@ -23,7 +23,7 @@ on:
   workflow_call:
     inputs:
       plugin_file:
-        description: 'Plugin file to test (e.g., "proto/d2-auto.json")'
+        description: 'Plugin file to test (e.g., "plugins/d2.json")'
         required: true
         type: string
       test_os:
@@ -98,30 +98,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Proto
-        shell: bash
-        run: |
-          echo "Installing Proto on ${{ runner.os }}..."
-
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            # Windows installation
-            powershell -c "irm https://moonrepo.dev/install/proto.ps1 | iex"
-            echo "$HOME/.proto/bin" >> $GITHUB_PATH
-          else
-            # Unix-like installation
-            curl -fsSL https://moonrepo.dev/install/proto.sh | bash
-            echo "$HOME/.proto/bin" >> $GITHUB_PATH
-          fi
+          fetch-depth: 0
+      - uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
 
       - name: Verify Proto installation
         run: |

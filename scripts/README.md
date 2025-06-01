@@ -50,13 +50,13 @@ node --experimental-strip-types ./scripts/generate-proto-plugin.ts --auto https:
 
 ```bash
 # Test plugin with proto
-npm run test-plugin -- proto/d2-auto.json
+npm run test-plugin -- plugins/d2.json
 
 # Test with specific version
-npm run test-plugin -- --version 0.7.0 proto/d2-auto.json
+npm run test-plugin -- --version 0.7.0 plugins/d2.json
 
 # Test with verbose output
-npm run test-plugin -- --verbose proto/d2-auto.json
+npm run test-plugin -- --verbose plugins/d2.json
 ```
 
 ### Workflow Testing Scripts
@@ -140,7 +140,7 @@ npm run generate-auto -- https://github.com/owner/repo
 ### 2. Test the Plugin
 
 ```bash
-npm run test-plugin -- proto/tool-auto.json
+npm run test-plugin -- plugins/tool.json
 ```
 
 ### 3. Test Workflows Locally

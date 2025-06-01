@@ -371,13 +371,13 @@ Options:
 
 Examples:
   # Test with latest version
-  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts proto/d2-auto.json
+  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts plugins/d2.json
 
   # Test specific version
-  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts --version 0.7.0 proto/d2-auto.json
+  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts --version 0.7.0 plugins/d2.json
 
   # Keep tools installed for inspection
-  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts --no-cleanup proto/d2-auto.json
+  node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts --no-cleanup plugins/d2.json
 `);
       process.exit(0);
     } else if (!pluginPath && arg.endsWith(".json")) {

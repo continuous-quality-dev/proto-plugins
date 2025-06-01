@@ -86,7 +86,7 @@ This directory contains GitHub Actions workflows for testing proto plugin config
 ```bash
 # Go to Actions → Test Single Proto Plugin → Run workflow
 # Specify:
-# - Plugin file: "proto/d2-auto.json"
+# - Plugin file: "proto/d2.json"
 # - OS: "all" or specific OS
 # - Version: "0.7.0" (optional)
 ```

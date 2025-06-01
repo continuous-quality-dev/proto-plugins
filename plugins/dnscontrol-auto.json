@@ -1,0 +1,32 @@
+{
+  "name": "dnscontrol",
+  "type": "cli",
+  "description": "Infrastructure as code for DNS!",
+  "platform": {
+    "linux": {
+      "download-file": "dnscontrol_v{version}",
+      "archive-prefix": "dnscontrol_v{version}",
+      "bin-path": "bin/dnscontrol"
+    },
+    "macos": {
+      "download-file": "dnscontrol_v{version}",
+      "archive-prefix": "dnscontrol_v{version}",
+      "bin-path": "bin/dnscontrol"
+    },
+    "windows": {
+      "download-file": "dnscontrol_v{version}",
+      "archive-prefix": "dnscontrol_v{version}",
+      "bin-path": "bin/dnscontrol.exe"
+    }
+  },
+  "install": {
+    "download-url": "https://github.com/StackExchange/dnscontrol/releases/download/v{version}/{download_file}",
+    "arch": {
+      "x86_64": "amd64",
+      "aarch64": "arm64"
+    }
+  },
+  "resolve": {
+    "git-url": "https://github.com/StackExchange/dnscontrol"
+  }
+}

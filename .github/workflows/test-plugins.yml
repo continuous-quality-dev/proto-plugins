@@ -1,0 +1,199 @@
+name: Test Proto Plugins
+
+on:
+  push:
+    branches: [main, feat/grit]
+    paths:
+      - "proto/**/*.json"
+      - "scripts/**"
+      - ".github/workflows/test-plugins.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "proto/**/*.json"
+      - "scripts/**"
+      - ".github/workflows/test-plugins.yml"
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC to catch version updates
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "22.6.0"
+
+jobs:
+  detect-plugins:
+    name: Detect Plugins to Test
+    runs-on: ubuntu-latest
+    outputs:
+      plugins: ${{ steps.find-plugins.outputs.plugins }}
+      plugin-count: ${{ steps.find-plugins.outputs.plugin-count }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find JSON plugins
+        id: find-plugins
+        run: |
+          # Find all JSON plugin files
+          if [ "${{ github.event.inputs.plugin_pattern }}" != "" ]; then
+            pattern="${{ github.event.inputs.plugin_pattern }}"
+          else
+            pattern="*auto.json"
+          fi
+
+          plugins=$(find proto -name "$pattern" -type f | sort)
+
+          if [ -z "$plugins" ]; then
+            echo "No plugins found matching pattern: $pattern"
+            exit 1
+          fi
+
+          # Convert to JSON array for matrix
+          plugin_array=$(echo "$plugins" | jq -R -s -c 'split("\n")[:-1]')
+          plugin_count=$(echo "$plugins" | wc -l)
+
+          echo "Found $plugin_count plugins:"
+          echo "$plugins"
+
+          echo "plugins=$plugin_array" >> $GITHUB_OUTPUT
+          echo "plugin-count=$plugin_count" >> $GITHUB_OUTPUT
+
+  test-plugins:
+    name: Test ${{ matrix.plugin }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: detect-plugins
+    if: needs.detect-plugins.outputs.plugin-count > 0
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        plugin: ${{ fromJson(needs.detect-plugins.outputs.plugins) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Proto
+        shell: bash
+        run: |
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            # Windows installation
+            powershell -c "irm https://moonrepo.dev/install/proto.ps1 | iex"
+            echo "$HOME/.proto/bin" >> $GITHUB_PATH
+          else
+            # Unix-like installation
+            curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+            echo "$HOME/.proto/bin" >> $GITHUB_PATH
+          fi
+
+      - name: Verify Proto installation
+        run: proto --version
+
+      - name: Extract plugin info
+        id: plugin-info
+        shell: bash
+        run: |
+          plugin_file="${{ matrix.plugin }}"
+          plugin_name=$(basename "$plugin_file" .json | sed 's/-auto$//')
+
+          echo "plugin-file=$plugin_file" >> $GITHUB_OUTPUT
+          echo "plugin-name=$plugin_name" >> $GITHUB_OUTPUT
+          echo "Testing plugin: $plugin_name from $plugin_file on ${{ runner.os }}"
+
+      - name: Test plugin with proto
+        shell: bash
+        run: |
+          echo "🧪 Testing plugin: ${{ steps.plugin-info.outputs.plugin-name }}"
+          echo "📁 Plugin file: ${{ matrix.plugin }}"
+          echo "💻 Operating system: ${{ runner.os }}"
+          echo "🏃 Runner: ${{ matrix.os }}"
+
+          # Set timeout for the test (10 minutes)
+          timeout_duration="600"
+
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            # Windows - use npm directly
+            npm run test-plugin-with-proto -- "${{ matrix.plugin }}"
+          else
+            # Unix-like systems with timeout
+            timeout ${timeout_duration}s npm run test-plugin-with-proto -- "${{ matrix.plugin }}" || {
+              exit_code=$?
+              if [ $exit_code -eq 124 ]; then
+                echo "❌ Test timed out after ${timeout_duration} seconds"
+                exit 1
+              else
+                echo "❌ Test failed with exit code: $exit_code"
+                exit $exit_code
+              fi
+            }
+          fi
+
+          echo "✅ Plugin test completed successfully!"
+
+      - name: Debug on failure
+        if: failure()
+        shell: bash
+        run: |
+          echo "❌ Plugin test failed for ${{ steps.plugin-info.outputs.plugin-name }} on ${{ runner.os }}"
+          echo "Checking proto logs and installation..."
+
+          if [ -d ~/.proto/logs ]; then
+            echo "Proto logs found:"
+            ls -la ~/.proto/logs/ || true
+            echo "Latest log entries:"
+            tail -n 20 ~/.proto/logs/*.log 2>/dev/null || echo "No log files found"
+          fi
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [detect-plugins, test-plugins]
+    if: always()
+
+    steps:
+      - name: Generate test summary
+        run: |
+          echo "# Proto Plugin Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Plugins tested:** ${{ needs.detect-plugins.outputs.plugin-count }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Operating systems:** ubuntu-latest, macos-latest, windows-latest" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.test-plugins.result }}" == "success" ]]; then
+            echo "✅ **All tests passed!**" >> $GITHUB_STEP_SUMMARY
+          elif [[ "${{ needs.test-plugins.result }}" == "failure" ]]; then
+            echo "❌ **Some tests failed.** Check the individual job results for details." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Tests completed with mixed results.** Check individual job results." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Plugin List" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Parse the plugins from the output
+          plugins='${{ needs.detect-plugins.outputs.plugins }}'
+          echo "$plugins" | jq -r '.[]' | while read plugin; do
+            plugin_name=$(basename "$plugin" .json | sed 's/-auto$//')
+            echo "- \`$plugin_name\` (\`$plugin\`)" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Check overall result
+        if: needs.test-plugins.result == 'failure'
+        run: |
+          echo "Some plugin tests failed. Please check the job results."
+          exit 1

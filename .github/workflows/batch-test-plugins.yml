@@ -1,0 +1,178 @@
+name: Batch Test Proto Plugins
+
+on:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: "Operating system to test on"
+        required: false
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+      plugin_pattern:
+        description: 'Plugin pattern to test (e.g., "*auto.json" or "d2-auto.json")'
+        required: false
+        default: "*auto.json"
+        type: string
+      timeout_minutes:
+        description: "Timeout in minutes for each plugin test"
+        required: false
+        default: "10"
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "22.6.0"
+
+jobs:
+  batch-test:
+    name: Batch Test Plugins on ${{ inputs.os }}
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Proto
+        shell: bash
+        run: |
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            # Windows installation
+            powershell -c "irm https://moonrepo.dev/install/proto.ps1 | iex"
+            echo "$HOME/.proto/bin" >> $GITHUB_PATH
+          else
+            # Unix-like installation
+            curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+            echo "$HOME/.proto/bin" >> $GITHUB_PATH
+          fi
+
+      - name: Verify Proto installation
+        run: proto --version
+
+      - name: Find plugins to test
+        id: find-plugins
+        shell: bash
+        run: |
+          pattern="${{ inputs.plugin_pattern }}"
+          plugins=$(find proto -name "$pattern" -type f | sort)
+
+          if [ -z "$plugins" ]; then
+            echo "No plugins found matching pattern: $pattern"
+            exit 1
+          fi
+
+          echo "Found plugins:"
+          echo "$plugins"
+
+          plugin_count=$(echo "$plugins" | wc -l)
+          echo "plugin-count=$plugin_count" >> $GITHUB_OUTPUT
+
+          # Save plugins to file for batch testing
+          echo "$plugins" > plugins_to_test.txt
+
+      - name: Run batch plugin tests
+        shell: bash
+        run: |
+          echo "Starting batch test of plugins..."
+          echo "Timeout per plugin: ${{ inputs.timeout_minutes }} minutes"
+          echo "Operating system: ${{ runner.os }}"
+
+          total_plugins=$(cat plugins_to_test.txt | wc -l)
+          current=0
+          passed=0
+          failed=0
+
+          echo "Testing $total_plugins plugins..."
+          echo ""
+
+          while IFS= read -r plugin_file; do
+            current=$((current + 1))
+            plugin_name=$(basename "$plugin_file" .json | sed 's/-auto$//')
+            
+            echo "[$current/$total_plugins] Testing: $plugin_name ($plugin_file)"
+            echo "----------------------------------------"
+            
+            # Set timeout based on input
+            timeout_seconds=$(($(echo "${{ inputs.timeout_minutes }}" | tr -d '"') * 60))
+            
+            if [[ "${{ runner.os }}" == "Windows" ]]; then
+              # Windows - run without timeout for now
+              if npm run test-plugin-with-proto -- "$plugin_file"; then
+                echo "✅ PASSED: $plugin_name"
+                passed=$((passed + 1))
+              else
+                echo "❌ FAILED: $plugin_name"
+                failed=$((failed + 1))
+              fi
+            else
+              # Unix-like systems with timeout
+              if timeout ${timeout_seconds}s npm run test-plugin-with-proto -- "$plugin_file"; then
+                echo "✅ PASSED: $plugin_name"
+                passed=$((passed + 1))
+              else
+                exit_code=$?
+                if [ $exit_code -eq 124 ]; then
+                  echo "⏰ TIMEOUT: $plugin_name (after ${{ inputs.timeout_minutes }} minutes)"
+                else
+                  echo "❌ FAILED: $plugin_name (exit code: $exit_code)"
+                fi
+                failed=$((failed + 1))
+              fi
+            fi
+            
+            echo ""
+          done < plugins_to_test.txt
+
+          echo "========================================="
+          echo "BATCH TEST SUMMARY"
+          echo "========================================="
+          echo "Total plugins tested: $total_plugins"
+          echo "Passed: $passed"
+          echo "Failed: $failed"
+          echo "Success rate: $(( passed * 100 / total_plugins ))%"
+          echo ""
+
+          if [ $failed -gt 0 ]; then
+            echo "❌ Some tests failed. Check the logs above for details."
+            exit 1
+          else
+            echo "✅ All tests passed!"
+          fi
+
+      - name: Generate test report
+        if: always()
+        shell: bash
+        run: |
+          echo "# Batch Plugin Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Operating System:** ${{ inputs.os }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Plugin Pattern:** ${{ inputs.plugin_pattern }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timeout per Plugin:** ${{ inputs.timeout_minutes }} minutes" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f plugins_to_test.txt ]; then
+            plugin_count=$(cat plugins_to_test.txt | wc -l)
+            echo "**Plugins Tested:** $plugin_count" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "## Plugin List" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            while IFS= read -r plugin_file; do
+              plugin_name=$(basename "$plugin_file" .json | sed 's/-auto$//')
+              echo "- \`$plugin_name\` (\`$plugin_file\`)" >> $GITHUB_STEP_SUMMARY
+            done < plugins_to_test.txt
+          fi

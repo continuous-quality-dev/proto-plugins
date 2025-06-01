@@ -1,0 +1,31 @@
+{
+  "name": "proto-plugins",
+  "version": "1.0.0",
+  "description": "Collection of proto plugin configurations and generators",
+  "type": "module",
+  "scripts": {
+    "generate": "node --experimental-strip-types ./scripts/generate-proto-plugin.ts",
+    "generate-auto": "node --experimental-strip-types ./scripts/generate-proto-plugin.ts --auto",
+    "generate-interactive": "node --experimental-strip-types ./scripts/generate-proto-plugin.ts",
+    "test-plugin": "node --experimental-strip-types ./scripts/test-proto-plugin-with-proto.ts",
+    "test-workflows": "node --experimental-strip-types ./scripts/test-workflows-with-act.ts",
+    "validate-workflows": "trunk check .github/workflows/",
+    "format-workflows": "trunk fmt .github/workflows/",
+    "lint-all": "trunk check",
+    "setup-act": "./scripts/setup-act-testing.sh"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "keywords": [
+    "proto",
+    "plugins",
+    "github",
+    "releases",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/continuous-quality-dev/proto-plugins.git"
+  }
+}

@@ -33,6 +33,37 @@ npm run generate-interactive
 node --experimental-strip-types ./scripts/generate-proto-plugin.ts --auto https://github.com/owner/repo
 ```
 
+#### `generate-proto-plugin-stricli.ts`
+
+**Purpose**: Generate proto plugin JSON configurations using the Stricli CLI framework.
+
+**Features**:
+
+- Same functionality as `generate-proto-plugin.ts`
+- Built with Stricli for type-safe CLI development
+- Enhanced argument parsing and validation
+- Better error handling and user experience
+- Cross-runtime compatibility (Node.js, Bun, Deno)
+- Runtime-specific help examples
+
+**Usage**:
+
+```bash
+# Auto-generate from GitHub URL
+npm run generate-stricli-auto -- https://github.com/owner/repo
+
+# Interactive mode
+npm run generate-stricli -- https://github.com/owner/repo
+
+# Cross-runtime execution
+npm run generate-stricli:node -- --auto https://github.com/owner/repo
+npm run generate-stricli:bun -- --auto https://github.com/owner/repo
+npm run generate-stricli:deno -- --auto https://github.com/owner/repo
+
+# Direct script execution
+node --experimental-strip-types ./scripts/generate-proto-plugin-stricli.ts --auto https://github.com/owner/repo
+```
+
 ### Testing Scripts
 
 #### `test-proto-plugin-with-proto.ts`
@@ -169,6 +200,7 @@ npm run lint-all
 - **Proto**: Latest version for plugin testing
 - **Trunk**: For workflow validation and linting
 - **Docker**: For act CLI testing (optional)
+- **Stricli**: Type-safe CLI framework (installed as dev dependency)
 - **Internet access**: For downloading tools and GitHub API access
 
 ## File Structure
@@ -177,9 +209,12 @@ npm run lint-all
 scripts/
 ├── README.md                           # This file
 ├── generate-proto-plugin.ts            # Core plugin generator
+├── generate-proto-plugin-stricli.ts    # Stricli-based plugin generator
 ├── test-proto-plugin-with-proto.ts     # Plugin testing with proto
 ├── test-workflows-with-act.ts          # Local workflow testing
-└── setup-act-testing.sh               # Act CLI setup script
+├── setup-act-testing.sh               # Act CLI setup script
+├── shared-utils.ts                     # Shared utilities and functions
+└── types.ts                           # TypeScript type definitions
 ```
 
 ## TypeScript Support

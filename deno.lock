@@ -82,6 +82,7 @@
     ],
     "packageJson": {
       "dependencies": [
+        "npm:@stricli/core@^1.1.2",
         "npm:consola@^3.4.2",
         "npm:fast-check@^4.1.1",
         "npm:poku@^3.0.2",

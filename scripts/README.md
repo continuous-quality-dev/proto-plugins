@@ -1,6 +1,7 @@
 # Scripts Directory
 
-This directory contains TypeScript scripts for managing proto plugin configurations and testing workflows.
+This directory contains TypeScript scripts for managing proto plugin
+configurations and testing workflows.
 
 ## Available Scripts
 
@@ -8,7 +9,8 @@ This directory contains TypeScript scripts for managing proto plugin configurati
 
 #### `generate-proto-plugin.ts`
 
-**Purpose**: Generate proto plugin JSON configurations from GitHub repository URLs.
+**Purpose**: Generate proto plugin JSON configurations from GitHub repository
+URLs.
 
 **Features**:
 
@@ -35,7 +37,8 @@ node --experimental-strip-types ./scripts/generate-proto-plugin.ts --auto https:
 
 #### `test-proto-plugin-with-proto.ts`
 
-**Purpose**: Test proto plugin configurations using the proto tool manager itself.
+**Purpose**: Test proto plugin configurations using the proto tool manager
+itself.
 
 **Features**:
 

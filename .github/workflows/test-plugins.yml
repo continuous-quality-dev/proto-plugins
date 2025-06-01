@@ -4,19 +4,19 @@ on:
   push:
     branches: [main]
     paths:
-      - "plugins/**/*.json"
-      - "scripts/**"
-      - ".github/workflows/test-plugins.yml"
+      - plugins/**/*.json
+      - scripts/**
+      - .github/workflows/test-plugins.yml
   pull_request:
     branches: [main]
     paths:
-      - "plugins/**/*.json"
-      - "scripts/**"
-      - ".github/workflows/test-plugins.yml"
+      - plugins/**/*.json
+      - scripts/**
+      - .github/workflows/test-plugins.yml
   schedule:
     # Run weekly on Sundays at 2 AM UTC to catch version updates
-    - cron: "0 2 * * 0"
-  workflow_dispatch:
+    - cron: 0 2 * * 0
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -36,11 +36,7 @@ jobs:
         id: find-plugins
         run: |
           # Find all JSON plugin files
-          if [ "${{ github.event.inputs.plugin_pattern }}" != "" ]; then
-            pattern="${{ github.event.inputs.plugin_pattern }}"
-          else
-            pattern="*.json"
-          fi
+          pattern="*.json"
 
           plugins=$(find plugins -name "$pattern" -type f | sort)
 

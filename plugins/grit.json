@@ -1,32 +1,32 @@
 {
-  "name": "grit",
-  "type": "cli",
-  "description": "GritQL is a query language for searching, linting, and modifying code.",
-  "platform": {
-    "linux": {
-      "download-file": "grit-{arch}-unknown-linux-gnu.tar.gz",
-      "archive-prefix": "grit-{arch}-unknown-linux-gnu",
-      "bin-path": "grit"
-    },
-    "macos": {
-      "download-file": "grit-{arch}-apple-darwin.tar.gz",
-      "archive-prefix": "grit-{arch}-apple-darwin",
-      "bin-path": "grit"
-    },
-    "windows": {
-      "download-file": "grit-{arch}-pc-windows-msvc.tar.gz",
-      "archive-prefix": "grit-{arch}-pc-windows",
-      "bin-path": "grit.exe"
-    }
-  },
-  "install": {
-    "download-url": "https://github.com/getgrit/gritql/releases/download/v{version}/{download_file}",
-    "arch": {
-      "aarch64": "arm64",
-      "x86_64": "amd64"
-    }
-  },
-  "resolve": {
-    "git-url": "https://github.com/getgrit/gritql"
-  }
+	"name": "grit",
+	"type": "cli",
+	"description": "GritQL is a query language for searching, linting, and modifying code.",
+	"platform": {
+		"linux": {
+			"download-file": "grit-{arch}-unknown-linux-gnu.tar.gz",
+			"archive-prefix": "grit-{arch}-unknown-linux-gnu",
+			"bin-path": "grit"
+		},
+		"macos": {
+			"download-file": "grit-{arch}-apple-darwin.tar.gz",
+			"archive-prefix": "grit-{arch}-apple-darwin",
+			"bin-path": "grit"
+		},
+		"windows": {
+			"download-file": "grit-{arch}-pc-windows-msvc.tar.gz",
+			"archive-prefix": "grit-{arch}-pc-windows",
+			"bin-path": "grit.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/getgrit/gritql/releases/download/v{version}/{download_file}",
+		"arch": {
+			"aarch64": "arm64",
+			"x86_64": "amd64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/getgrit/gritql"
+	}
 }

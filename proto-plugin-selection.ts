@@ -1,55 +1,55 @@
-import $, { type MultiSelectOption } from "@david/dax";
 import { parse } from "jsr:@std/toml";
+import $, { type MultiSelectOption } from "@david/dax";
 
 const repoOwner = "continuous-quality-dev";
 const repo = "proto-plugins";
 const branch = "main";
 interface BaseProtoRegistryEntry {
-  id: string;
-  locator: string;
-  description: string;
-  author: string;
+	id: string;
+	locator: string;
+	description: string;
+	author: string;
 }
 
 interface ProtoRegistryEntry extends BaseProtoRegistryEntry {
-  name: string;
-  format: "wasm" | "toml";
-  homepageUrl: string;
-  repositoryUrl: string;
-  devicon: string;
-  bins: string[];
+	name: string;
+	format: "wasm" | "toml";
+	homepageUrl: string;
+	repositoryUrl: string;
+	devicon: string;
+	bins: string[];
 }
 
 const ProtoRegistry: ProtoRegistryEntry[] =
-  await $`proto plugin search '' --json`.json();
+	await $`proto plugin search '' --json`.json();
 
 // console.debug(ProtoRegistry);
 
 const plugins: BaseProtoRegistryEntry[] = Array.from(ProtoRegistry).map(
-  ({ id, locator, description, author }) => {
-    return { id, locator, author, description };
-  },
+	({ id, locator, description, author }) => {
+		return { id, locator, author, description };
+	},
 );
 
 const LocalProtoPlugins = [...$.path("proto").walkSync()].filter(
-  ({ isFile }) => isFile,
+	({ isFile }) => isFile,
 );
 console.log(LocalProtoPlugins);
 const deets = await LocalProtoPlugins.map(({ path, name, ...rest }) => {
-  console.log(path);
-  const contents = $.path(path).readTextSync();
-  console.log(contents);
-  const parsedContents: Record<string, unknown> = parse(contents) || "";
-  const properName = name.split(".")[0];
-  const { description } = parsedContents;
+	console.log(path);
+	const contents = $.path(path).readTextSync();
+	console.log(contents);
+	const parsedContents: Record<string, unknown> = parse(contents) || "";
+	const properName = name.split(".")[0];
+	const { description } = parsedContents;
 
-  return {
-    path,
-    description: description as string,
-    name: properName,
-    locator: `https://raw.githubusercontent.com/${repoOwner}/${repo}/${branch}/${name}`,
-    author: "self",
-  };
+	return {
+		path,
+		description: description as string,
+		name: properName,
+		locator: `https://raw.githubusercontent.com/${repoOwner}/${repo}/${branch}/${name}`,
+		author: "self",
+	};
 });
 const currentPrototools = parse($.path(".prototools").readTextSync());
 const currentTools = Object.values(currentPrototools.plugins);
@@ -57,27 +57,27 @@ const currentTools = Object.values(currentPrototools.plugins);
 // console.log(currentTools);
 
 for (const { name, locator, author, description } of deets) {
-  plugins.push({ id: name, locator, author, description });
+	plugins.push({ id: name, locator, author, description });
 }
 const options: MultiSelectOption[] = plugins.map(
-  ({ id, author, description, locator }) => {
-    const selected =
-      currentTools.includes(locator) ||
-      currentTools.includes(`file://./plugins/${id}.json`);
+	({ id, author, description, locator }) => {
+		const selected =
+			currentTools.includes(locator) ||
+			currentTools.includes(`file://./plugins/${id}.json`);
 
-    return {
-      text: `${id}   ${author}`,
-      selected,
-      locator,
-      id,
-    };
-  },
+		return {
+			text: `${id}   ${author}`,
+			selected,
+			locator,
+			id,
+		};
+	},
 );
 //
 const toSelect = await $.maybeMultiSelect({
-  message: "Select the plugins to install",
-  options,
-  pageSize: 10,
+	message: "Select the plugins to install",
+	options,
+	pageSize: 10,
 });
 
 // console.log(options)

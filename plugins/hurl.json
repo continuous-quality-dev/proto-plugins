@@ -1,32 +1,32 @@
 {
-  "name": "hurl",
-  "type": "cli",
-  "description": "Hurl, run and test HTTP requests with plain text.",
-  "platform": {
-    "linux": {
-      "download-file": "hurl-v{version}-{arch}-unknown-linux-gnu.tar.gz",
-      "archive-prefix": "hurl-v{version}-{arch}-unknown-linux-gnu",
-      "bin-path": "bin/hurl"
-    },
-    "macos": {
-      "download-file": "hurl-v{version}-{arch}-apple-darwin.tar.gz",
-      "archive-prefix": "hurl-v{version}-{arch}-apple-darwin",
-      "bin-path": "bin/hurl"
-    },
-    "windows": {
-      "download-file": "hurl-v{version}-{arch}-pc-windows-msvc-installer.exe",
-      "archive-prefix": "hurl-v{version}-{arch}-pc-windows-msvc-installer.exe",
-      "bin-path": "bin/hurl.exe"
-    }
-  },
-  "install": {
-    "download-url": "https://github.com/Orange-OpenSource/hurl/releases/download/v{version}/{download_file}",
-    "arch": {
-      "aarch64": "arm64",
-      "x86_64": "amd64"
-    }
-  },
-  "resolve": {
-    "git-url": "https://github.com/Orange-OpenSource/hurl"
-  }
+	"name": "hurl",
+	"type": "cli",
+	"description": "Hurl, run and test HTTP requests with plain text.",
+	"platform": {
+		"linux": {
+			"download-file": "hurl-v{version}-{arch}-unknown-linux-gnu.tar.gz",
+			"archive-prefix": "hurl-v{version}-{arch}-unknown-linux-gnu",
+			"bin-path": "bin/hurl"
+		},
+		"macos": {
+			"download-file": "hurl-v{version}-{arch}-apple-darwin.tar.gz",
+			"archive-prefix": "hurl-v{version}-{arch}-apple-darwin",
+			"bin-path": "bin/hurl"
+		},
+		"windows": {
+			"download-file": "hurl-v{version}-{arch}-pc-windows-msvc-installer.exe",
+			"archive-prefix": "hurl-v{version}-{arch}-pc-windows-msvc-installer.exe",
+			"bin-path": "bin/hurl.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/Orange-OpenSource/hurl/releases/download/v{version}/{download_file}",
+		"arch": {
+			"aarch64": "arm64",
+			"x86_64": "amd64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/Orange-OpenSource/hurl"
+	}
 }

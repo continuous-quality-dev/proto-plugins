@@ -1,9 +1,9 @@
 act = "0.2.77"
-biome = "1.9.1"
+biome = "1.9.4"
+bun = "1.2.15"
 moon = "1.36.3"
 node = "22.9.0"
 npm = "10.8.3"
-
 
 [plugins]
 act = "https://raw.githubusercontent.com/theomessin/proto-toml-plugins/master/act.toml"

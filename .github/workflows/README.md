@@ -1,12 +1,14 @@
 # Proto Plugin Testing Workflows
 
-This directory contains GitHub Actions workflows for testing proto plugin configurations across multiple operating systems.
+This directory contains GitHub Actions workflows for testing proto plugin
+configurations across multiple operating systems.
 
 ## Workflows
 
 ### 1. `test-plugins.yml` - Comprehensive Plugin Testing
 
-**Purpose**: Automatically tests all JSON plugins across multiple operating systems using a matrix strategy.
+**Purpose**: Automatically tests all JSON plugins across multiple operating
+systems using a matrix strategy.
 
 **Triggers**:
 
@@ -41,7 +43,8 @@ This directory contains GitHub Actions workflows for testing proto plugin config
 
 ### 2. `batch-test-plugins.yml` - Batch Testing on Single OS
 
-**Purpose**: Test multiple plugins on a single operating system with custom configuration.
+**Purpose**: Test multiple plugins on a single operating system with custom
+configuration.
 
 **Triggers**:
 
@@ -126,8 +129,10 @@ For plugins to pass the automated tests, they must:
 
 1. **Valid JSON Structure**: Follow proto plugin JSON schema
 2. **Correct Download URLs**: Point to valid GitHub release assets
-3. **Proper Architecture Mapping**: Support common architectures (x86_64, aarch64)
-4. **Version Detection**: Tool must support `--version`, `-v`, or `version` commands
+3. **Proper Architecture Mapping**: Support common architectures (x86_64,
+   aarch64)
+4. **Version Detection**: Tool must support `--version`, `-v`, or `version`
+   commands
 5. **Cross-Platform**: Work on Linux, macOS, and Windows
 
 ## Debugging Failed Tests

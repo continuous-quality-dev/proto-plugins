@@ -2,13 +2,15 @@
 
 [![Test Proto Plugins](https://github.com/continuous-quality-dev/proto-plugins/actions/workflows/test-plugins.yml/badge.svg)](https://github.com/continuous-quality-dev/proto-plugins/actions/workflows/test-plugins.yml)
 
-A collection of proto plugin configurations and tools for managing development tools across multiple platforms.
+A collection of proto plugin configurations and tools for managing development
+tools across multiple platforms.
 
 ## 🚀 Quick Start
 
 ### Using Plugins
 
-All plugins are automatically tested across Linux, macOS, and Windows. To use a plugin:
+All plugins are automatically tested across Linux, macOS, and Windows. To use a
+plugin:
 
 1. **Copy the plugin file** to your proto plugins directory:
 
@@ -37,7 +39,8 @@ deno run --allow-all .\proto-plugin-selection.ts
 
 ## 📦 Available Plugins
 
-All plugins use JSON format and are automatically generated from GitHub releases:
+All plugins use JSON format and are automatically generated from GitHub
+releases:
 
 | Tool           | Description                    | Status    |
 | -------------- | ------------------------------ | --------- |
@@ -70,23 +73,13 @@ npm run generate-interactive
 
 ```bash
 # Test a specific plugin
-npm run test-plugin-with-proto -- plugins/d2.json
+npm run test-plugin -- plugins/d2.json
 
 # Test with specific version
-npm run test-plugin-with-proto -- --version 0.7.0 plugins/d2.json
+npm run test-plugin -- --version 0.7.0 plugins/d2.json
 
 # Batch test all plugins
 npm run batch-test
-```
-
-### Convert TOML to JSON
-
-```bash
-# Convert all TOML files to JSON
-npm run batch-convert
-
-# Test and cleanup TOML files
-npm run test-and-cleanup
 ```
 
 ## 🧪 Automated Testing

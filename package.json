@@ -87,9 +87,14 @@
 	},
 	"devDependencies": {
 		"@stricli/core": "catalog:",
+		"@typescript-eslint/eslint-plugin": "catalog:",
 		"@typescript-eslint/parser": "catalog:",
 		"@typescript-eslint/typescript-estree": "catalog:",
 		"danger": "catalog:",
+		"eslint": "catalog:",
+		"eslint-plugin-import": "catalog:",
+		"eslint-plugin-n": "catalog:",
+		"eslint-plugin-promise": "catalog:",
 		"fast-check": "catalog:",
 		"poku": "catalog:",
 		"quibble": "catalog:"

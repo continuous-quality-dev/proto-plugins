@@ -20,6 +20,7 @@
 18. use https://github.com/vltpkg/reproduce and create npm scripts to validate the repository (blocked: compatibility issues with current Node.js version)
 19. create a eslint config with typescript support and:
     * e18n
+20. update to node 24
 
 ## Done
 

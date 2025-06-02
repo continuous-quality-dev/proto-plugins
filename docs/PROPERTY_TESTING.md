@@ -1,10 +1,10 @@
 # Property-Based Testing with fast-check and poku
 
-This project includes comprehensive property-based tests using [fast-check](https://github.com/dubzzz/fast-check) for property-based testing and [poku](https://github.com/wellwelwel/poku) for cross-runtime test execution.
+This project includes comprehensive property-based tests using [fast-check](https://github.com/dubzzz/fast-check) for property-based testing and [poku](https://github.com/wellwelwel/poku) for cross-runtime execution.
 
 ## Overview
 
-Property-based testing is a testing methodology where you define properties (invariants) that should hold for a wide range of inputs, rather than testing specific examples. The testing framework then generates many random inputs to verify these properties.
+Property-based testing is a testing methodology where you define properties (invariants) that should hold for a wide range of inputs, rather than testing specific examples. The testing framework generates many random inputs to verify these properties.
 
 ## Test Structure
 
@@ -53,6 +53,7 @@ npm run test:summary
 ```
 
 This generates `TEST_SUMMARY.md` with:
+
 - Cross-runtime performance comparison
 - Individual test execution times
 - Property-based test insights
@@ -126,17 +127,20 @@ it("should correctly identify flags in argument arrays", () => {
 The test summary (`TEST_SUMMARY.md`) includes:
 
 ### Runtime Performance Comparison
+
 - Execution time across Node.js, Bun, and Deno
 - Success/failure status per runtime
 - Performance insights and speed comparisons
 
 ### Property-Based Test Insights
+
 - Total property tests executed
 - Total property runs (sum of all numRuns across tests)
 - Average runs per property test
 - Cross-runtime property test coverage
 
 ### Individual Test Performance
+
 - Detailed timing for each test
 - Cross-runtime performance comparison
 - Fastest and slowest tests identification

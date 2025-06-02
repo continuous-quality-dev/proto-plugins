@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: 22.6.0
+  NODE_VERSION: 24.1.0
 
 jobs:
   batch-test:

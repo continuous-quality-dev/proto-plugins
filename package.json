@@ -80,7 +80,7 @@
 		"lint:check": "eslint . --max-warnings 0"
 	},
 	"engines": {
-		"node": ">=22.6.0"
+		"node": ">=24.1.0"
 	},
 	"keywords": ["proto", "plugins", "github", "releases", "typescript"],
 	"repository": {

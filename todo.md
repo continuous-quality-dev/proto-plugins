@@ -20,7 +20,8 @@
 18. use https://github.com/vltpkg/reproduce and create npm scripts to validate the repository (blocked: compatibility issues with current Node.js version)
 ✅ 19. create a eslint config with typescript support and:
     * e18n
-20. update to node 24
+✅ 20. update to node 24
+21. the github workflows should inst
 
 ## Done
 
@@ -30,3 +31,4 @@
 ✅ 4. migrate config files to a config folder in the root of the workspace
 ✅ 5. add a renovate config
 ✅ 6. create a eslint config with typescript support
+✅ 7. update to node 24

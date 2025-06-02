@@ -100,8 +100,8 @@ Each workflow follows this testing process:
 
 1. **Environment Setup**:
 
-   - Install Node.js 22.6.0
-   - Install npm dependencies
+   - Install Node.js 24.1.0 via proto toolchain
+   - Install pnpm dependencies
    - Install Proto tool manager
 
 2. **Plugin Testing**:
@@ -165,8 +165,8 @@ When tests fail, check:
 
 When adding new plugins:
 
-1. **Generate JSON**: Use `npm run generate-auto -- <github-url>`
-2. **Test Locally**: Run `npm run test-plugin-with-proto -- <plugin-file>`
+1. **Generate JSON**: Use `pnpm run generate-auto -- <github-url>`
+2. **Test Locally**: Run `pnpm run test-plugin-with-proto -- <plugin-file>`
 3. **Test in CI**: Use single plugin workflow for validation
 4. **Update .prototools**: Add plugin reference
 5. **Commit Changes**: Automatic testing will run on push

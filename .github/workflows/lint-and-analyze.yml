@@ -31,14 +31,13 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup toolchain with proto
+        uses: moonrepo/setup-toolchain@v0
         with:
-          node-version: 24
-          cache: npm
+          auto-install: true
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
@@ -59,22 +58,22 @@ jobs:
         run: |
           # Checkout base branch to generate baseline metrics
           git checkout ${{ github.event.pull_request.base.sha }}
-          npm ci
-          npm run complexity-metrics
+          pnpm install --frozen-lockfile
+          pnpm run complexity-metrics
           cp complexity-metrics.json base-complexity-metrics.json
-          
+
           # Return to PR branch
           git checkout ${{ github.event.pull_request.head.sha }}
-          npm ci
+          pnpm install --frozen-lockfile
 
       - name: Generate current complexity metrics
         run: |
-          npm run complexity-metrics
+          pnpm run complexity-metrics
           cp complexity-metrics.json current-complexity-metrics.json
 
       - name: Generate complexity comparison
         run: |
-          npm run generate-complexity-comparison
+          pnpm run generate-complexity-comparison
         env:
           BASE_METRICS_FILE: base-complexity-metrics.json
           CURRENT_METRICS_FILE: current-complexity-metrics.json
@@ -82,7 +81,7 @@ jobs:
 
       - name: Generate diagrams for changed files
         run: |
-          npm run generate-diagrams-changed
+          pnpm run generate-diagrams-changed
         env:
           CHANGED_FILES: ${{ steps.changed-files.outputs.changed-files }}
 

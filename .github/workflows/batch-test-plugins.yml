@@ -38,14 +38,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup toolchain with proto
+        uses: moonrepo/setup-toolchain@v0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          auto-install: true
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Install Proto
         shell: bash
@@ -111,7 +110,7 @@ jobs:
 
             if [[ "${{ runner.os }}" == "Windows" ]]; then
               # Windows - run without timeout for now
-              if npm run test-plugin-with-proto -- "$plugin_file"; then
+              if pnpm run test-plugin-with-proto -- "$plugin_file"; then
                 echo "✅ PASSED: $plugin_name"
                 passed=$((passed + 1))
               else
@@ -120,7 +119,7 @@ jobs:
               fi
             else
               # Unix-like systems with timeout
-              if timeout ${timeout_seconds}s npm run test-plugin-with-proto -- "$plugin_file"; then
+              if timeout ${timeout_seconds}s pnpm run test-plugin-with-proto -- "$plugin_file"; then
                 echo "✅ PASSED: $plugin_name"
                 passed=$((passed + 1))
               else

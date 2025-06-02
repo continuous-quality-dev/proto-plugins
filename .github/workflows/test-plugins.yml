@@ -101,11 +101,11 @@ jobs:
           timeout_duration="600"
 
           if [[ "${{ runner.os }}" == "Windows" ]]; then
-            # Windows - use npm directly
-            npm run test-plugin-with-proto -- "${{ matrix.plugin }}"
+            # Windows - use pnpm directly
+            pnpm run test-plugin-with-proto -- "${{ matrix.plugin }}"
           else
             # Unix-like systems with timeout
-            timeout ${timeout_duration}s npm run test-plugin-with-proto -- "${{ matrix.plugin }}" || {
+            timeout ${timeout_duration}s pnpm run test-plugin-with-proto -- "${{ matrix.plugin }}" || {
               exit_code=$?
               if [ $exit_code -eq 124 ]; then
                 echo "❌ Test timed out after ${timeout_duration} seconds"

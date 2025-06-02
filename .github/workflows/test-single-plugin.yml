@@ -181,7 +181,7 @@ jobs:
             # Test the plugin
             if [ -n "$specific_version" ]; then
               echo "🔖 Testing specific version: $specific_version"
-              if npm run test-plugin -- --version "$specific_version" "$plugin_file"; then
+              if pnpm run test-plugin -- --version "$specific_version" "$plugin_file"; then
                 echo "✅ PASSED: $plugin_name"
                 echo "PASS:$plugin_name" >> "$results_file"
                 passed_tools=$((passed_tools + 1))
@@ -192,7 +192,7 @@ jobs:
               fi
             else
               echo "🔖 Testing latest version"
-              if npm run test-plugin -- "$plugin_file"; then
+              if pnpm run test-plugin -- "$plugin_file"; then
                 echo "✅ PASSED: $plugin_name"
                 echo "PASS:$plugin_name" >> "$results_file"
                 passed_tools=$((passed_tools + 1))

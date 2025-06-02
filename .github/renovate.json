@@ -1,0 +1,4 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["local>continuous-quality-dev/proto-plugins:config/renovate"]
+}

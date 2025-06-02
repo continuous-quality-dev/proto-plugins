@@ -17,65 +17,73 @@
 11. **Add support for plugins with different installation methods** - Multiple install strategies
 12. **Add support for plugins with different architectures** - Cross-platform support
 ✅ 13. **Make a rules directory and codify AI rules** - Document AI assistance patterns
-14. **Use vltpkg/reproduce for repository validation** - (blocked: Node.js compatibility)
+1. **Use vltpkg/reproduce for repository validation** - (blocked: Node.js compatibility)
 
 ## Recommended Additional Improvements
 
 ### 🔧 Developer Experience & Tooling
-15. **Add pre-commit hooks with husky** - Ensure code quality before commits
-16. **Implement semantic versioning with conventional commits** - Automated changelog and releases
-17. **Add commitizen for standardized commit messages** - Consistent commit format
-18. **Create development containers (devcontainer)** - Consistent development environment
-19. **Add VS Code workspace configuration** - Optimized editor settings and extensions
+
+1. **Add pre-commit hooks with husky** - Ensure code quality before commits
+1. **Implement semantic versioning with conventional commits** - Automated changelog and releases
+1. **Add commitizen for standardized commit messages** - Consistent commit format
+1. **Create development containers (devcontainer)** - Consistent development environment
+1. **Add VS Code workspace configuration** - Optimized editor settings and extensions
 
 ### 📊 Monitoring & Analytics
-20. **Implement bundle size analysis** - Track and optimize package sizes
-21. **Add performance benchmarking** - Monitor script execution times
-22. **Create dependency vulnerability scanning** - Security monitoring
-23. **Add code coverage reporting** - Track test coverage metrics
-24. **Implement build time optimization tracking** - Monitor CI/CD performance
+
+1. **Implement bundle size analysis** - Track and optimize package sizes
+1. **Add performance benchmarking** - Monitor script execution times
+1. **Create dependency vulnerability scanning** - Security monitoring
+1. **Add code coverage reporting** - Track test coverage metrics
+1. **Implement build time optimization tracking** - Monitor CI/CD performance
 
 ### 🚀 Automation & CI/CD
-25. **Add automatic dependency updates with grouping** - Smart dependency management
-26. **Implement release automation** - Automated releases with changelogs
-27. **Add plugin compatibility matrix testing** - Test plugins across tool versions
-28. **Create nightly builds and testing** - Continuous integration improvements
-29. **Add performance regression testing** - Prevent performance degradation
+
+1. **Add automatic dependency updates with grouping** - Smart dependency management
+1. **Implement release automation** - Automated releases with changelogs
+1. **Add plugin compatibility matrix testing** - Test plugins across tool versions
+1. **Create nightly builds and testing** - Continuous integration improvements
+1. **Add performance regression testing** - Prevent performance degradation
 
 ### 📚 Documentation & Community
-30. **Generate API documentation automatically** - Keep docs in sync with code
-31. **Add interactive plugin examples** - Better onboarding experience
-32. **Create plugin development guide** - Community contribution guidelines
-33. **Add troubleshooting documentation** - Common issues and solutions
-34. **Implement documentation versioning** - Version-specific documentation
+
+1. **Generate API documentation automatically** - Keep docs in sync with code
+1. **Add interactive plugin examples** - Better onboarding experience
+1. **Create plugin development guide** - Community contribution guidelines
+1. **Add troubleshooting documentation** - Common issues and solutions
+1. **Implement documentation versioning** - Version-specific documentation
 
 ### 🔒 Security & Compliance
-35. **Add SAST (Static Application Security Testing)** - Security vulnerability scanning
-36. **Implement supply chain security** - Verify dependency integrity
-37. **Add license compliance checking** - Ensure license compatibility
-38. **Create security policy and reporting** - Security vulnerability disclosure
-39. **Add secrets scanning** - Prevent credential leaks
+
+1. **Add SAST (Static Application Security Testing)** - Security vulnerability scanning
+1. **Implement supply chain security** - Verify dependency integrity
+1. **Add license compliance checking** - Ensure license compatibility
+1. **Create security policy and reporting** - Security vulnerability disclosure
+1. **Add secrets scanning** - Prevent credential leaks
 
 ### 🏗️ Architecture & Scalability
-40. **Implement plugin caching system** - Improve performance
-41. **Add plugin validation framework** - Ensure plugin quality
-42. **Create plugin marketplace/registry** - Centralized plugin discovery
-43. **Add plugin analytics and usage tracking** - Understand plugin adoption
-44. **Implement plugin sandboxing** - Security isolation for plugins
+
+1. **Implement plugin caching system** - Improve performance
+1. **Add plugin validation framework** - Ensure plugin quality
+1. **Create plugin marketplace/registry** - Centralized plugin discovery
+1. **Add plugin analytics and usage tracking** - Understand plugin adoption
+1. **Implement plugin sandboxing** - Security isolation for plugins
 
 ### 🧪 Testing & Quality
-45. **Add mutation testing** - Improve test quality
-46. **Implement visual regression testing** - UI/output consistency
-47. **Add chaos engineering tests** - System resilience testing
-48. **Create integration test matrix** - Cross-platform compatibility
-49. **Add property-based testing expansion** - More comprehensive test coverage
+
+1. **Add mutation testing** - Improve test quality
+1. **Implement visual regression testing** - UI/output consistency
+1. **Add chaos engineering tests** - System resilience testing
+1. **Create integration test matrix** - Cross-platform compatibility
+1. **Add property-based testing expansion** - More comprehensive test coverage
 
 ### 🌐 Cross-Platform & Compatibility
-50. **Add Windows-specific optimizations** - Better Windows support
-51. **Implement ARM64 native support** - Apple Silicon optimization
-52. **Add container-based testing** - Isolated test environments
-53. **Create cross-runtime benchmarks** - Performance comparison across runtimes
-54. **Add mobile/edge platform support** - Expand platform coverage
+
+1. **Add Windows-specific optimizations** - Better Windows support
+1. **Implement ARM64 native support** - Apple Silicon optimization
+1. **Add container-based testing** - Isolated test environments
+1. **Create cross-runtime benchmarks** - Performance comparison across runtimes
+1. **Add mobile/edge platform support** - Expand platform coverage
 
 ## Done
 

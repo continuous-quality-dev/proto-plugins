@@ -4,7 +4,7 @@ This directory contains the codified rules, patterns, and guidelines for AI assi
 
 ## 📁 Directory Structure
 
-```
+```text
 rules/
 ├── README.md                    # This file - overview and index
 ├── ai-assistance/              # AI-specific rules and patterns
@@ -60,24 +60,28 @@ When working on this project, always:
 ## 📋 Rule Categories
 
 ### 🤖 AI Assistance Rules
+
 - **Code Generation**: Patterns for generating TypeScript, configuration files, and documentation
 - **Documentation**: Standards for README files, API docs, and inline comments
 - **Testing**: Property-based testing patterns and cross-runtime test strategies
 - **Workflow Automation**: CI/CD patterns and GitHub workflow generation
 
 ### 💻 Coding Standards
+
 - **TypeScript**: Type definitions, module patterns, and language features
 - **Naming Conventions**: File names, function names, variable names, and constants
 - **File Organization**: Directory structure, import patterns, and module boundaries
 - **Error Handling**: Custom error types, error propagation, and user-friendly messages
 
 ### 🔧 Project Patterns
+
 - **Plugin Generation**: GitHub release parsing, proto plugin format, and validation
 - **Cross-Runtime**: Node.js/Bun/Deno compatibility patterns
 - **GitHub Integration**: API usage, rate limiting, and error handling
 - **Proto Toolchain**: Installation, testing, and version management
 
 ### ✅ Quality Assurance
+
 - **Code Review**: Review checklists, automated checks, and quality gates
 - **Automated Analysis**: Complexity metrics, dependency analysis, and diagram generation
 - **Performance**: Optimization patterns, caching strategies, and benchmarking

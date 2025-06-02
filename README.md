@@ -25,6 +25,7 @@ plugin:
    ```
 
 3. **Use the tool**:
+
    ```bash
    proto run d2 --version
    ```
@@ -34,6 +35,7 @@ plugin:
 For development setup and contribution guidelines, see [DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 Quick development commands:
+
 ```bash
 # Setup development environment
 make install && make setup
@@ -128,6 +130,7 @@ See [Workflow Documentation](.github/workflows/README.md) for details.
 ## 📚 Documentation
 
 ### Development Standards
+
 - [**AI Assistance Rules**](rules/README.md) - Comprehensive development patterns and standards
 - [**Rules Index**](rules/RULES_INDEX.md) - Quick reference and learning paths
 - [**Development Guidelines**](.augment-guidelines) - AI assistant guidelines
@@ -138,7 +141,9 @@ See [Workflow Documentation](.github/workflows/README.md) for details.
 - [Plugin Schema](https://moonrepo.dev/docs/proto/plugins)
 
 ### Code Quality
+
 This project follows world-class development standards with:
+
 - **TypeScript strict mode** with comprehensive type safety
 - **Cross-runtime compatibility** (Node.js, Bun, Deno)
 - **Property-based testing** with fast-check

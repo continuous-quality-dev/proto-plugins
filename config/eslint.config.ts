@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import type { Linter } from "eslint";
+import dependPlugin from "eslint-plugin-depend";
 import importPlugin from "eslint-plugin-import";
 import nodePlugin from "eslint-plugin-n";
 import promisePlugin from "eslint-plugin-promise";
@@ -55,6 +56,7 @@ const config: Linter.Config[] = [
 		},
 		plugins: {
 			"@typescript-eslint": tseslint,
+			depend: dependPlugin,
 			import: importPlugin,
 			n: nodePlugin,
 			promise: promisePlugin,
@@ -102,6 +104,9 @@ const config: Linter.Config[] = [
 			"promise/param-names": "error",
 			"promise/no-return-wrap": "error",
 
+			// Dependency management rules
+			"depend/ban-dependencies": "off", // We'll configure this as needed when we want to ban specific dependencies
+
 			// General rules
 			"no-console": "off", // We use console and consola for logging
 			"no-unused-vars": "off", // Use TypeScript version instead
@@ -131,6 +136,7 @@ const config: Linter.Config[] = [
 			},
 		},
 		plugins: {
+			depend: dependPlugin,
 			import: importPlugin,
 			n: nodePlugin,
 			promise: promisePlugin,
@@ -161,6 +167,9 @@ const config: Linter.Config[] = [
 			"promise/param-names": "error",
 			"promise/no-return-wrap": "error",
 
+			// Dependency management rules
+			"depend/ban-dependencies": "off",
+
 			// General rules
 			"no-console": "off",
 			"no-unused-vars": [
@@ -190,6 +199,7 @@ const config: Linter.Config[] = [
 			},
 		},
 		plugins: {
+			depend: dependPlugin,
 			import: importPlugin,
 			n: nodePlugin,
 			promise: promisePlugin,
@@ -198,6 +208,7 @@ const config: Linter.Config[] = [
 			"promise/catch-or-return": "warn",
 			"promise/param-names": "error",
 			"promise/no-return-wrap": "error",
+			"depend/ban-dependencies": "off",
 			"no-console": "off",
 			"no-unused-vars": [
 				"error",

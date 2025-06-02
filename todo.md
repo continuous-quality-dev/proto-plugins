@@ -19,10 +19,13 @@
 ✅ 17. add a renovate config
 18. use https://github.com/vltpkg/reproduce and create npm scripts to validate the repository (blocked: compatibility issues with current Node.js version)
 ✅ 19. create a eslint config with typescript support and:
-    * e18n
+    * ✅ eslint-plugin-depend
+    * ✅ knip for dead code detection
+    * ✅ trunk integration for unified linting
 ✅ 20. update to node 24
 ✅ 21. the github workflows should install pnpm from the moonrepo/setup-toolchaino/toolchain action
 ✅ 22. create a workflow that accepts a owner/repo and generates a plugin and creates a PR
+✅ 23. add knip.dev
 
 ## Done
 
@@ -36,3 +39,6 @@
 ✅ 8. update github workflows to use pnpm and proto toolchain
 ✅ 9. implement multi-architecture testing workflows
 ✅ 10. create automated plugin generation workflow
+✅ 11. add eslint-plugin-depend for dependency management
+✅ 12. add knip for dead code detection
+✅ 13. integrate trunk for unified linting

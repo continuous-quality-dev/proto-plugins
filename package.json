@@ -75,9 +75,20 @@
 		"test-complexity-comparison": "node --experimental-strip-types src/analysis/test-complexity-comparison.test.ts",
 
 		"// === Linting ===": "",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"lint:check": "eslint . --max-warnings 0"
+		"lint": "eslint --config config/eslint.config.ts .",
+		"lint:fix": "eslint --config config/eslint.config.ts . --fix",
+		"lint:check": "eslint --config config/eslint.config.ts . --max-warnings 0",
+		"lint:trunk": "eslint --config .eslintrc.js .",
+		"lint:trunk:fix": "eslint --config .eslintrc.js . --fix",
+		"trunk:check": "trunk check",
+		"trunk:fmt": "trunk fmt",
+		"trunk:check-all": "trunk check --all",
+
+		"// === Dead Code Detection ===": "",
+		"knip": "knip --config config/knip.config.ts",
+		"knip:fix": "knip --config config/knip.config.ts --fix",
+		"knip:production": "knip --config config/knip.config.ts --production",
+		"dead-code": "pnpm run knip"
 	},
 	"engines": {
 		"node": ">=24.1.0"
@@ -102,8 +113,10 @@
 		"eslint-plugin-import": "catalog:",
 		"eslint-plugin-n": "catalog:",
 		"eslint-plugin-promise": "catalog:",
+		"eslint-plugin-depend": "catalog:",
 		"fast-check": "catalog:",
 		"jiti": "catalog:",
+		"knip": "catalog:",
 		"poku": "catalog:",
 		"quibble": "catalog:"
 	}

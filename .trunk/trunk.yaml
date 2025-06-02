@@ -14,7 +14,7 @@ runtimes:
   enabled:
     - go@1.21.0
     - rust@1.82.0
-    - node@22.16.0
+    - node@24.1.0
     - python@3.10.8
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
@@ -48,6 +48,7 @@ lint:
     - yamllint@1.37.1
   disabled:
     - prettier
+    - eslint  # Disabled due to dependency conflicts with trunk's ESLint installation
 actions:
   enabled:
     - trunk-announce

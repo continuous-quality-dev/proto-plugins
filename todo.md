@@ -13,12 +13,15 @@
 11. Add support for plugins with different versioning schemes
 12. Add support for plugins with different installation methods
 13. Add support for plugins with different architectures
-14. move the danger readme to the docs folder
-15. move the property testing readme to the docs folder
-16. migrate as many of the config files to a config folder in the root of the workspace
+✅ 14. move the danger readme to the docs folder
+✅ 15. move the property testing readme to the docs folder
+✅ 16. migrate as many of the config files to a config folder in the root of the workspace
 17. add a renovate config 
 18. use https://github.com/vltpkg/reproduce and create npm scripts to validate the repository
 
 ## Done
 
 ✅ 1. migrate to pnpm
+✅ 2. move the danger readme to the docs folder
+✅ 3. move the property testing readme to the docs folder
+✅ 4. migrate config files to a config folder in the root of the workspace

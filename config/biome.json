@@ -3,7 +3,7 @@
 	"organizeImports": {
 		"enabled": true
 	},
-	"formatter":{
+	"formatter": {
 		"enabled": true
 	},
 	"linter": {

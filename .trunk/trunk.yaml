@@ -36,8 +36,6 @@ lint:
       paths:
         - .github/workflows/auto-generate-plugin.yml
         - .github/workflows/multi-arch-test.yml
-      codes:
-        - CKV_GHA_7
   enabled:
     - biome@1.9.4
     - dotenv-linter@3.3.0

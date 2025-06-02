@@ -76,17 +76,23 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysisDetailed {
 		};
 
 		// Walk the AST to extract information
-		function walkNode(node: any): void {
-			if (!node) return;
+		function walkNode(node: unknown): void {
+			if (!node || typeof node !== "object" || !("type" in node)) return;
 
-			switch (node.type) {
+			const astNode = node as Record<string, unknown> & { type: string };
+
+			switch (astNode.type) {
 				case "ImportDeclaration":
-					if (node.source && node.source.value) {
-						const importPath = node.source.value;
+					if (
+						astNode.source &&
+						typeof astNode.source === "object" &&
+						"value" in astNode.source
+					) {
+						const importPath = (astNode.source as { value: string }).value;
 						// Only track local imports (starting with ./ or ../) and skip type-only imports
 						if (importPath.startsWith("./") || importPath.startsWith("../")) {
 							// Skip type-only imports
-							if (node.importKind === "type") {
+							if (astNode.importKind === "type") {
 								break;
 							}
 
@@ -96,22 +102,35 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysisDetailed {
 							analysis.dependencies.push(resolvedPath);
 
 							// Extract imported names (skip type-only imports)
-							if (node.specifiers) {
-								for (const spec of node.specifiers) {
+							if (astNode.specifiers && Array.isArray(astNode.specifiers)) {
+								for (const spec of astNode.specifiers as Record<
+									string,
+									unknown
+								>[]) {
 									// Skip type-only specifiers
 									if (spec.importKind === "type") {
 										continue;
 									}
 
-									if (spec.type === "ImportSpecifier" && spec.imported) {
+									if (
+										spec.type === "ImportSpecifier" &&
+										spec.imported &&
+										typeof spec.imported === "object" &&
+										"name" in spec.imported
+									) {
 										analysis.imports.push({
-											name: spec.imported.name,
+											name: (spec.imported as { name: string }).name,
 											from: resolvedPath,
 											type: "named",
 										});
-									} else if (spec.type === "ImportDefaultSpecifier") {
+									} else if (
+										spec.type === "ImportDefaultSpecifier" &&
+										spec.local &&
+										typeof spec.local === "object" &&
+										"name" in spec.local
+									) {
 										analysis.imports.push({
-											name: spec.local.name,
+											name: (spec.local as { name: string }).name,
 											from: resolvedPath,
 											type: "default",
 										});
@@ -123,21 +142,35 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysisDetailed {
 					break;
 
 				case "ExportNamedDeclaration":
-					if (node.declaration) {
+					if (astNode.declaration && typeof astNode.declaration === "object") {
+						const declaration = astNode.declaration as Record<string, unknown>;
 						if (
-							node.declaration.type === "FunctionDeclaration" &&
-							node.declaration.id
+							declaration.type === "FunctionDeclaration" &&
+							declaration.id &&
+							typeof declaration.id === "object" &&
+							"name" in declaration.id
 						) {
+							const functionName = (declaration.id as { name: string }).name;
 							analysis.exports.push({
-								name: node.declaration.id.name,
+								name: functionName,
 								type: "function",
 							});
-							analysis.functions.push(node.declaration.id.name);
-						} else if (node.declaration.type === "VariableDeclaration") {
-							for (const decl of node.declaration.declarations) {
-								if (decl.id && decl.id.name) {
+							analysis.functions.push(functionName);
+						} else if (
+							declaration.type === "VariableDeclaration" &&
+							Array.isArray(declaration.declarations)
+						) {
+							for (const decl of declaration.declarations as Record<
+								string,
+								unknown
+							>[]) {
+								if (
+									decl.id &&
+									typeof decl.id === "object" &&
+									"name" in decl.id
+								) {
 									analysis.exports.push({
-										name: decl.id.name,
+										name: (decl.id as { name: string }).name,
 										type: "variable",
 									});
 								}
@@ -147,29 +180,44 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysisDetailed {
 					break;
 
 				case "ExportDefaultDeclaration":
-					if (node.declaration && node.declaration.id) {
-						analysis.exports.push({
-							name: node.declaration.id.name,
-							type: "default",
-						});
+					if (
+						astNode.declaration &&
+						typeof astNode.declaration === "object" &&
+						"id" in astNode.declaration
+					) {
+						const declaration = astNode.declaration as { id: { name: string } };
+						if (
+							declaration.id &&
+							typeof declaration.id === "object" &&
+							"name" in declaration.id
+						) {
+							analysis.exports.push({
+								name: declaration.id.name,
+								type: "default",
+							});
+						}
 					}
 					break;
 
 				case "FunctionDeclaration":
-					if (node.id && node.id.name) {
-						analysis.functions.push(node.id.name);
+					if (
+						astNode.id &&
+						typeof astNode.id === "object" &&
+						"name" in astNode.id
+					) {
+						analysis.functions.push((astNode.id as { name: string }).name);
 					}
 					break;
 			}
 
 			// Recursively walk child nodes
-			for (const key in node) {
-				const child = node[key];
+			for (const key in astNode) {
+				const child = astNode[key];
 				if (Array.isArray(child)) {
 					for (const childNode of child) {
 						walkNode(childNode);
 					}
-				} else if (child && typeof child === "object" && child.type) {
+				} else if (child && typeof child === "object" && "type" in child) {
 					walkNode(child);
 				}
 			}

@@ -1,10 +1,11 @@
 # Property-Based Testing with fast-check and poku
 
-This project includes comprehensive property-based tests using [fast-check](https://github.com/dubzzz/fast-check) for property-based testing and [poku](https://github.com/wellwelwel/poku) for cross-runtime execution.
+This project includes comprehensive property-based tests using [fast-check](https://github.com/dubzzz/fast-check) and [poku](https://github.com/wellwelwel/poku) for cross-runtime execution.
 
 ## Overview
 
-Property-based testing is a testing methodology where you define properties (invariants) that should hold for a wide range of inputs, rather than testing specific examples. The testing framework generates many random inputs to verify these properties.
+Property-based testing is a testing methodology where you define properties (invariants) that should hold for a wide range of inputs, rather than testing specific examples.
+The testing framework generates many random inputs to verify these properties.
 
 ## Test Structure
 
@@ -150,13 +151,14 @@ The test summary (`TEST_SUMMARY.md`) includes:
 1. **Broader Coverage**: Tests many more input combinations than manual examples
 2. **Edge Case Discovery**: Automatically finds edge cases you might not think of
 3. **Regression Prevention**: Properties serve as invariants that must always hold
-4. **Documentation**: Properties describe what the code should do in a declarative way
+4. **Documentation**: Properties describe what the code should do declaratively
 
 ## Test Configuration
 
 ### fast-check Configuration
 
 Tests use various `numRuns` values based on complexity:
+
 - Simple property tests: 50-100 runs
 - Complex property tests: 20-50 runs
 - Environment-dependent tests: 10 runs
@@ -164,6 +166,7 @@ Tests use various `numRuns` values based on complexity:
 ### poku Configuration
 
 Cross-runtime compatibility is ensured through:
+
 - Shared test files that work across Node.js, Bun, and Deno
 - Runtime-specific adaptations where needed
 - Consistent assertion patterns
@@ -201,8 +204,9 @@ it("should maintain property X for all valid inputs", () => {
 ## Cross-Runtime Compatibility
 
 All property-based tests are designed to work across:
+
 - **Node.js** (with experimental TypeScript support)
 - **Bun** (native TypeScript support)
 - **Deno** (native TypeScript support)
 
-The test summary automatically detects and reports on property-based tests, providing insights into test coverage and performance across all supported runtimes.
+The test summary automatically detects and reports on property-based tests, providing insights into test coverage and performance across all runtimes.

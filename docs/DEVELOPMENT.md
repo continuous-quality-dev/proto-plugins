@@ -2,7 +2,7 @@
 
 ## 📚 Development Standards
 
-**IMPORTANT**: This project follows comprehensive development standards documented in the [`rules/`](../rules/) directory. All contributors should familiarize themselves with these patterns.
+**IMPORTANT**: This project follows standards documented in the [`rules/`](../rules/) directory.
 
 ### Quick Reference
 
@@ -10,7 +10,7 @@
 - [**Rules Index**](../rules/RULES_INDEX.md) - Quick reference and learning paths
 - [**Code Generation**](../rules/ai-assistance/code-generation.md) - TypeScript patterns
 - [**Testing Guidelines**](../rules/ai-assistance/testing.md) - Property-based testing
-- [**TypeScript Standards**](../rules/coding-standards/typescript.md) - Language conventions
+- [**TypeScript Standards**](../rules/coding-standards/typescript.md) - Language
 - [**Naming Conventions**](../rules/coding-standards/naming-conventions.md) - Naming
 
 ### Core Principles
@@ -93,6 +93,7 @@ make validate
 ## Architecture Principles
 
 ### 1. **Separation of Concerns**
+
 - **Core**: Business logic
 - **Services**: External integrations
 - **CLI**: User interface
@@ -100,21 +101,25 @@ make validate
 - **Validation**: Data validation
 
 ### 2. **Cross-Runtime Compatibility**
+
 - Support Node.js, Bun, and Deno
 - Use standard APIs when possible
 - Runtime-specific code in utils
 
 ### 3. **Configuration Management**
+
 - Centralized configuration in `src/config/`
 - Environment-specific overrides
 - Type-safe configuration
 
 ### 4. **Error Handling**
+
 - Custom error types
 - Consistent error messages
 - Graceful degradation
 
 ### 5. **Testing Strategy**
+
 - Unit tests co-located with source
 - Property-based testing with fast-check
 - Cross-runtime testing
@@ -147,18 +152,21 @@ make validate
 ## Best Practices
 
 ### 1. **Follow Established Rules**
+
 - **ALWAYS** consult the [`rules/`](../rules/) directory before making changes
-- Follow [TypeScript Standards](../rules/coding-standards/typescript.md) for all code
-- Apply [Naming Conventions](../rules/coding-standards/naming-conventions.md) consistently
-- Use [Code Generation](../rules/ai-assistance/code-generation.md) patterns for new features
+- Follow [TypeScript Standards](../rules/coding-standards/typescript.md) for code
+- Apply [Naming Conventions](../rules/coding-standards/naming-conventions.md)
+- Use [Code Generation](../rules/ai-assistance/code-generation.md) patterns
 
 ### 2. **Code Style**
+
 - Use TypeScript strict mode (enforced by rules)
-- Prefer explicit types over `any` (see [TypeScript Standards](../rules/coding-standards/typescript.md))
-- Use meaningful variable names (see [Naming Conventions](../rules/coding-standards/naming-conventions.md))
+- Prefer explicit types over `any`
+- Use meaningful variable names
 - Add JSDoc comments for public APIs
 
 ### 3. **Testing**
+
 - Follow [Testing Guidelines](../rules/ai-assistance/testing.md) for all tests
 - Write property-based tests with fast-check for algorithms
 - Ensure cross-runtime compatibility (Node.js, Bun, Deno)
@@ -166,12 +174,14 @@ make validate
 - Maintain >90% test coverage
 
 ### 4. **Documentation**
+
 - Update README for user-facing changes
 - Add inline comments for complex logic
 - Update this guide for architectural changes
 - Follow documentation patterns in the rules
 
 ### 5. **Performance**
+
 - Minimize external dependencies
 - Use streaming for large files
 - Cache expensive operations
@@ -181,17 +191,20 @@ make validate
 ## Debugging
 
 ### 1. **Enable Debug Logging**
+
 ```bash
 DEBUG=* npm run generate
 ```
 
 ### 2. **Test Individual Components**
+
 ```bash
 # Test specific file
 npx poku src/core/generate-proto-plugin.test.ts
 ```
 
 ### 3. **Validate Plugin Output**
+
 ```bash
 # Test generated plugin
 proto install --from ./plugins/my-tool.json my-tool

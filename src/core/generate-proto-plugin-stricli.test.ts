@@ -24,7 +24,7 @@ import type {
 	GitHubAsset,
 	PlatformAssets,
 	ProtoPlugin,
-} from "./shared-utils.ts";
+} from "../utils/utils.ts";
 
 // Mock GitHub assets for testing
 const mockAssets: GitHubAsset[] = [

@@ -93,6 +93,95 @@ npm run test-plugin -- --version 0.7.0 plugins/d2.json
 npm run test-plugin -- --verbose plugins/d2.json
 ```
 
+### Analysis and Diagram Scripts (TypeScript)
+
+All analysis and diagram generation scripts have been migrated to TypeScript in the `@src/` directory for better type safety and maintainability.
+
+#### `@src/generate-complexity-comparison.ts`
+
+**Purpose**: TypeScript implementation for comparing complexity metrics between base and current branch.
+
+**Features**:
+
+- Full TypeScript type safety with comprehensive interfaces
+- Compares total files, functions, and average complexity
+- Shows complexity distribution changes (high/medium/low)
+- Highlights changes in specific files
+- Focuses on files modified in the current PR
+- Generates markdown comparison tables
+- Robust error handling with typed error messages
+
+**Usage**:
+
+```bash
+# Compare complexity metrics
+BASE_METRICS_FILE=base-complexity-metrics.json \
+CURRENT_METRICS_FILE=current-complexity-metrics.json \
+CHANGED_FILES="src/utils.ts src/types.ts" \
+npm run generate-complexity-comparison
+
+# Test the comparison functionality (TypeScript)
+npm run test-complexity-comparison
+```
+
+### TypeScript Test Files (@src/)
+
+#### `test-complexity-comparison.test.ts`
+
+**Purpose**: TypeScript test suite for complexity comparison functionality with full type safety.
+
+**Features**:
+
+- Comprehensive type definitions for complexity metrics
+- Type-safe test functions with proper error handling
+- Mock data with TypeScript interfaces
+- Cross-runtime compatibility with Node.js experimental strip types
+- Detailed test coverage for edge cases
+
+**Usage**:
+
+```bash
+# Run TypeScript tests directly
+node --experimental-strip-types @src/test-complexity-comparison.test.ts
+
+# Run via npm script
+npm run test-complexity-comparison
+```
+
+#### `complexity-types.ts`
+
+**Purpose**: TypeScript type definitions for complexity metrics and comparison functionality.
+
+**Features**:
+
+- Complete type definitions for complexity metrics data structures
+- Type-safe interfaces for comparison results
+- Utility types for nullable and optional values
+- Export types for use in other TypeScript files
+- Comprehensive documentation of data structures
+
+#### `@src/generate-diagrams-for-changed-files.ts`
+
+**Purpose**: TypeScript implementation for generating Mermaid diagrams only for files that have been changed in a PR.
+
+**Features**:
+
+- Full TypeScript type safety with comprehensive interfaces
+- Analyzes only changed TypeScript files
+- Generates function dependency diagrams
+- Creates UML class diagrams for type files
+- Provides file summaries with function/dependency counts
+- Optimized for PR workflows
+- Robust error handling and type validation
+
+**Usage**:
+
+```bash
+# Generate diagrams for changed files
+CHANGED_FILES="src/utils.ts src/types.ts" \
+npm run generate-diagrams-changed
+```
+
 ### Workflow Testing Scripts
 
 #### `test-workflows-with-act.ts`
@@ -220,6 +309,12 @@ src/
 scripts/
 ├── README.md                           # This file
 └── setup-act-testing.sh               # Act CLI setup script
+
+@src/
+├── complexity-types.ts                 # TypeScript types for complexity metrics
+├── generate-complexity-comparison.ts   # TypeScript complexity metrics comparison
+├── generate-diagrams-for-changed-files.ts # TypeScript diagram generation for changed files
+└── test-complexity-comparison.test.ts  # TypeScript tests for complexity comparison
 ```
 
 ## TypeScript Support

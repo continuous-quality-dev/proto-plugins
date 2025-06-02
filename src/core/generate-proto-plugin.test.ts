@@ -18,7 +18,11 @@ import {
 import { join } from "node:path";
 import * as fc from "fast-check";
 import { assert, describe, it } from "poku";
-import type { GitHubAsset, PlatformAssets, ProtoPlugin } from "./utils.ts";
+import type {
+	GitHubAsset,
+	PlatformAssets,
+	ProtoPlugin,
+} from "../utils/utils.ts";
 
 // Import functions to test - we need to extract them from the script
 // Since the script is designed to run as a CLI, we'll test the utility functions

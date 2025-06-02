@@ -9,7 +9,7 @@ import { execSync, spawn } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
-import type { ActTestOptions } from "./types.ts";
+import type { ActTestOptions } from "../types/types.ts";
 
 function checkActInstallation(): boolean {
 	try {
@@ -52,7 +52,9 @@ function showUsage(): void {
 	console.log("");
 	console.log("Available workflows:");
 	const workflows = getAvailableWorkflows();
-	workflows.forEach((w) => console.log(`  - ${w}`));
+	for (const w of workflows) {
+		console.log(`  - ${w}`);
+	}
 	console.log("");
 	console.log("Options:");
 	console.log("  --workflow <n>     Workflow file to test");
@@ -164,7 +166,9 @@ function main(): void {
 	if (!existsSync(workflowPath)) {
 		console.log(`❌ Workflow file not found: ${workflowPath}`);
 		console.log("\nAvailable workflows:");
-		getAvailableWorkflows().forEach((w) => console.log(`  - ${w}`));
+		for (const w of getAvailableWorkflows()) {
+			console.log(`  - ${w}`);
+		}
 		process.exit(1);
 	}
 

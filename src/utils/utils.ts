@@ -25,7 +25,7 @@ import type {
 	ProtoToolsConfig,
 	RuntimeInfo,
 	TestOptions,
-} from "./types.ts";
+} from "../types/types.ts";
 
 // Re-export types for convenience
 export type {
@@ -45,7 +45,7 @@ export type {
 	ProtoToolsConfig,
 	RuntimeInfo,
 	TestOptions,
-} from "./types.ts";
+} from "../types/types.ts";
 
 // Runtime globals type declarations
 declare const Bun: unknown;

@@ -30,7 +30,7 @@ import {
 	fetchGitHubRelease,
 	fetchGitHubRepo,
 	parseGitHubUrl,
-} from "./utils.ts";
+} from "../utils/utils.ts";
 
 const rl = readline.createInterface({
 	input: process.stdin,

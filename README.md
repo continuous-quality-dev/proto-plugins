@@ -29,6 +29,25 @@ plugin:
    proto run d2 --version
    ```
 
+### Development
+
+For development setup and contribution guidelines, see [DEVELOPMENT.md](docs/DEVELOPMENT.md).
+
+Quick development commands:
+```bash
+# Setup development environment
+make install && make setup
+
+# Generate a plugin interactively
+make generate
+
+# Run tests
+make test
+
+# Check code quality
+make quick
+```
+
 ### Interactive Plugin Selection
 
 For an interactive version of `proto plugin ...`:

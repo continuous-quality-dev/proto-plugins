@@ -212,9 +212,9 @@ function generateMarkdownTable(summary: TestSummary): string {
 	markdown += `| Runtime | Status | Passed | Failed | Duration | Details |\n`;
 	markdown += `|---------|--------|--------|--------|----------|----------|\n`;
 
-	results.forEach((result) => {
+	for (const result of results) {
 		markdown += `| **${result.runtime}** | ${result.status} | ${result.passed} | ${result.failed} | \`${result.duration}\` | ${result.details} |\n`;
-	});
+	}
 
 	markdown += `\n`;
 

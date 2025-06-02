@@ -39,7 +39,7 @@ import {
 	loadCurrentProtoTools,
 	parseToml,
 	simplePrompt,
-} from "./utils.ts";
+} from "../utils/utils.ts";
 
 // Repository configuration
 const REPO_CONFIG = {

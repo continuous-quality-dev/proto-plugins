@@ -26,7 +26,7 @@ import {
 	fetchGitHubRepo,
 	parseGitHubUrl,
 	showHelp,
-} from "./utils.ts";
+} from "../utils/utils.ts";
 
 // Define types for the command context (for future stricli integration)
 interface CommandFlags {

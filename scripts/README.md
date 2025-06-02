@@ -95,11 +95,11 @@ npm run test-plugin -- --verbose plugins/d2.json
 
 ### Analysis and Diagram Scripts (TypeScript)
 
-All analysis and diagram generation scripts have been migrated to TypeScript in the `@src/` directory for better type safety and maintainability.
+All analysis and diagram generation scripts have been migrated to TypeScript in the `@src/` directory for better type safety.
 
 #### `@src/generate-complexity-comparison.ts`
 
-**Purpose**: TypeScript implementation for comparing complexity metrics between base and current branch.
+**Purpose**: TypeScript implementation for comparing complexity metrics between branches.
 
 **Features**:
 
@@ -294,7 +294,7 @@ npm run lint-all
 
 ## File Structure
 
-```
+```text
 src/
 ├── generate-proto-plugin.ts            # Core plugin generator
 ├── generate-proto-plugin-stricli.ts    # Stricli-based plugin generator

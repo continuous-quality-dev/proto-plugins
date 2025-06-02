@@ -127,6 +127,20 @@ See [Workflow Documentation](.github/workflows/README.md) for details.
 
 ## 📚 Documentation
 
+### Development Standards
+- [**AI Assistance Rules**](rules/README.md) - Comprehensive development patterns and standards
+- [**Rules Index**](rules/RULES_INDEX.md) - Quick reference and learning paths
+- [**Development Guidelines**](.augment-guidelines) - AI assistant guidelines
+
+### Project Documentation
 - [Workflow Documentation](.github/workflows/README.md)
 - [Proto Documentation](https://moonrepo.dev/docs/proto)
 - [Plugin Schema](https://moonrepo.dev/docs/proto/plugins)
+
+### Code Quality
+This project follows world-class development standards with:
+- **TypeScript strict mode** with comprehensive type safety
+- **Cross-runtime compatibility** (Node.js, Bun, Deno)
+- **Property-based testing** with fast-check
+- **Automated quality checks** with ESLint, knip, and trunk
+- **Comprehensive rules system** for consistent AI-assisted development

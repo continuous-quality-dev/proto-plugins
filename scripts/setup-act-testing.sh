@@ -73,7 +73,9 @@ install_act() {
 
 	# Check if act is available directly
 	if command -v act &>/dev/null; then
-		print_status "Act CLI is already installed: $(act --version)"
+		local act_version
+		act_version=$(act --version) || act_version="unknown version"
+		print_status "Act CLI is already installed: ${act_version}"
 		return
 	fi
 
@@ -102,7 +104,12 @@ install_act() {
 		fi
 		;;
 	"linux")
-		curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+		if curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash; then
+			print_status "Act installed successfully via install script"
+		else
+			print_error "Failed to install act via install script"
+			exit 1
+		fi
 		;;
 	"windows")
 		print_error "Please install act manually on Windows:"
@@ -110,6 +117,11 @@ install_act() {
 		echo "  choco install act-cli"
 		echo "  # or"
 		echo "  scoop install act"
+		exit 1
+		;;
+	*)
+		print_error "Unsupported operating system: ${OS}"
+		print_error "Please install act manually or use proto: proto install act"
 		exit 1
 		;;
 	esac
@@ -170,10 +182,12 @@ EOF
 	# Create .gitignore entries for act files
 	if [[ -f .gitignore ]]; then
 		if ! grep -q ".act-secrets" .gitignore; then
-			echo "" >>.gitignore
-			echo "# Act CLI testing files" >>.gitignore
-			echo ".act-secrets" >>.gitignore
-			echo ".act-event.json" >>.gitignore
+			{
+				echo ""
+				echo "# Act CLI testing files"
+				echo ".act-secrets"
+				echo ".act-event.json"
+			} >>.gitignore
 			print_status "Added act files to .gitignore"
 		fi
 	fi

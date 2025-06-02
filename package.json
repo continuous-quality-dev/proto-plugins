@@ -37,20 +37,20 @@
 
 		"// === Workflow Testing ===": "",
 		"test:workflows": "node --experimental-strip-types ./src/core/test-workflows-with-act.ts",
-		"test": "npm run test:node && npm run test:bun && npm run test:deno",
-		"test:node": "npx poku src/core/test-proto-plugin.test.ts src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
+		"test": "pnpm run test:node && pnpm run test:bun && pnpm run test:deno",
+		"test:node": "pnpm exec poku src/core/test-proto-plugin.test.ts src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
 		"test:bun": "bun x poku src/core/test-proto-plugin.test.ts src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
 		"test:deno": "deno run -A npm:poku src/core/test-proto-plugin.test.ts src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
-		"test:property": "npm run test:property:node && npm run test:property:bun && npm run test:property:deno",
-		"test:property:node": "npx poku src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
+		"test:property": "pnpm run test:property:node && pnpm run test:property:bun && pnpm run test:property:deno",
+		"test:property:node": "pnpm exec poku src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
 		"test:property:bun": "bun x poku src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
 		"test:property:deno": "deno run -A npm:poku src/utils/shared-utils.property.test.ts src/core/test-proto-plugin.property.test.ts",
-		"test-stricli": "npm run test-stricli:node && npm run test-stricli:bun",
-		"test-stricli:node": "npx poku src/core/generate-proto-plugin-stricli.test.ts",
+		"test-stricli": "pnpm run test-stricli:node && pnpm run test-stricli:bun",
+		"test-stricli:node": "pnpm exec poku src/core/generate-proto-plugin-stricli.test.ts",
 		"test-stricli:bun": "bun x poku src/core/generate-proto-plugin-stricli.test.ts",
 		"test-stricli:deno": "deno run --allow-all npm:poku src/core/generate-proto-plugin-stricli.test.ts",
-		"test-stricli-property": "npm run test-stricli-property:node && npm run test-stricli-property:bun",
-		"test-stricli-property:node": "npx poku src/core/generate-proto-plugin-stricli.property.test.ts",
+		"test-stricli-property": "pnpm run test-stricli-property:node && pnpm run test-stricli-property:bun",
+		"test-stricli-property:node": "pnpm exec poku src/core/generate-proto-plugin-stricli.property.test.ts",
 		"test-stricli-property:bun": "bun x poku src/core/generate-proto-plugin-stricli.property.test.ts",
 		"test-stricli-property:deno": "deno run --allow-all npm:poku src/core/generate-proto-plugin-stricli.property.test.ts",
 		"plugin-select": "node --experimental-strip-types src/core/proto-plugin-selection.ts",
@@ -83,15 +83,15 @@
 		"url": "https://github.com/continuous-quality-dev/proto-plugins.git"
 	},
 	"dependencies": {
-		"consola": "^3.4.2"
+		"consola": "catalog:"
 	},
 	"devDependencies": {
-		"@stricli/core": "^1.1.2",
-		"@typescript-eslint/parser": "^8.18.1",
-		"@typescript-eslint/typescript-estree": "^8.33.0",
-		"danger": "^12.3.3",
-		"fast-check": "^4.1.1",
-		"poku": "^3.0.2",
-		"quibble": "^0.9.2"
+		"@stricli/core": "catalog:",
+		"@typescript-eslint/parser": "catalog:",
+		"@typescript-eslint/typescript-estree": "catalog:",
+		"danger": "catalog:",
+		"fast-check": "catalog:",
+		"poku": "catalog:",
+		"quibble": "catalog:"
 	}
 }

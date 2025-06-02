@@ -79,15 +79,6 @@
     "dependencies": [
       "jsr:@david/dax@0.41",
       "npm:@biomejs/biome@^1.8.3"
-    ],
-    "packageJson": {
-      "dependencies": [
-        "npm:@stricli/core@^1.1.2",
-        "npm:consola@^3.4.2",
-        "npm:fast-check@^4.1.1",
-        "npm:poku@^3.0.2",
-        "npm:quibble@~0.9.2"
-      ]
-    }
+    ]
   }
 }

@@ -1,0 +1,64 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended",
+		":dependencyDashboard",
+		":semanticCommits",
+		":automergeDigest",
+		":automergeBranch"
+	],
+	"timezone": "UTC",
+	"schedule": ["before 6am on monday"],
+	"labels": ["dependencies"],
+	"assignees": ["andrewmkrug"],
+	"reviewers": ["andrewmkrug"],
+	"packageRules": [
+		{
+			"description": "Group all non-major dependencies",
+			"matchUpdateTypes": ["minor", "patch"],
+			"groupName": "all non-major dependencies",
+			"groupSlug": "all-minor-patch"
+		},
+		{
+			"description": "Auto-merge non-major dependencies",
+			"matchUpdateTypes": ["minor", "patch"],
+			"automerge": true
+		},
+		{
+			"description": "Separate major updates",
+			"matchUpdateTypes": ["major"],
+			"groupName": "major dependencies",
+			"groupSlug": "major",
+			"automerge": false
+		},
+		{
+			"description": "Group TypeScript ESLint packages",
+			"matchPackagePatterns": ["^@typescript-eslint/"],
+			"groupName": "TypeScript ESLint",
+			"groupSlug": "typescript-eslint"
+		},
+		{
+			"description": "Group proto-related packages",
+			"matchPackagePatterns": ["proto"],
+			"groupName": "Proto tools",
+			"groupSlug": "proto-tools"
+		},
+		{
+			"description": "Group testing packages",
+			"matchPackagePatterns": ["^(poku|fast-check|quibble)"],
+			"groupName": "Testing tools",
+			"groupSlug": "testing-tools"
+		}
+	],
+	"pnpm": {
+		"supportPolicy": ["lts"]
+	},
+	"lockFileMaintenance": {
+		"enabled": true,
+		"schedule": ["before 6am on monday"]
+	},
+	"vulnerabilityAlerts": {
+		"enabled": true
+	},
+	"osvVulnerabilityAlerts": true
+}

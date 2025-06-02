@@ -1,0 +1,197 @@
+# Augment AI Guidelines for Proto Plugins
+
+This file provides guidelines for AI assistants working on the proto-plugins project.
+
+## 📚 Primary Reference: Rules Directory
+
+**IMPORTANT**: This project has a comprehensive rules system located in the `rules/` directory. 
+AI assistants MUST consult these rules before making any code changes or suggestions.
+
+### 🎯 Quick Start for AI Assistants
+
+1. **Read First**: `rules/README.md` - Overview of the entire rules system
+2. **Navigate**: `rules/RULES_INDEX.md` - Comprehensive index with quick reference tables
+3. **Follow**: Specific rules based on the task type:
+
+#### For Code Generation:
+- `rules/ai-assistance/code-generation.md` - Core patterns and principles
+- `rules/coding-standards/typescript.md` - TypeScript-specific standards
+- `rules/coding-standards/naming-conventions.md` - Naming patterns
+
+#### For Testing:
+- `rules/ai-assistance/testing.md` - Testing strategies and patterns
+- Focus on property-based testing with fast-check
+- Ensure cross-runtime compatibility (Node.js, Bun, Deno)
+
+#### For Plugin Development:
+- `rules/project-patterns/plugin-generation.md` - Plugin generation workflows
+- `rules/project-patterns/cross-runtime.md` - Multi-runtime compatibility
+- `rules/project-patterns/github-integration.md` - GitHub API patterns
+
+## 🎯 Core Principles (Summary from Rules)
+
+### 1. **Type Safety First**
+- Always use TypeScript strict mode
+- Prefer explicit types over `any`
+- Use type guards for runtime validation
+- Import types with `import type` when possible
+
+### 2. **Cross-Runtime Compatibility**
+- Support Node.js, Bun, and Deno
+- Use standard Web APIs when available
+- Test across all supported runtimes
+- Use poku for cross-runtime testing
+
+### 3. **Error Handling Consistency**
+- Use custom error classes from `src/utils/errors.ts`
+- Provide meaningful error messages with context
+- Handle async errors properly
+- Follow established error patterns
+
+### 4. **Testing Excellence**
+- Property-based testing with fast-check for algorithmic functions
+- Cross-runtime testing with poku
+- Comprehensive coverage including edge cases
+- Performance validation for critical paths
+
+### 5. **Code Quality Standards**
+- Follow ESLint configuration in `config/eslint.config.ts`
+- Use knip for dead code detection
+- Apply trunk for comprehensive linting
+- Maintain consistency with established patterns
+
+## 📋 Pre-Task Checklist for AI Assistants
+
+Before starting any task:
+
+- [ ] **Read relevant rules** from the `rules/` directory
+- [ ] **Understand the context** of the specific task
+- [ ] **Check existing patterns** in the codebase
+- [ ] **Plan the approach** following established guidelines
+- [ ] **Consider cross-runtime compatibility** requirements
+- [ ] **Plan testing strategy** including property-based tests
+
+## 🔧 Development Workflow
+
+### 1. **Analysis Phase**
+- Use `codebase-retrieval` to understand existing patterns
+- Consult `rules/` directory for specific guidance
+- Identify similar implementations for consistency
+
+### 2. **Implementation Phase**
+- Follow TypeScript standards from `rules/coding-standards/typescript.md`
+- Apply naming conventions from `rules/coding-standards/naming-conventions.md`
+- Implement error handling per `rules/coding-standards/error-handling.md`
+
+### 3. **Testing Phase**
+- Create tests following `rules/ai-assistance/testing.md`
+- Include property-based tests with fast-check
+- Validate cross-runtime compatibility
+- Test error conditions and edge cases
+
+### 4. **Validation Phase**
+- Run ESLint with project configuration
+- Execute knip for dead code detection
+- Validate with trunk comprehensive checks
+- Ensure all tests pass across runtimes
+
+## 🚨 Critical Requirements
+
+### **MUST DO:**
+- Consult `rules/` directory before any code changes
+- Follow established patterns for consistency
+- Maintain cross-runtime compatibility
+- Include comprehensive tests
+- Use proper error handling patterns
+- Apply consistent naming conventions
+
+### **MUST NOT DO:**
+- Ignore established patterns in favor of "better" approaches
+- Use `any` type without strong justification
+- Create runtime-specific code without abstraction
+- Skip property-based testing for algorithmic functions
+- Violate TypeScript strict mode requirements
+- Introduce breaking changes without discussion
+
+## 🎯 Task-Specific Guidelines
+
+### Plugin Generation Tasks:
+- Follow `rules/project-patterns/plugin-generation.md` exactly
+- Validate GitHub repository accessibility
+- Detect platform support from release assets
+- Generate proper proto plugin configuration
+- Include comprehensive validation
+
+### GitHub Integration Tasks:
+- Follow `rules/project-patterns/github-integration.md`
+- Handle rate limiting appropriately
+- Implement proper error handling
+- Cache responses when appropriate
+- Validate API responses thoroughly
+
+### Testing Tasks:
+- Follow `rules/ai-assistance/testing.md`
+- Use poku for cross-runtime compatibility
+- Include property-based tests with fast-check
+- Test all error conditions
+- Validate performance requirements
+
+### Configuration Tasks:
+- Follow established patterns in `config/` directory
+- Maintain consistency with existing configurations
+- Document configuration options
+- Validate configuration schemas
+
+## 📊 Quality Standards
+
+### Code Quality Metrics:
+- **Type Safety**: 100% TypeScript strict mode compliance
+- **Test Coverage**: >90% line coverage across all runtimes
+- **Dead Code**: 0% unused code (validated by knip)
+- **Linting**: 0 ESLint errors, minimal warnings
+
+### Performance Standards:
+- No performance regressions
+- Efficient algorithms for core functions
+- Appropriate caching strategies
+- Memory usage optimization
+
+### Security Standards:
+- Input validation for all external data
+- Proper error message sanitization
+- Secure handling of sensitive information
+- Dependency vulnerability monitoring
+
+## 🔄 Continuous Improvement
+
+### When Patterns Evolve:
+- Update relevant rules in `rules/` directory
+- Maintain backward compatibility when possible
+- Document breaking changes clearly
+- Communicate changes to the team
+
+### When Adding New Patterns:
+- Document in appropriate `rules/` subdirectory
+- Include examples and anti-patterns
+- Cross-reference with related rules
+- Update `rules/RULES_INDEX.md`
+
+## 📞 Getting Help
+
+### For Rule Clarification:
+- Check `rules/RULES_INDEX.md` for cross-references
+- Look for similar patterns in existing codebase
+- Consult external resources linked in rules
+- Ask for clarification in code review
+
+### For Complex Decisions:
+- Document the decision rationale
+- Consider impact on existing patterns
+- Propose rule updates if needed
+- Seek community input for major changes
+
+---
+
+**Remember**: The `rules/` directory is the authoritative source for all development patterns and standards in this project. When in doubt, consult the rules first, then ask for clarification.
+
+*This file should be updated whenever significant changes are made to the rules system.*

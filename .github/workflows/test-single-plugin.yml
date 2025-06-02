@@ -1,0 +1,272 @@
+name: Test Proto Plugin Tools
+
+on:
+  workflow_dispatch:
+    inputs:
+      tool_names:
+        description: Tool names to test (comma-separated, e.g., "d2,act,deno")
+        required: true
+        type: string
+      test_os:
+        description: Operating systems to test on
+        required: false
+        type: choice
+        options:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - all
+      specific_version:
+        description: Specific version to test (optional)
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tool_names:
+        description: Tool names to test (comma-separated, e.g., "d2,act,deno")
+        required: true
+        type: string
+      test_os:
+        description: Operating systems to test on
+        required: false
+        type: string
+        default: ubuntu-latest
+      specific_version:
+        description: Specific version to test (optional)
+        required: false
+        type: string
+        default: latest
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: 22.6.0
+
+jobs:
+  setup:
+    name: Setup Test Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      os-matrix: ${{ steps.setup-matrix.outputs.os-matrix }}
+      tool-matrix: ${{ steps.setup-tools.outputs.tool-matrix }}
+      tools-found: ${{ steps.setup-tools.outputs.tools-found }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup tool matrix
+        id: setup-tools
+        run: |
+          tool_names="${{ inputs.tool_names }}"
+          echo "🔍 Processing tool names: $tool_names"
+
+          # Convert comma-separated list to array and create tool matrix
+          IFS=',' read -ra TOOLS <<< "$tool_names"
+          tool_matrix="["
+          valid_tools=""
+
+          for tool in "${TOOLS[@]}"; do
+            # Trim whitespace
+            tool=$(echo "$tool" | xargs)
+
+            # Look for plugin files matching this tool name
+            plugin_file=""
+
+            # Try different patterns: exact match, with -auto suffix
+            for pattern in "plugins/${tool}.json" "plugins/${tool}-auto.json"; do
+              if [ -f "$pattern" ]; then
+                plugin_file="$pattern"
+                break
+              fi
+            done
+
+            if [ -n "$plugin_file" ]; then
+              echo "✅ Found plugin for $tool: $plugin_file"
+              if [ -n "$valid_tools" ]; then
+                tool_matrix="${tool_matrix},"
+                valid_tools="${valid_tools},"
+              fi
+              tool_matrix="${tool_matrix}{\"name\":\"${tool}\",\"file\":\"${plugin_file}\"}"
+              valid_tools="${valid_tools}${tool}"
+            else
+              echo "❌ No plugin file found for tool: $tool"
+              echo "Available plugins:"
+              find plugins -name "*.json" -type f 2>/dev/null | sort || echo "No plugins directory found"
+            fi
+          done
+
+          tool_matrix="${tool_matrix}]"
+
+          if [ "$valid_tools" = "" ]; then
+            echo "❌ No valid tools found"
+            exit 1
+          fi
+
+          echo "tool-matrix=$tool_matrix" >> $GITHUB_OUTPUT
+          echo "tools-found=$valid_tools" >> $GITHUB_OUTPUT
+          echo "✅ Tool matrix: $tool_matrix"
+
+      - name: Setup OS matrix
+        id: setup-matrix
+        run: |
+          if [ "${{ inputs.test_os }}" = "all" ]; then
+            os_matrix='["ubuntu-latest", "macos-latest", "windows-latest"]'
+          else
+            os_matrix='["${{ inputs.test_os }}"]'
+          fi
+          echo "os-matrix=$os_matrix" >> $GITHUB_OUTPUT
+          echo "Testing on: $os_matrix"
+
+  test-tools:
+    name: Test Tools on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: setup
+    if: needs.setup.outputs.tools-found != ''
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJson(needs.setup.outputs.os-matrix) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
+
+      - name: Verify Proto installation
+        run: |
+          proto --version
+          echo "Proto installed successfully"
+
+      - name: Test all tools
+        shell: bash
+        run: |
+          echo "🧪 Testing all tools on ${{ runner.os }} (${{ matrix.os }})"
+          echo "💻 Operating system: ${{ runner.os }}"
+          echo "🏃 Runner: ${{ matrix.os }}"
+          echo ""
+
+          # Parse the tool matrix from setup job
+          tools_matrix='${{ needs.setup.outputs.tool-matrix }}'
+          specific_version="${{ inputs.specific_version }}"
+
+          echo "🔧 Tools to test:"
+          echo "$tools_matrix" | jq -r '.[] | "  - \(.name) (\(.file))"'
+          echo ""
+
+          # Initialize counters
+          total_tools=0
+          passed_tools=0
+          failed_tools=0
+
+          # Create temporary files for tracking results
+          temp_dir=$(mktemp -d)
+          results_file="$temp_dir/results.txt"
+
+          # Test each tool
+          while IFS= read -r tool; do
+            plugin_name=$(echo "$tool" | jq -r '.name')
+            plugin_file=$(echo "$tool" | jq -r '.file')
+
+            echo "🧪 Testing tool: $plugin_name"
+            echo "📁 Plugin file: $plugin_file"
+
+            total_tools=$((total_tools + 1))
+
+            # Test the plugin
+            if [ -n "$specific_version" ]; then
+              echo "🔖 Testing specific version: $specific_version"
+              if pnpm run test-plugin -- --version "$specific_version" "$plugin_file"; then
+                echo "✅ PASSED: $plugin_name"
+                echo "PASS:$plugin_name" >> "$results_file"
+                passed_tools=$((passed_tools + 1))
+              else
+                echo "❌ FAILED: $plugin_name"
+                echo "FAIL:$plugin_name" >> "$results_file"
+                failed_tools=$((failed_tools + 1))
+              fi
+            else
+              echo "🔖 Testing latest version"
+              if pnpm run test-plugin -- "$plugin_file"; then
+                echo "✅ PASSED: $plugin_name"
+                echo "PASS:$plugin_name" >> "$results_file"
+                passed_tools=$((passed_tools + 1))
+              else
+                echo "❌ FAILED: $plugin_name"
+                echo "FAIL:$plugin_name" >> "$results_file"
+                failed_tools=$((failed_tools + 1))
+              fi
+            fi
+
+            echo ""
+          done < <(echo "$tools_matrix" | jq -c '.[]')
+
+          echo "📊 Test Summary:"
+          echo "  Total tools: $total_tools"
+          echo "  Passed: $passed_tools"
+          echo "  Failed: $failed_tools"
+
+          # Show detailed results
+          if [ -f "$results_file" ]; then
+            echo ""
+            echo "📋 Detailed Results:"
+            while IFS=: read -r status tool_name; do
+              if [ "$status" = "PASS" ]; then
+                echo "  ✅ $tool_name"
+              else
+                echo "  ❌ $tool_name"
+              fi
+            done < "$results_file"
+          fi
+
+          # Cleanup
+          rm -rf "$temp_dir"
+
+          if [ $failed_tools -gt 0 ]; then
+            echo "❌ Some tools failed testing"
+            exit 1
+          else
+            echo "✅ All tools passed testing!"
+          fi
+
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [setup, test-tools]
+    if: always()
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "# Tool Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Tools Tested:** ${{ needs.setup.outputs.tools-found }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Tool Names:** ${{ inputs.tool_names }}" >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "${{ inputs.specific_version }}" ]; then
+            echo "**Version Tested:** ${{ inputs.specific_version }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Version Tested:** Latest" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "**Operating Systems:** ${{ inputs.test_os }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.test-tools.result }}" == "success" ]]; then
+            echo "✅ **All tests passed!**" >> $GITHUB_STEP_SUMMARY
+          elif [[ "${{ needs.test-tools.result }}" == "failure" ]]; then
+            echo "❌ **Tests failed.** Check the job logs for details." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Tests completed with issues.** Check the job logs." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check results
+        if: needs.test-tools.result == 'failure'
+        run: |
+          echo "Tool tests failed. Check the individual job results for details."
+          exit 1

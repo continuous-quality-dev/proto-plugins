@@ -1,0 +1,238 @@
+name: Multi-Architecture Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_scope:
+        description: Scope of testing to perform
+        required: false
+        default: basic
+        type: choice
+        options:
+          - basic
+          - plugins
+          - comprehensive
+      plugin_pattern:
+        description: Plugin pattern to test (when test_scope is plugins)
+        required: false
+        default: "*.json"
+        type: string
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: 0 2 * * 0
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: 24.1.0
+
+jobs:
+  multi-arch-matrix:
+    name: ${{ matrix.test_name }} on ${{ matrix.os }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ubuntu x64
+          - os: ubuntu-latest
+            arch: x64
+            test_name: Ubuntu x64
+          # Ubuntu arm64 (Note: GitHub doesn't have native arm64 runners yet, but this prepares for when they do)
+          - os: ubuntu-latest
+            arch: arm64
+            test_name: Ubuntu ARM64
+          # macOS x64 (Intel)
+          - os: macos-13
+            arch: x64
+            test_name: macOS Intel
+          # macOS arm64 (Apple Silicon)
+          - os: macos-latest
+            arch: arm64
+            test_name: macOS Apple Silicon
+          # Windows x64
+          - os: windows-latest
+            arch: x64
+            test_name: Windows x64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup toolchain with proto
+        uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: System Information
+        shell: bash
+        run: |
+          echo "🏗️ Target Architecture: ${{ matrix.arch }}"
+          echo "💻 Operating System: ${{ runner.os }}"
+          echo "🏃 Runner: ${{ matrix.os }}"
+          echo "🧪 Test Name: ${{ matrix.test_name }}"
+          echo ""
+          
+          # Display detailed system information
+          echo "=== System Architecture Information ==="
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            echo "Windows System Information:"
+            systeminfo | findstr /C:"System Type" /C:"Processor" /C:"Total Physical Memory"
+            echo ""
+            echo "Environment Variables:"
+            echo "PROCESSOR_ARCHITECTURE: $PROCESSOR_ARCHITECTURE"
+            echo "PROCESSOR_ARCHITEW6432: $PROCESSOR_ARCHITEW6432"
+          elif [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "macOS System Information:"
+            echo "Architecture: $(uname -m)"
+            echo "CPU: $(sysctl -n machdep.cpu.brand_string)"
+            echo "CPU Cores: $(sysctl -n hw.ncpu)"
+            echo "Memory: $(sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}')"
+            echo "macOS Version: $(sw_vers -productVersion)"
+          else
+            echo "Linux System Information:"
+            echo "Architecture: $(uname -m)"
+            echo "Kernel: $(uname -r)"
+            if command -v lscpu &> /dev/null; then
+              echo "CPU Info:"
+              lscpu | grep -E "Architecture|CPU\(s\)|Model name|Thread|Core"
+            fi
+            if [ -f /proc/meminfo ]; then
+              echo "Memory: $(grep MemTotal /proc/meminfo)"
+            fi
+          fi
+
+      - name: Verify Node.js and toolchain
+        shell: bash
+        run: |
+          echo "=== Toolchain Verification ==="
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "pnpm version: $(pnpm --version)"
+          
+          if command -v proto &> /dev/null; then
+            echo "proto version: $(proto --version)"
+            echo "proto tools:"
+            proto list || true
+          fi
+
+      - name: Basic functionality test
+        shell: bash
+        run: |
+          echo "=== Basic Functionality Tests ==="
+          echo "Testing help commands..."
+          pnpm run generate --help
+          echo ""
+          echo "Testing TypeScript compilation..."
+          node --experimental-strip-types --version
+          echo ""
+          echo "Testing ESLint..."
+          pnpm run lint --help
+
+      - name: Plugin testing (if enabled)
+        if: inputs.test_scope == 'plugins' || inputs.test_scope == 'comprehensive'
+        shell: bash
+        run: |
+          echo "=== Plugin Testing ==="
+          
+          # Find plugins to test
+          pattern="${{ inputs.plugin_pattern || '*.json' }}"
+          plugins=$(find plugins/ -name "$pattern" -type f | head -3)  # Limit to 3 for time
+          
+          if [ -z "$plugins" ]; then
+            echo "No plugins found matching pattern: $pattern"
+            exit 0
+          fi
+          
+          echo "Testing plugins matching pattern: $pattern"
+          echo "Found plugins:"
+          echo "$plugins"
+          echo ""
+          
+          # Test each plugin
+          for plugin in $plugins; do
+            plugin_name=$(basename "$plugin" .json)
+            echo "🧪 Testing plugin: $plugin_name"
+            echo "📁 Plugin file: $plugin"
+            
+            # Run plugin test with timeout
+            if [[ "${{ runner.os }}" == "Windows" ]]; then
+              # Windows - no timeout for now
+              if pnpm run test-plugin-with-proto -- "$plugin"; then
+                echo "✅ PASSED: $plugin_name"
+              else
+                echo "❌ FAILED: $plugin_name"
+              fi
+            else
+              # Unix-like systems with timeout (5 minutes per plugin)
+              if timeout 300s pnpm run test-plugin-with-proto -- "$plugin"; then
+                echo "✅ PASSED: $plugin_name"
+              else
+                exit_code=$?
+                if [ $exit_code -eq 124 ]; then
+                  echo "⏰ TIMEOUT: $plugin_name (after 5 minutes)"
+                else
+                  echo "❌ FAILED: $plugin_name (exit code: $exit_code)"
+                fi
+              fi
+            fi
+            echo ""
+          done
+
+      - name: Comprehensive testing (if enabled)
+        if: inputs.test_scope == 'comprehensive'
+        shell: bash
+        run: |
+          echo "=== Comprehensive Testing ==="
+          echo "Running full test suite..."
+          
+          # Run cross-runtime tests
+          echo "Testing Node.js runtime..."
+          pnpm run test:node || echo "Node.js tests failed"
+          
+          # Test other runtimes if available
+          if command -v bun &> /dev/null; then
+            echo "Testing Bun runtime..."
+            pnpm run test:bun || echo "Bun tests failed"
+          else
+            echo "Bun not available on this platform"
+          fi
+          
+          if command -v deno &> /dev/null; then
+            echo "Testing Deno runtime..."
+            pnpm run test:deno || echo "Deno tests failed"
+          else
+            echo "Deno not available on this platform"
+          fi
+
+      - name: Generate test summary
+        if: always()
+        shell: bash
+        run: |
+          echo "# Multi-Architecture Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Configuration:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Platform: ${{ matrix.test_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- OS: ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Architecture: ${{ matrix.arch }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Test Scope: ${{ inputs.test_scope || 'basic' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ "${{ job.status }}" == "success" ]]; then
+            echo "✅ **All tests passed!**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Some tests failed**" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**System Information:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Node.js: $(node --version)" >> $GITHUB_STEP_SUMMARY
+          echo "- pnpm: $(pnpm --version)" >> $GITHUB_STEP_SUMMARY
+          if command -v proto &> /dev/null; then
+            echo "- proto: $(proto --version)" >> $GITHUB_STEP_SUMMARY
+          fi

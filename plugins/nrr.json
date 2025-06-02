@@ -1,0 +1,32 @@
+{
+	"name": "nrr",
+	"type": "cli",
+	"description": "Minimal, blazing fast npm scripts runner",
+	"platform": {
+		"linux": {
+			"download-file": "nrr-{arch}-unknown-linux-musl.zip",
+			"archive-prefix": "nrr-{arch}-unknown-linux-musl",
+			"bin-path": "bin/nrr"
+		},
+		"macos": {
+			"download-file": "nrr-{arch}-apple-darwin.zip",
+			"archive-prefix": "nrr-{arch}-apple-darwin",
+			"bin-path": "bin/nrr"
+		},
+		"windows": {
+			"download-file": "nrr-{arch}-pc-windows-msvc.zip",
+			"archive-prefix": "nrr-{arch}-pc-windows-msvc",
+			"bin-path": "bin/nrr.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/ryanccn/nrr/releases/download/v{version}/{download_file}",
+		"arch": {
+			"aarch64": "arm64",
+			"x86_64": "amd64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/ryanccn/nrr"
+	}
+}

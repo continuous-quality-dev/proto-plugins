@@ -1,0 +1,32 @@
+{
+	"name": "k6",
+	"type": "cli",
+	"description": "A modern load testing tool, using Go and JavaScript - https://k6.io",
+	"platform": {
+		"linux": {
+			"download-file": "k6-v{version}-linux-{arch}.deb",
+			"archive-prefix": "k6-v{version}-linux-{arch}.deb",
+			"bin-path": "bin/k6"
+		},
+		"macos": {
+			"download-file": "k6-v{version}-macos-{arch}.zip",
+			"archive-prefix": "k6-v{version}",
+			"bin-path": "bin/k6"
+		},
+		"windows": {
+			"download-file": "k6-v{version}-windows-{arch}.zip",
+			"archive-prefix": "k6-v{version}",
+			"bin-path": "bin/k6.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/grafana/k6/releases/download/v{version}/{download_file}",
+		"arch": {
+			"x86_64": "amd64",
+			"aarch64": "arm64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/grafana/k6"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"name": "tyson",
+	"type": "cli",
+	"description": "🥊  TypeScript as a Configuration Language. TySON stands for TypeScript Object Notation",
+	"platform": {
+		"linux": {
+			"download-file": "tyson_v{version}",
+			"archive-prefix": "tyson_v{version}",
+			"bin-path": "bin/tyson"
+		},
+		"macos": {
+			"download-file": "tyson_v{version}",
+			"archive-prefix": "tyson_v{version}",
+			"bin-path": "bin/tyson"
+		},
+		"windows": {
+			"download-file": "tyson_v{version}",
+			"archive-prefix": "tyson_v{version}",
+			"bin-path": "bin/tyson.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/jetify-com/tyson/releases/download/v{version}/{download_file}",
+		"arch": {
+			"x86_64": "amd64",
+			"aarch64": "arm64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/jetify-com/tyson"
+	}
+}

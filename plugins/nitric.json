@@ -1,0 +1,32 @@
+{
+	"name": "nitric",
+	"type": "cli",
+	"description": "Nitric CLI. Manage and run Nitric apps locally and deploy to any cloud.",
+	"platform": {
+		"linux": {
+			"download-file": "nitric_{version}_Linux_{arch}.tar.gz",
+			"archive-prefix": "nitric_{version}_Linux_{arch}",
+			"bin-path": "nitric"
+		},
+		"macos": {
+			"download-file": "nitric_{version}_macOS_{arch}.tar.gz",
+			"archive-prefix": "nitric_{version}_macOS_{arch}",
+			"bin-path": "nitric"
+		},
+		"windows": {
+			"download-file": "nitric_{version}_Windows_{arch}.zip",
+			"archive-prefix": "nitric_{version}_Windows_{arch}",
+			"bin-path": "nitric.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/nitrictech/cli/releases/download/v{version}/{download_file}",
+		"arch": {
+			"aarch64": "arm64",
+			"x86_64": "x86_64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/nitrictech/cli"
+	}
+}

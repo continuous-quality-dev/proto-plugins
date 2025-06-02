@@ -1,0 +1,9 @@
+--artifact-server-path $PWD/.artifacts
+--container-architecture=linux/amd64
+--var-file=.vars
+--secret-file=.secrets
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+-P windows-latest=catthehacker/ubuntu:act-latest
+-P mac-latest=-self-hosted
+--rm
+

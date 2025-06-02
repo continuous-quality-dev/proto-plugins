@@ -1,0 +1,32 @@
+{
+	"name": "difft",
+	"type": "cli",
+	"description": "a structural diff that understands syntax 🟥🟩",
+	"platform": {
+		"linux": {
+			"download-file": "difft-{arch}-unknown-linux-gnu.tar.gz",
+			"archive-prefix": "difft-{arch}-unknown-linux-gnu",
+			"bin-path": "difft"
+		},
+		"macos": {
+			"download-file": "difft-{arch}-apple-darwin.tar.gz",
+			"archive-prefix": "difft-{arch}-apple-darwin",
+			"bin-path": "difft"
+		},
+		"windows": {
+			"download-file": "difft-{arch}-pc-windows-msvc.zip",
+			"archive-prefix": "difft-{arch}-pc-windows-msvc",
+			"bin-path": "difft.exe"
+		}
+	},
+	"install": {
+		"download-url": "https://github.com/Wilfred/difftastic/releases/download/{version}/{download_file}",
+		"arch": {
+			"aarch64": "arm64",
+			"x86_64": "amd64"
+		}
+	},
+	"resolve": {
+		"git-url": "https://github.com/Wilfred/difftastic"
+	}
+}

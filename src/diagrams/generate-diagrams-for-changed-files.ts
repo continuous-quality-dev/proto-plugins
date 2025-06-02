@@ -61,7 +61,7 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysis {
 		const dependencies = importMatches
 			.map((imp) => imp.match(/from\s+['"](\..*?)['"];?/)?.[1])
 			.filter(Boolean)
-			.map((dep) => path.basename(dep!, path.extname(dep!)));
+			.map((dep) => path.basename(dep as string, path.extname(dep as string)));
 
 		// Extract exports
 		const exportMatches =
@@ -117,7 +117,7 @@ function generateSingleFileDiagram(
 	const fileName = fileAnalysis.fileName.replace(/\.ts$/, "");
 	const lines = [
 		"```mermaid",
-		`graph TD`,
+		"graph TD",
 		`    %% ${fileName} Function Dependencies`,
 		"",
 	];
@@ -176,15 +176,15 @@ function generateTypesUMLDiagram(fileAnalysis: FileAnalysis): string {
 
 	for (const iface of interfaces) {
 		lines.push(`    class ${iface.name} {`);
-		lines.push(`        <<interface>>`);
-		lines.push(`    }`);
+		lines.push("        <<interface>>");
+		lines.push("    }");
 		lines.push("");
 	}
 
 	for (const type of types) {
 		lines.push(`    class ${type.name} {`);
-		lines.push(`        <<type>>`);
-		lines.push(`    }`);
+		lines.push("        <<type>>");
+		lines.push("    }");
 		lines.push("");
 	}
 

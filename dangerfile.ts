@@ -690,7 +690,7 @@ function generateOriginalFunctionDiagram(
 ): string {
 	const lines = [
 		"```mermaid",
-		`graph TD`,
+		"graph TD",
 		`    %% ${fileName} Function Dependencies`,
 		"",
 	];
@@ -724,13 +724,14 @@ function generateOriginalFunctionDiagram(
 	function getFileTypeClass(name: string): string {
 		if (name.includes("utils") || name.includes("types")) {
 			return "utilFunction";
-		} else if (name.includes("generate")) {
-			return "generatorFunction";
-		} else if (name.includes("test")) {
-			return "testFunction";
-		} else {
-			return "typeFunction";
 		}
+		if (name.includes("generate")) {
+			return "generatorFunction";
+		}
+		if (name.includes("test")) {
+			return "testFunction";
+		}
+		return "typeFunction";
 	}
 
 	// Add the main file node

@@ -94,7 +94,9 @@ function main(): void {
 		if (arg === "--help" || arg === "-h") {
 			showUsage();
 			return;
-		} else if (arg === "--dry-run") {
+		}
+
+		if (arg === "--dry-run") {
 			options.dryRun = true;
 		} else if (arg === "--verbose" || arg === "-v") {
 			options.verbose = true;

@@ -286,7 +286,7 @@ function generateComparisonMarkdown(
 					changes.highComplexityFunctions as MetricChange<number>;
 
 				functionsCell = `${funcCount.base} → ${funcCount.current} (${formatChange(funcCount.change)})`;
-				complexityCell = `${avgComplexity.base!.toFixed(2)} → ${avgComplexity.current!.toFixed(2)} (${formatComplexityChange(avgComplexity.change)})`;
+				complexityCell = `${(avgComplexity.base ?? 0).toFixed(2)} → ${(avgComplexity.current ?? 0).toFixed(2)} (${formatComplexityChange(avgComplexity.change)})`;
 				highComplexityCell = `${highComplexity.base} → ${highComplexity.current} (${formatChange(highComplexity.change)})`;
 			}
 

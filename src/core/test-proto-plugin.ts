@@ -99,10 +99,9 @@ export async function promptUser(
 	tools: string[],
 	runtime: string = getRuntime(),
 ): Promise<string[]> {
-	const promptMsg =
-		`Select tool(s) to install and test (comma separated):\n` +
-		tools.map((t, i) => `${i + 1}. ${t}`).join("\n") +
-		"\n> ";
+	const promptMsg = `Select tool(s) to install and test (comma separated):
+${tools.map((t, i) => `${i + 1}. ${t}`).join("\n")}
+> `;
 	if (runtime === "bun" || runtime === "node") {
 		const readline = await import("node:readline");
 		const rl = readline.createInterface({
@@ -163,19 +162,19 @@ export async function validateTool(tool: string, runCommandImpl = runCommand) {
 		}
 	}
 
-	if (versionResult && versionResult.success) {
+	if (versionResult?.success) {
 		console.log(
 			`[validate] ${tool} version:\n${versionResult.stdout}\n${versionResult.stderr}`,
 		);
 		return true;
-	} else {
-		console.log(
-			`[validate] ${tool} version check failed.\n${
-				versionResult ? versionResult.stderr : ""
-			}`,
-		);
-		return false;
 	}
+
+	console.log(
+		`[validate] ${tool} version check failed.\n${
+			versionResult ? versionResult.stderr : ""
+		}`,
+	);
+	return false;
 }
 
 async function main() {

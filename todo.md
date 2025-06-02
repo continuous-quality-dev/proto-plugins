@@ -16,7 +16,7 @@
 10. **Add support for plugins with different versioning schemes** - Flexible versioning
 11. **Add support for plugins with different installation methods** - Multiple install strategies
 12. **Add support for plugins with different architectures** - Cross-platform support
-13. **Make a rules directory and codify AI rules** - Document AI assistance patterns
+✅ 13. **Make a rules directory and codify AI rules** - Document AI assistance patterns
 14. **Use vltpkg/reproduce for repository validation** - (blocked: Node.js compatibility)
 
 ## Recommended Additional Improvements

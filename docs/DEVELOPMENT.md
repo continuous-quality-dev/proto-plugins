@@ -1,5 +1,24 @@
 # Development Guide
 
+## 📚 Development Standards
+
+**IMPORTANT**: This project follows comprehensive development standards documented in the [`rules/`](../rules/) directory. All contributors should familiarize themselves with these patterns before making changes.
+
+### Quick Reference
+- [**AI Assistance Rules**](../rules/README.md) - Complete overview of development patterns
+- [**Rules Index**](../rules/RULES_INDEX.md) - Quick reference and learning paths
+- [**Code Generation**](../rules/ai-assistance/code-generation.md) - TypeScript patterns and standards
+- [**Testing Guidelines**](../rules/ai-assistance/testing.md) - Property-based and cross-runtime testing
+- [**TypeScript Standards**](../rules/coding-standards/typescript.md) - Language-specific conventions
+- [**Naming Conventions**](../rules/coding-standards/naming-conventions.md) - Consistent identifier naming
+
+### Core Principles
+- **Type Safety First**: TypeScript strict mode, explicit types, no `any`
+- **Cross-Runtime Compatibility**: Support Node.js, Bun, and Deno
+- **Property-Based Testing**: Use fast-check for algorithmic functions
+- **Error Handling**: Custom error classes with meaningful context
+- **Code Quality**: ESLint, knip, and trunk for automated validation
+
 ## Project Structure
 
 ```
@@ -125,28 +144,37 @@ make validate
 
 ## Best Practices
 
-### 1. **Code Style**
-- Use TypeScript strict mode
-- Prefer explicit types
-- Use meaningful variable names
+### 1. **Follow Established Rules**
+- **ALWAYS** consult the [`rules/`](../rules/) directory before making changes
+- Follow [TypeScript Standards](../rules/coding-standards/typescript.md) for all code
+- Apply [Naming Conventions](../rules/coding-standards/naming-conventions.md) consistently
+- Use [Code Generation](../rules/ai-assistance/code-generation.md) patterns for new features
+
+### 2. **Code Style**
+- Use TypeScript strict mode (enforced by rules)
+- Prefer explicit types over `any` (see [TypeScript Standards](../rules/coding-standards/typescript.md))
+- Use meaningful variable names (see [Naming Conventions](../rules/coding-standards/naming-conventions.md))
 - Add JSDoc comments for public APIs
 
-### 2. **Testing**
-- Write tests for all new features
-- Use property-based testing for algorithms
-- Test error conditions
-- Maintain high test coverage
+### 3. **Testing**
+- Follow [Testing Guidelines](../rules/ai-assistance/testing.md) for all tests
+- Write property-based tests with fast-check for algorithms
+- Ensure cross-runtime compatibility (Node.js, Bun, Deno)
+- Test error conditions and edge cases
+- Maintain >90% test coverage
 
-### 3. **Documentation**
+### 4. **Documentation**
 - Update README for user-facing changes
 - Add inline comments for complex logic
 - Update this guide for architectural changes
+- Follow documentation patterns in the rules
 
-### 4. **Performance**
+### 5. **Performance**
 - Minimize external dependencies
 - Use streaming for large files
 - Cache expensive operations
 - Profile critical paths
+- Follow performance guidelines in the rules
 
 ## Debugging
 

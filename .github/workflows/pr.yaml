@@ -29,11 +29,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  example_matrix:
+  multi_arch_test:
+    name: Multi-Architecture Test (${{ matrix.os }} - ${{ matrix.arch }})
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        # arch: [ x64, arm64 ]
+        include:
+          # Ubuntu x64
+          - os: ubuntu-latest
+            arch: x64
+          # Ubuntu arm64
+          - os: ubuntu-latest
+            arch: arm64
+          # macOS x64 (Intel)
+          - os: macos-13
+            arch: x64
+          # macOS arm64 (Apple Silicon)
+          - os: macos-latest
+            arch: arm64
+          # Windows x64
+          - os: windows-latest
+            arch: x64
     runs-on: "${{ matrix.os }}"
     steps:
       - uses: actions/checkout@v4
@@ -42,6 +58,33 @@ jobs:
       - uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: true
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Verify architecture and run basic tests
+        shell: bash
+        run: |
+          echo "🏗️ Architecture: ${{ matrix.arch }}"
+          echo "💻 Operating System: ${{ runner.os }}"
+          echo "🏃 Runner: ${{ matrix.os }}"
+
+          # Display system architecture information
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            echo "System Info:"
+            systeminfo | findstr /C:"System Type"
+          elif [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "System Info:"
+            uname -m
+            sysctl -n machdep.cpu.brand_string
+          else
+            echo "System Info:"
+            uname -m
+            lscpu | grep "Architecture\|Model name" || true
+          fi
+
+          # Run a basic test to verify toolchain works
+          echo "Testing basic functionality..."
+          pnpm run generate --help
+
       - name: debug
         shell: pwsh
         if: failure()

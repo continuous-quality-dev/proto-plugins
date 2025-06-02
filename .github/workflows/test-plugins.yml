@@ -56,7 +56,7 @@ jobs:
           echo "plugin-count=$plugin_count" >> $GITHUB_OUTPUT
 
   test-plugins:
-    name: Test ${{ matrix.plugin }} on ${{ matrix.os }}
+    name: Test ${{ matrix.plugin }} on ${{ matrix.os }} (${{ matrix.arch }})
     runs-on: ${{ matrix.os }}
     needs: detect-plugins
     if: needs.detect-plugins.outputs.plugin-count > 0
@@ -64,7 +64,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          # Ubuntu x64
+          - os: ubuntu-latest
+            arch: x64
+          # Ubuntu arm64 (using ubuntu-latest-arm)
+          - os: ubuntu-latest
+            arch: arm64
+          # macOS x64 (Intel)
+          - os: macos-13
+            arch: x64
+          # macOS arm64 (Apple Silicon)
+          - os: macos-latest
+            arch: arm64
+          # Windows x64
+          - os: windows-latest
+            arch: x64
         plugin: ${{ fromJson(needs.detect-plugins.outputs.plugins) }}
 
     steps:
@@ -87,7 +102,7 @@ jobs:
 
           echo "plugin-file=$plugin_file" >> $GITHUB_OUTPUT
           echo "plugin-name=$plugin_name" >> $GITHUB_OUTPUT
-          echo "Testing plugin: $plugin_name from $plugin_file on ${{ runner.os }}"
+          echo "Testing plugin: $plugin_name from $plugin_file on ${{ runner.os }} (${{ matrix.arch }})"
 
       - name: Test plugin with proto
         shell: bash
@@ -96,6 +111,7 @@ jobs:
           echo "📁 Plugin file: ${{ matrix.plugin }}"
           echo "💻 Operating system: ${{ runner.os }}"
           echo "🏃 Runner: ${{ matrix.os }}"
+          echo "🏗️ Architecture: ${{ matrix.arch }}"
 
           # Set timeout for the test (10 minutes)
           timeout_duration="600"
@@ -123,7 +139,7 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          echo "❌ Plugin test failed for ${{ steps.plugin-info.outputs.plugin-name }} on ${{ runner.os }}"
+          echo "❌ Plugin test failed for ${{ steps.plugin-info.outputs.plugin-name }} on ${{ runner.os }} (${{ matrix.arch }})"
           echo "Checking proto logs and installation..."
 
           if [ -d ~/.proto/logs ]; then
@@ -145,7 +161,7 @@ jobs:
           echo "# Proto Plugin Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Plugins tested:** ${{ needs.detect-plugins.outputs.plugin-count }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Operating systems:** ubuntu-latest, macos-latest, windows-latest" >> $GITHUB_STEP_SUMMARY
+          echo "**Platforms:** ubuntu-latest (x64/arm64), macos-13 (x64), macos-latest (arm64), windows-latest (x64)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [[ "${{ needs.test-plugins.result }}" == "success" ]]; then

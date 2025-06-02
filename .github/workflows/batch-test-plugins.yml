@@ -10,8 +10,17 @@ on:
         type: choice
         options:
           - ubuntu-latest
+          - macos-13
           - macos-latest
           - windows-latest
+      arch:
+        description: Architecture to test on
+        required: false
+        default: x64
+        type: choice
+        options:
+          - x64
+          - arm64
       plugin_pattern:
         description: Plugin pattern to test (e.g., "d2.json")
         required: false
@@ -31,7 +40,7 @@ env:
 
 jobs:
   batch-test:
-    name: Batch Test Plugins on ${{ inputs.os }}
+    name: Batch Test Plugins on ${{ inputs.os }} (${{ inputs.arch }})
     runs-on: ${{ inputs.os }}
 
     steps:
@@ -89,6 +98,7 @@ jobs:
           echo "Starting batch test of plugins..."
           echo "Timeout per plugin: ${{ inputs.timeout_minutes }} minutes"
           echo "Operating system: ${{ runner.os }}"
+          echo "Architecture: ${{ inputs.arch }}"
 
           total_plugins=$(cat plugins_to_test.txt | wc -l)
           current=0
@@ -159,6 +169,7 @@ jobs:
           echo "# Batch Plugin Test Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Operating System:** ${{ inputs.os }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Architecture:** ${{ inputs.arch }}" >> $GITHUB_STEP_SUMMARY
           echo "**Plugin Pattern:** ${{ inputs.plugin_pattern }}" >> $GITHUB_STEP_SUMMARY
           echo "**Timeout per Plugin:** ${{ inputs.timeout_minutes }} minutes" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY

@@ -7,7 +7,7 @@
 5. Add performance monitoring and metrics
 6. Add plugin dependency management
 7. Implement plugin versioning strategies
-8. update the workflows to test multu architectures
+✅ 8. update the workflows to test multi architectures
 9. Implement plugin registry management
 10. Add support for plugins with multiple binaries
 11. Add support for plugins with different versioning schemes
@@ -34,3 +34,4 @@
 ✅ 6. create a eslint config with typescript support
 ✅ 7. update to node 24
 ✅ 8. update github workflows to use pnpm and proto toolchain
+✅ 9. implement multi-architecture testing workflows

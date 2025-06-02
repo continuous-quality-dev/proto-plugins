@@ -1,6 +1,6 @@
 # Danger.js Codebase Analysis
 
-This repository uses [Danger.js](https://danger.systems/js/) to automatically analyze code changes and generate visual diagrams of the codebase structure.
+This repository uses [Danger.js](https://danger.systems/js/) to automatically analyze code changes and generate diagrams.
 
 ## Features
 
@@ -15,11 +15,11 @@ When TypeScript files in the `src/` directory are modified in a PR, Danger.js au
 
 2. **Generates multiple focused Mermaid diagrams**:
    - **Overview diagram** showing file-level dependencies across the entire codebase
-   - **Individual file diagrams** for each non-test file showing:
+   - **Individual file diagrams** for each non-test file:
      - **File container node** with dashed border (📁 file-name)
      - **Functions as colored nodes** within the file
      - **External dependencies** from other files that are imported
-     - **Function dependencies** as directed edges from main functions to imported utilities
+     - **Function dependencies** as directed edges from main functions to utilities
 
 3. **Creates comprehensive analysis tables** with:
    - All functions defined in each file (deduplicated)
@@ -30,16 +30,17 @@ When TypeScript files in the `src/` directory are modified in a PR, Danger.js au
 
 Files are automatically categorized and color-coded:
 
-- **🔧 Utility Files** (blue): `utils.ts`, `types.ts` - Core utilities and type definitions
-- **⚙️ Generator Files** (purple): Files containing "generate" - Plugin generation scripts
-- **🧪 Test Files** (orange): Files containing "test" - Testing and validation scripts
+- **🔧 Utility Files** (blue): `utils.ts`, `types.ts` - Core utilities and types
+- **⚙️ Generator Files** (purple): Files containing "generate" - Plugin generation
+- **🧪 Test Files** (orange): Files containing "test" - Testing and validation
 - **📁 Type Files** (green): Other TypeScript files
 
 ## Usage
 
 ### Automatic PR Analysis
 
-Danger.js runs automatically on every pull request that modifies TypeScript files in `src/`. The generated diagram and analysis will be posted as a comment on the PR.
+Danger.js runs automatically on every pull request that modifies TypeScript files.
+The generated diagram and analysis will be posted as a comment on the PR.
 
 ### Manual Generation
 
@@ -63,6 +64,7 @@ npm run danger:local
 The generated documentation includes multiple diagrams:
 
 ### 1. Overview Diagram (File Dependencies)
+
 ```mermaid
 graph TD
     %% File-level overview
@@ -75,12 +77,13 @@ graph TD
 ```
 
 ### 2. Individual File Diagrams (Function Dependencies)
+
 ```mermaid
 graph TD
     %% generate-proto-plugin Function Dependencies
     classDef generatorFunction fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef utilFunction fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef fileNode fill:#f5f5f5,stroke:#666,stroke-width:3px,stroke-dasharray: 5 5
+    classDef fileNode fill:#f5f5f5,stroke:#666,stroke-width:3px
 
     %% Main File
     FILE_0["📁 generate-proto-plugin"]:::fileNode
@@ -129,14 +132,14 @@ The `.github/workflows/pr.yaml` includes a Danger.js job that:
 
 ## Benefits
 
-1. **📈 Enhanced Code Review** - Individual file diagrams help reviewers focus on specific changes without overwhelming complexity
-2. **🏗️ Multi-Level Architecture Awareness** - Overview diagram for high-level understanding, detailed diagrams for deep dives
-3. **🔍 Focused Impact Analysis** - Each file's diagram shows exactly which external functions it depends on
-4. **📚 Modular Documentation** - Separate diagrams for each file make documentation more navigable and maintainable
-5. **🚀 Improved Developer Experience** - Developers can quickly understand a specific file's dependencies without cognitive overload
-6. **🎯 Targeted Refactoring** - Individual diagrams make it easier to identify refactoring opportunities within specific files
-7. **🔒 Runtime Dependency Focus** - Type-only imports are filtered out to show actual runtime dependencies
-8. **📊 Scalable Visualization** - Individual diagrams remain readable even as the codebase grows
+1. **📈 Enhanced Code Review** - Individual diagrams help reviewers focus on changes
+2. **🏗️ Multi-Level Architecture Awareness** - Overview diagram for high-level understanding
+3. **🔍 Focused Impact Analysis** - Each file's diagram shows external function dependencies
+4. **📚 Modular Documentation** - Separate diagrams make documentation more navigable
+5. **🚀 Improved Developer Experience** - Developers can quickly understand dependencies
+6. **🎯 Targeted Refactoring** - Individual diagrams identify refactoring opportunities
+7. **🔒 Runtime Dependency Focus** - Type-only imports are filtered out
+8. **📊 Scalable Visualization** - Individual diagrams remain readable
 
 ## Customization
 
@@ -163,4 +166,4 @@ To debug the analysis, you can run the script directly:
 node --experimental-strip-types dangerfile.ts
 ```
 
-This will generate the diagram and show detailed console output about the analysis process.
+This will generate the diagram and show detailed console output about the analysis.

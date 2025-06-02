@@ -71,6 +71,7 @@ Each diagram below shows the functions within a specific file and their dependen
 ### generate-complexity-comparison
 
 ### Function Dependencies
+
 ```mermaid
 graph TD
     %% generate-complexity-comparison Function Dependencies
@@ -121,18 +122,21 @@ graph TD
 | `main` | 🔴 High | 8 | 45 | 0 | Main entry point with multiple execution paths |
 
 **Complexity Metrics:**
+
 - **Cyclomatic Complexity**: Number of independent execution paths (1-3: Low, 4-6: Medium, 7+: High)
 - **LOC**: Estimated Lines of Code
 - **Params**: Number of function parameters
 
 **Complexity Legend:**
+
 - 🔴 **High (7+ paths)**: Main functions, complex business logic, multiple decision points
 - 🟡 **Medium (4-6 paths)**: Processing functions, API calls, data transformation
 - 🟢 **Low (1-3 paths)**: Simple utilities, getters/setters, basic operations
 
-### index
+### index (config)
 
 ### Function Dependencies
+
 ```mermaid
 graph TD
     %% index Function Dependencies
@@ -153,17 +157,20 @@ graph TD
 ```
 
 ### Function Complexity Analysis
+
 #### index Function Complexity Analysis
 
 | Function | Complexity | Cyclomatic | LOC | Params | Description |
 |----------|------------|------------|-----|--------|-------------|
 
 **Complexity Metrics:**
+
 - **Cyclomatic Complexity**: Number of independent execution paths (1-3: Low, 4-6: Medium, 7+: High)
 - **LOC**: Estimated Lines of Code
 - **Params**: Number of function parameters
 
 **Complexity Legend:**
+
 - 🔴 **High (7+ paths)**: Main functions, complex business logic, multiple decision points
 - 🟡 **Medium (4-6 paths)**: Processing functions, API calls, data transformation
 - 🟢 **Low (1-3 paths)**: Simple utilities, getters/setters, basic operations

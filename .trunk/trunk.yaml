@@ -36,6 +36,14 @@ lint:
       paths:
         - .github/workflows/auto-generate-plugin.yml
         - .github/workflows/multi-arch-test.yml
+    # Ignore auto-generated markdown files
+    - linters: [markdownlint]
+      paths:
+        - CODEBASE_DIAGRAM.md
+        - TEST_SUMMARY.md
+        - "**/COMPLEXITY_METRICS.md"
+        - "**/FUNCTION_ANALYSIS.md"
+        - "**/DIAGRAM_*.md"
   enabled:
     - biome@1.9.4
     - dotenv-linter@3.3.0

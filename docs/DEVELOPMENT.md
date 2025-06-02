@@ -2,17 +2,19 @@
 
 ## 📚 Development Standards
 
-**IMPORTANT**: This project follows comprehensive development standards documented in the [`rules/`](../rules/) directory. All contributors should familiarize themselves with these patterns before making changes.
+**IMPORTANT**: This project follows comprehensive development standards documented in the [`rules/`](../rules/) directory. All contributors should familiarize themselves with these patterns.
 
 ### Quick Reference
-- [**AI Assistance Rules**](../rules/README.md) - Complete overview of development patterns
+
+- [**AI Assistance Rules**](../rules/README.md) - Complete overview of patterns
 - [**Rules Index**](../rules/RULES_INDEX.md) - Quick reference and learning paths
-- [**Code Generation**](../rules/ai-assistance/code-generation.md) - TypeScript patterns and standards
-- [**Testing Guidelines**](../rules/ai-assistance/testing.md) - Property-based and cross-runtime testing
-- [**TypeScript Standards**](../rules/coding-standards/typescript.md) - Language-specific conventions
-- [**Naming Conventions**](../rules/coding-standards/naming-conventions.md) - Consistent identifier naming
+- [**Code Generation**](../rules/ai-assistance/code-generation.md) - TypeScript patterns
+- [**Testing Guidelines**](../rules/ai-assistance/testing.md) - Property-based testing
+- [**TypeScript Standards**](../rules/coding-standards/typescript.md) - Language conventions
+- [**Naming Conventions**](../rules/coding-standards/naming-conventions.md) - Naming
 
 ### Core Principles
+
 - **Type Safety First**: TypeScript strict mode, explicit types, no `any`
 - **Cross-Runtime Compatibility**: Support Node.js, Bun, and Deno
 - **Property-Based Testing**: Use fast-check for algorithmic functions
@@ -21,7 +23,7 @@
 
 ## Project Structure
 
-```
+```text
 src/
 ├── analysis/           # Complexity analysis and metrics
 ├── cli/               # CLI commands and interfaces

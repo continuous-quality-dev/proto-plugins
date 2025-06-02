@@ -19,7 +19,7 @@ on:
         type: string
   schedule:
     # Run weekly on Sundays at 2 AM UTC
-    - cron: '0 2 * * 0'
+    - cron: 0 2 * * 0
 
 permissions:
   contents: read
@@ -39,23 +39,23 @@ jobs:
           # Ubuntu x64
           - os: ubuntu-latest
             arch: x64
-            test_name: "Ubuntu x64"
+            test_name: Ubuntu x64
           # Ubuntu arm64 (Note: GitHub doesn't have native arm64 runners yet, but this prepares for when they do)
           - os: ubuntu-latest
             arch: arm64
-            test_name: "Ubuntu ARM64"
+            test_name: Ubuntu ARM64
           # macOS x64 (Intel)
           - os: macos-13
             arch: x64
-            test_name: "macOS Intel"
+            test_name: macOS Intel
           # macOS arm64 (Apple Silicon)
           - os: macos-latest
             arch: arm64
-            test_name: "macOS Apple Silicon"
+            test_name: macOS Apple Silicon
           # Windows x64
           - os: windows-latest
             arch: x64
-            test_name: "Windows x64"
+            test_name: Windows x64
 
     steps:
       - name: Checkout repository

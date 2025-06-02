@@ -44,7 +44,7 @@ jobs:
         with:
           check-mode: all
           post-annotations: true
-          arguments: --ci
+          arguments: --ci --no-progress
 
       - name: Get changed files
         id: changed-files

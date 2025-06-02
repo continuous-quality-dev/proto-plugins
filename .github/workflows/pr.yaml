@@ -1,3 +1,5 @@
+name: Pull Request Validation
+
 on:
   push:
     branches:
@@ -5,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: read
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

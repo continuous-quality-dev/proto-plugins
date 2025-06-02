@@ -5,6 +5,7 @@ This is a comprehensive index of all AI assistance rules and coding standards in
 ## 📚 Quick Reference
 
 ### 🤖 AI Assistance Rules
+
 | Rule | Purpose | Key Patterns |
 |------|---------|--------------|
 | [Code Generation](ai-assistance/code-generation.md) | TypeScript code generation patterns | Type safety, error handling, cross-runtime |
@@ -13,6 +14,7 @@ This is a comprehensive index of all AI assistance rules and coding standards in
 | [Workflow Automation](ai-assistance/workflow-automation.md) | CI/CD and automation | GitHub workflows, proto integration |
 
 ### 💻 Coding Standards
+
 | Standard | Scope | Key Rules |
 |----------|-------|-----------|
 | [TypeScript](coding-standards/typescript.md) | Language-specific rules | Strict mode, explicit types, modern features |
@@ -21,6 +23,7 @@ This is a comprehensive index of all AI assistance rules and coding standards in
 | [Error Handling](coding-standards/error-handling.md) | Error management | Custom error classes, context preservation |
 
 ### 🔧 Project Patterns
+
 | Pattern | Domain | Key Concepts |
 |---------|--------|--------------|
 | [Plugin Generation](project-patterns/plugin-generation.md) | GitHub → Proto | Asset detection, platform support, validation |
@@ -29,6 +32,7 @@ This is a comprehensive index of all AI assistance rules and coding standards in
 | [Proto Toolchain](project-patterns/proto-toolchain.md) | Tool integration | Installation, testing, version management |
 
 ### ✅ Quality Assurance
+
 | Process | Focus | Tools |
 |---------|-------|-------|
 | [Code Review](quality-assurance/code-review.md) | Review guidelines | Checklists, automated checks |
@@ -39,18 +43,21 @@ This is a comprehensive index of all AI assistance rules and coding standards in
 ## 🎯 Rule Categories by Use Case
 
 ### 🚀 Starting a New Feature
+
 1. **Read**: [Code Generation](ai-assistance/code-generation.md) for patterns
 2. **Follow**: [TypeScript Standards](coding-standards/typescript.md) for implementation
 3. **Apply**: [Naming Conventions](coding-standards/naming-conventions.md) for identifiers
 4. **Test**: [Testing Rules](ai-assistance/testing.md) for validation
 
 ### 🔧 Plugin Development
+
 1. **Study**: [Plugin Generation](project-patterns/plugin-generation.md) for workflows
 2. **Implement**: [GitHub Integration](project-patterns/github-integration.md) for API usage
 3. **Ensure**: [Cross-Runtime](project-patterns/cross-runtime.md) compatibility
 4. **Validate**: [Proto Toolchain](project-patterns/proto-toolchain.md) integration
 
 ### 🧪 Testing Strategy
+
 1. **Structure**: [Testing Rules](ai-assistance/testing.md) for organization
 2. **Generate**: Property-based tests with fast-check
 3. **Validate**: Cross-runtime compatibility with poku

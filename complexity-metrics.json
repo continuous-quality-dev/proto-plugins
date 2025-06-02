@@ -1,0 +1,1350 @@
+{
+	"metadata": {
+		"generatedAt": "2025-06-02T04:25:08.642Z",
+		"totalFiles": 21,
+		"totalFunctions": 136
+	},
+	"files": {
+		"complexity-test-simple": {
+			"path": "complexity-test-simple.ts",
+			"functionCount": 1,
+			"dependencies": [],
+			"exports": [],
+			"functions": {
+				"calculateComplexityMetrics": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "2.00",
+				"totalEstimatedLOC": 10,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 1
+			}
+		},
+		"generate-complexity-comparison": {
+			"path": "generate-complexity-comparison.ts",
+			"functionCount": 8,
+			"dependencies": [],
+			"exports": [],
+			"functions": {
+				"loadMetrics": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"calculateMetricsDiff": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"formatChange": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"formatComplexityChange": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"getChangeIcon": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"getComplexityIcon": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"generateComparisonMarkdown": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "2.13",
+				"totalEstimatedLOC": 121,
+				"highComplexityFunctions": 1,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 7
+			}
+		},
+		"index": {
+			"path": "index.ts",
+			"functionCount": 0,
+			"dependencies": [],
+			"exports": [
+				{
+					"name": "SUPPORTED_RUNTIMES",
+					"type": "variable"
+				},
+				{
+					"name": "SUPPORTED_PLATFORMS",
+					"type": "variable"
+				},
+				{
+					"name": "SUPPORTED_ARCHITECTURES",
+					"type": "variable"
+				},
+				{
+					"name": "GITHUB_URL_REGEX",
+					"type": "variable"
+				},
+				{
+					"name": "SEMVER_REGEX",
+					"type": "variable"
+				},
+				{
+					"name": "DEFAULT_ARCH_MAPPING",
+					"type": "variable"
+				},
+				{
+					"name": "PLATFORM_EXTENSIONS",
+					"type": "variable"
+				},
+				{
+					"name": "COMMON_BINARY_PATTERNS",
+					"type": "variable"
+				},
+				{
+					"name": "ARCHIVE_EXTENSIONS",
+					"type": "variable"
+				},
+				{
+					"name": "EXECUTABLE_EXTENSIONS",
+					"type": "variable"
+				},
+				{
+					"name": "TEST_TIMEOUTS",
+					"type": "variable"
+				},
+				{
+					"name": "EXIT_CODES",
+					"type": "variable"
+				},
+				{
+					"name": "LOG_LEVELS",
+					"type": "variable"
+				}
+			],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		},
+		"types": {
+			"path": "types.ts",
+			"functionCount": 0,
+			"dependencies": [],
+			"exports": [],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		},
+		"generate-proto-plugin-stricli": {
+			"path": "generate-proto-plugin-stricli.ts",
+			"functionCount": 8,
+			"dependencies": ["../utils/utils"],
+			"exports": [],
+			"functions": {
+				"prompt": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"analyzeAssets": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 6,
+					"estimatedLOC": 35,
+					"parameterCount": 2,
+					"description": "Data analysis with pattern matching",
+					"complexityLevel": "medium"
+				},
+				"detectFilePattern": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateArchivePrefix": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateProtoPlugin": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 7,
+					"estimatedLOC": 40,
+					"parameterCount": 3,
+					"description": "Complex plugin generation logic",
+					"complexityLevel": "high"
+				},
+				"generateProtoPluginImpl": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 7,
+					"estimatedLOC": 40,
+					"parameterCount": 3,
+					"description": "Complex plugin generation logic",
+					"complexityLevel": "high"
+				},
+				"parseArgs": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 4,
+					"estimatedLOC": 25,
+					"parameterCount": 1,
+					"description": "Argument parsing with validation",
+					"complexityLevel": "medium"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "4.38",
+				"totalEstimatedLOC": 215,
+				"highComplexityFunctions": 3,
+				"mediumComplexityFunctions": 2,
+				"lowComplexityFunctions": 3
+			}
+		},
+		"generate-proto-plugin": {
+			"path": "generate-proto-plugin.ts",
+			"functionCount": 7,
+			"dependencies": ["../utils/utils"],
+			"exports": [],
+			"functions": {
+				"prompt": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"analyzeAssets": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 6,
+					"estimatedLOC": 35,
+					"parameterCount": 2,
+					"description": "Data analysis with pattern matching",
+					"complexityLevel": "medium"
+				},
+				"detectFilePattern": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateArchivePrefix": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateProtoPlugin": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 7,
+					"estimatedLOC": 40,
+					"parameterCount": 3,
+					"description": "Complex plugin generation logic",
+					"complexityLevel": "high"
+				},
+				"parseArgs": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 4,
+					"estimatedLOC": 25,
+					"parameterCount": 1,
+					"description": "Argument parsing with validation",
+					"complexityLevel": "medium"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "4.00",
+				"totalEstimatedLOC": 175,
+				"highComplexityFunctions": 2,
+				"mediumComplexityFunctions": 2,
+				"lowComplexityFunctions": 3
+			}
+		},
+		"proto-plugin-selection": {
+			"path": "proto-plugin-selection.ts",
+			"functionCount": 6,
+			"dependencies": ["../utils/utils"],
+			"exports": [],
+			"functions": {
+				"fetchProtoRegistry": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"loadLocalPlugins": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"parseArgs": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 4,
+					"estimatedLOC": 25,
+					"parameterCount": 1,
+					"description": "Argument parsing with validation",
+					"complexityLevel": "medium"
+				},
+				"installPlugins": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 7,
+					"estimatedLOC": 42,
+					"parameterCount": 2,
+					"description": "Plugin installation with error handling",
+					"complexityLevel": "high"
+				},
+				"interactiveSelection": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 50,
+					"parameterCount": 1,
+					"description": "Interactive UI with multiple user paths",
+					"complexityLevel": "high"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "5.50",
+				"totalEstimatedLOC": 202,
+				"highComplexityFunctions": 3,
+				"mediumComplexityFunctions": 1,
+				"lowComplexityFunctions": 2
+			}
+		},
+		"test-proto-plugin-with-proto": {
+			"path": "test-proto-plugin-with-proto.ts",
+			"functionCount": 9,
+			"dependencies": ["utils"],
+			"exports": [],
+			"functions": {
+				"checkProtoInstalled": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"getProtoToolsDir": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"installPluginToProto": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 42,
+					"parameterCount": 2,
+					"description": "Plugin installation with error handling (test context)",
+					"complexityLevel": "high"
+				},
+				"installToolWithProto": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"testToolWithProto": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 6,
+					"estimatedLOC": 30,
+					"parameterCount": 3,
+					"description": "Tool testing with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"getInstalledVersion": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"testProtoPlugin": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"parseArgs": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 1,
+					"description": "Argument parsing with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 9,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths (test context)",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "4.89",
+				"totalEstimatedLOC": 218,
+				"highComplexityFunctions": 2,
+				"mediumComplexityFunctions": 4,
+				"lowComplexityFunctions": 3
+			}
+		},
+		"test-proto-plugin": {
+			"path": "test-proto-plugin.ts",
+			"functionCount": 13,
+			"dependencies": [],
+			"exports": [
+				{
+					"name": "getRuntime",
+					"type": "function"
+				},
+				{
+					"name": "runCommand",
+					"type": "function"
+				},
+				{
+					"name": "getAvailableTools",
+					"type": "function"
+				},
+				{
+					"name": "promptUser",
+					"type": "function"
+				},
+				{
+					"name": "installTool",
+					"type": "function"
+				},
+				{
+					"name": "validateTool",
+					"type": "function"
+				}
+			],
+			"functions": {
+				"getRuntime": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"runCommand": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"getAvailableTools": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"promptUser": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"installTool": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"validateTool": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 9,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths (test context)",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "3.43",
+				"totalEstimatedLOC": 116,
+				"highComplexityFunctions": 1,
+				"mediumComplexityFunctions": 1,
+				"lowComplexityFunctions": 5
+			}
+		},
+		"test-workflows-with-act": {
+			"path": "test-workflows-with-act.ts",
+			"functionCount": 12,
+			"dependencies": [],
+			"exports": [],
+			"functions": {
+				"checkActInstallation": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"showUsage": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 9,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths (test context)",
+					"complexityLevel": "high"
+				},
+				"getActCommand": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"checkTrunkInstallation": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"validateWorkflowsWithTrunk": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"installActInstructions": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"createActConfig": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"createSecretsFile": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"createEventFile": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 5,
+					"estimatedLOC": 25,
+					"parameterCount": 2,
+					"description": "Operation function with validation (test context)",
+					"complexityLevel": "medium"
+				},
+				"getAvailableWorkflows": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function (test context)",
+					"complexityLevel": "low"
+				},
+				"runActCommand": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "4.08",
+				"totalEstimatedLOC": 239,
+				"highComplexityFunctions": 1,
+				"mediumComplexityFunctions": 6,
+				"lowComplexityFunctions": 5
+			}
+		},
+		"generate-diagrams-for-changed-files": {
+			"path": "generate-diagrams-for-changed-files.ts",
+			"functionCount": 6,
+			"dependencies": [],
+			"exports": [],
+			"functions": {
+				"getChangedTypeScriptFiles": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 8,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"analyzeTypeScriptFile": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 6,
+					"estimatedLOC": 35,
+					"parameterCount": 2,
+					"description": "Data analysis with pattern matching",
+					"complexityLevel": "medium"
+				},
+				"generateSingleFileDiagram": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateTypesUMLDiagram": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"generateDiagramsForChangedFiles": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 8,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "3.00",
+				"totalEstimatedLOC": 118,
+				"highComplexityFunctions": 1,
+				"mediumComplexityFunctions": 1,
+				"lowComplexityFunctions": 4
+			}
+		},
+		"github": {
+			"path": "github.ts",
+			"functionCount": 0,
+			"dependencies": ["../config/index"],
+			"exports": [],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		},
+		"proto": {
+			"path": "proto.ts",
+			"functionCount": 0,
+			"dependencies": ["../config/index"],
+			"exports": [],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		},
+		"complexity-types": {
+			"path": "complexity-types.ts",
+			"functionCount": 0,
+			"dependencies": [],
+			"exports": [],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		},
+		"errors": {
+			"path": "errors.ts",
+			"functionCount": 4,
+			"dependencies": [],
+			"exports": [
+				{
+					"name": "handleError",
+					"type": "function"
+				},
+				{
+					"name": "wrapAsync",
+					"type": "function"
+				}
+			],
+			"functions": {
+				"handleError": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"wrapAsync": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "1.00",
+				"totalEstimatedLOC": 20,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 2
+			}
+		},
+		"test-summary": {
+			"path": "test-summary.ts",
+			"functionCount": 4,
+			"dependencies": [],
+			"exports": [],
+			"functions": {
+				"parseTestOutput": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"runTestForRuntime": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"generateMarkdownTable": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 10,
+					"parameterCount": 1,
+					"description": "Simple utility function (test context)",
+					"complexityLevel": "low"
+				},
+				"main": {
+					"complexity": "🔴 High",
+					"cyclomaticComplexity": 9,
+					"estimatedLOC": 45,
+					"parameterCount": 0,
+					"description": "Main entry point with multiple execution paths (test context)",
+					"complexityLevel": "high"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "3.75",
+				"totalEstimatedLOC": 75,
+				"highComplexityFunctions": 1,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 3
+			}
+		},
+		"utils": {
+			"path": "utils.ts",
+			"functionCount": 58,
+			"dependencies": [],
+			"exports": [
+				{
+					"name": "detectRuntime",
+					"type": "function"
+				},
+				{
+					"name": "showUsage",
+					"type": "function"
+				},
+				{
+					"name": "showHelp",
+					"type": "function"
+				},
+				{
+					"name": "parseGitHubUrl",
+					"type": "function"
+				},
+				{
+					"name": "fetchGitHubRelease",
+					"type": "function"
+				},
+				{
+					"name": "fetchGitHubRepo",
+					"type": "function"
+				},
+				{
+					"name": "readProtoPlugin",
+					"type": "function"
+				},
+				{
+					"name": "writeProtoPlugin",
+					"type": "function"
+				},
+				{
+					"name": "hasFlag",
+					"type": "function"
+				},
+				{
+					"name": "getFlagValue",
+					"type": "function"
+				},
+				{
+					"name": "execCommand",
+					"type": "function"
+				},
+				{
+					"name": "parseToml",
+					"type": "function"
+				},
+				{
+					"name": "simplePrompt",
+					"type": "function"
+				},
+				{
+					"name": "loadCurrentProtoTools",
+					"type": "function"
+				},
+				{
+					"name": "parseArgs",
+					"type": "function"
+				},
+				{
+					"name": "checkProtoInstalled",
+					"type": "function"
+				},
+				{
+					"name": "getProtoToolsDir",
+					"type": "function"
+				},
+				{
+					"name": "installPluginToProto",
+					"type": "function"
+				},
+				{
+					"name": "installToolWithProto",
+					"type": "function"
+				},
+				{
+					"name": "testToolWithProto",
+					"type": "function"
+				},
+				{
+					"name": "getInstalledVersion",
+					"type": "function"
+				},
+				{
+					"name": "fetchLatestVersion",
+					"type": "function"
+				},
+				{
+					"name": "checkActInstallation",
+					"type": "function"
+				},
+				{
+					"name": "installActWithProto",
+					"type": "function"
+				},
+				{
+					"name": "getActCommand",
+					"type": "function"
+				},
+				{
+					"name": "createActConfig",
+					"type": "function"
+				},
+				{
+					"name": "createSecretsFile",
+					"type": "function"
+				},
+				{
+					"name": "createEventFile",
+					"type": "function"
+				},
+				{
+					"name": "getAvailableWorkflows",
+					"type": "function"
+				}
+			],
+			"functions": {
+				"detectRuntime": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"showUsage": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"showHelp": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"parseGitHubUrl": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"fetchGitHubRelease": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 15,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"fetchGitHubRepo": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 15,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"readProtoPlugin": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"writeProtoPlugin": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"hasFlag": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"getFlagValue": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"execCommand": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"parseToml": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"simplePrompt": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple utility function",
+					"complexityLevel": "low"
+				},
+				"loadCurrentProtoTools": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 15,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"parseArgs": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 1,
+					"description": "Argument parsing with validation",
+					"complexityLevel": "low"
+				},
+				"checkProtoInstalled": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"getProtoToolsDir": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"installPluginToProto": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 6,
+					"estimatedLOC": 37,
+					"parameterCount": 2,
+					"description": "Plugin installation with error handling",
+					"complexityLevel": "medium"
+				},
+				"installToolWithProto": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"testToolWithProto": {
+					"complexity": "🟡 Medium",
+					"cyclomaticComplexity": 4,
+					"estimatedLOC": 25,
+					"parameterCount": 3,
+					"description": "Tool testing with validation",
+					"complexityLevel": "medium"
+				},
+				"getInstalledVersion": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"fetchLatestVersion": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 2,
+					"estimatedLOC": 15,
+					"parameterCount": 2,
+					"description": "Data fetching with error handling",
+					"complexityLevel": "low"
+				},
+				"checkActInstallation": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"installActWithProto": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"getActCommand": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				},
+				"createActConfig": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"createSecretsFile": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"createEventFile": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 3,
+					"estimatedLOC": 20,
+					"parameterCount": 2,
+					"description": "Operation function with validation",
+					"complexityLevel": "low"
+				},
+				"getAvailableWorkflows": {
+					"complexity": "🟢 Low",
+					"cyclomaticComplexity": 1,
+					"estimatedLOC": 5,
+					"parameterCount": 1,
+					"description": "Simple getter/display function",
+					"complexityLevel": "low"
+				}
+			},
+			"metrics": {
+				"averageCyclomaticComplexity": "1.97",
+				"totalEstimatedLOC": 357,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 2,
+				"lowComplexityFunctions": 27
+			}
+		},
+		"plugin-validator": {
+			"path": "plugin-validator.ts",
+			"functionCount": 0,
+			"dependencies": ["../config/index"],
+			"exports": [],
+			"functions": {},
+			"metrics": {
+				"averageCyclomaticComplexity": "0",
+				"totalEstimatedLOC": 0,
+				"highComplexityFunctions": 0,
+				"mediumComplexityFunctions": 0,
+				"lowComplexityFunctions": 0
+			}
+		}
+	},
+	"projectMetrics": {
+		"averageCyclomaticComplexity": "3.27",
+		"totalEstimatedLOC": 1866,
+		"complexityDistribution": {
+			"high": 15,
+			"medium": 19,
+			"low": 65
+		},
+		"mostComplexFunctions": [
+			{
+				"file": "test-proto-plugin-with-proto",
+				"function": "main",
+				"cyclomaticComplexity": 9,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "test-proto-plugin",
+				"function": "main",
+				"cyclomaticComplexity": 9,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "test-workflows-with-act",
+				"function": "main",
+				"cyclomaticComplexity": 9,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "test-summary",
+				"function": "main",
+				"cyclomaticComplexity": 9,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "generate-complexity-comparison",
+				"function": "main",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "generate-proto-plugin-stricli",
+				"function": "main",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "generate-proto-plugin",
+				"function": "main",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "proto-plugin-selection",
+				"function": "interactiveSelection",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 50
+			},
+			{
+				"file": "proto-plugin-selection",
+				"function": "main",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 45
+			},
+			{
+				"file": "test-proto-plugin-with-proto",
+				"function": "installPluginToProto",
+				"cyclomaticComplexity": 8,
+				"complexityLevel": "high",
+				"estimatedLOC": 42
+			}
+		]
+	}
+}

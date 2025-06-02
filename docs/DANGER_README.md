@@ -56,7 +56,7 @@ npm run danger:local
 ### Generated Files
 
 - **`CODEBASE_DIAGRAM.md`** - Contains the Mermaid diagram and detailed analysis
-- **`dangerfile.js`** - The Danger.js configuration and analysis logic
+- **`dangerfile.ts`** - The Danger.js configuration and analysis logic
 
 ## Example Output
 
@@ -105,7 +105,7 @@ graph TD
 
 ### Danger.js Configuration
 
-The `dangerfile.js` contains:
+The `dangerfile.ts` contains:
 
 - **TypeScript AST parsing** using `@typescript-eslint/typescript-estree`
 - **File analysis logic** to extract functions, exports, and imports
@@ -140,7 +140,7 @@ The `.github/workflows/pr.yaml` includes a Danger.js job that:
 
 ## Customization
 
-You can customize the analysis by modifying `dangerfile.js`:
+You can customize the analysis by modifying `dangerfile.ts`:
 
 - **Add new file types** by updating the classification logic
 - **Change colors** by modifying the CSS classes in the Mermaid diagram
@@ -160,7 +160,7 @@ You can customize the analysis by modifying `dangerfile.js`:
 To debug the analysis, you can run the script directly:
 
 ```bash
-node dangerfile.js
+node --experimental-strip-types dangerfile.ts
 ```
 
 This will generate the diagram and show detailed console output about the analysis process.

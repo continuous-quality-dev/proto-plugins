@@ -24,7 +24,7 @@ import type {
 	Nullable,
 	ProjectComplexityMetrics,
 	WarnFunction,
-} from "../types/complexity-types.ts";
+} from "./src/types/complexity-types.ts";
 
 // Danger.js imports (only available when running in Danger context)
 let danger: DangerContext;
@@ -194,31 +194,38 @@ function analyzeTypeScriptFile(filePath: string): FileAnalysisDetailed {
 }
 
 /**
- * Get all TypeScript files in the src directory
+ * Get all TypeScript files in the src directory (recursively)
  */
 async function getTypeScriptFiles(): Promise<string[]> {
 	const files: string[] = [];
 
-	try {
-		const { readdirSync, statSync } = await import("node:fs");
-		const srcFiles = readdirSync(SRC_DIR);
+	async function walkDirectory(dir: string): Promise<void> {
+		try {
+			const { readdirSync, statSync } = await import("node:fs");
+			const entries = readdirSync(dir);
 
-		for (const file of srcFiles) {
-			const filePath = join(SRC_DIR, file);
-			const stat = statSync(filePath);
+			for (const entry of entries) {
+				const fullPath = join(dir, entry);
+				const stat = statSync(fullPath);
 
-			if (stat.isFile() && file.endsWith(".ts")) {
-				// Skip test files
-				if (!IGNORE_PATTERNS.some((pattern) => pattern.test(file))) {
-					files.push(filePath);
+				if (stat.isDirectory()) {
+					// Recursively walk subdirectories
+					await walkDirectory(fullPath);
+				} else if (stat.isFile() && entry.endsWith(".ts")) {
+					// Skip test files
+					if (!IGNORE_PATTERNS.some((pattern) => pattern.test(entry))) {
+						files.push(fullPath);
+					}
 				}
 			}
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error ? error.message : String(error);
+			console.error(`Error reading directory ${dir}:`, errorMessage);
 		}
-	} catch (error: unknown) {
-		const errorMessage = error instanceof Error ? error.message : String(error);
-		console.error("Error reading src directory:", errorMessage);
 	}
 
+	await walkDirectory(SRC_DIR);
 	return files;
 }
 

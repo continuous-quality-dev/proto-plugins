@@ -68,10 +68,10 @@
 		"setup-act": "./scripts/setup-act-testing.sh",
 		"danger": "danger ci",
 		"danger:local": "danger local",
-		"generate-diagram": "node --experimental-strip-types src/diagrams/dangerfile.ts",
+		"generate-diagram": "node --experimental-strip-types dangerfile.ts",
 		"generate-diagrams-changed": "node --experimental-strip-types src/diagrams/generate-diagrams-for-changed-files.ts",
 		"generate-complexity-comparison": "node --experimental-strip-types src/analysis/generate-complexity-comparison.ts",
-		"complexity-metrics": "node --experimental-strip-types src/diagrams/dangerfile.ts",
+		"complexity-metrics": "node --experimental-strip-types dangerfile.ts",
 		"test-complexity-comparison": "node --experimental-strip-types src/analysis/test-complexity-comparison.test.ts",
 
 		"// === Linting ===": "",

@@ -1,6 +1,6 @@
 # Danger.js Codebase Analysis
 
-This repository uses [Danger.js](https://danger.systems/js/) to analyze code changes and generate diagrams.
+This repository uses [Danger.js](https://danger.systems/js/) to analyze code changes.
 
 ## Features
 

@@ -2,7 +2,7 @@
 
 ## 📚 Development Standards
 
-**IMPORTANT**: This project follows standards documented in the [`rules/`](../rules/) directory.
+**IMPORTANT**: This project follows standards in the [`rules/`](../rules/) directory.
 
 ### Quick Reference
 

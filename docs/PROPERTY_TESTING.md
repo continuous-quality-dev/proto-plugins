@@ -1,10 +1,12 @@
 # Property-Based Testing with fast-check and poku
 
-This project includes comprehensive property-based tests using [fast-check](https://github.com/dubzzz/fast-check) and [poku](https://github.com/wellwelwel/poku) for cross-runtime execution.
+This project uses [fast-check](https://github.com/dubzzz/fast-check) and
+[poku](https://github.com/wellwelwel/poku) for property-based testing.
 
 ## Overview
 
-Property-based testing is a testing methodology where you define properties (invariants) that should hold for a wide range of inputs, rather than testing specific examples.
+Property-based testing defines properties (invariants) that should hold for a wide
+range of inputs, rather than testing specific examples.
 The testing framework generates many random inputs to verify these properties.
 
 ## Test Structure
@@ -209,4 +211,5 @@ All property-based tests are designed to work across:
 - **Bun** (native TypeScript support)
 - **Deno** (native TypeScript support)
 
-The test summary automatically detects and reports on property-based tests, providing insights into test coverage and performance across all runtimes.
+The test summary automatically detects property-based tests and provides insights
+into coverage and performance across all runtimes.

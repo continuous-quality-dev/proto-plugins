@@ -1,6 +1,8 @@
 # Proto Plugins AI Assistance Rules
 
-This directory contains the codified rules, patterns, and guidelines for AI assistance in the proto-plugins project. These rules ensure consistency, quality, and maintainability across all AI-assisted development work.
+This directory contains the codified rules, patterns, and guidelines for AI assistance
+in the proto-plugins project. These rules ensure consistency, quality, and
+maintainability across all AI-assisted development work.
 
 ## 📁 Directory Structure
 
@@ -61,7 +63,8 @@ When working on this project, always:
 
 ### 🤖 AI Assistance Rules
 
-- **Code Generation**: Patterns for generating TypeScript, configuration files, and documentation
+- **Code Generation**: Patterns for generating TypeScript, configuration files, and
+  documentation
 - **Documentation**: Standards for README files, API docs, and inline comments
 - **Testing**: Property-based testing patterns and cross-runtime test strategies
 - **Workflow Automation**: CI/CD patterns and GitHub workflow generation
@@ -148,4 +151,5 @@ To add or modify rules:
 
 ---
 
-*These rules are maintained by the proto-plugins community and updated regularly to reflect best practices and emerging patterns.*
+*These rules are maintained by the proto-plugins community and updated regularly
+to reflect best practices and emerging patterns.*

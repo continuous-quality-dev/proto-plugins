@@ -18,6 +18,7 @@
 12. **Add support for plugins with different architectures** - Cross-platform support
 ✅ 13. **Make a rules directory and codify AI rules** - Document AI assistance patterns
 1. **Use vltpkg/reproduce for repository validation** - (blocked: Node.js compatibility)
+2. convert the makefile to a just file and add just to the proto toolchain
 
 ## Recommended Additional Improvements
 

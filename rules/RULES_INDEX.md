@@ -1,6 +1,7 @@
 # Proto Plugins AI Rules Index
 
-This is a comprehensive index of all AI assistance rules and coding standards in the proto-plugins project.
+This is a comprehensive index of all AI assistance rules and coding standards in the
+proto-plugins project.
 
 ## 📚 Quick Reference
 

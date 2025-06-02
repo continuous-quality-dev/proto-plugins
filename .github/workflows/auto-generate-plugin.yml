@@ -4,20 +4,20 @@ on:
   workflow_dispatch:
     inputs:
       repository:
-        description: 'GitHub repository (owner/repo format, e.g., "terrastruct/d2")'
+        description: GitHub repository (owner/repo format, e.g., "terrastruct/d2")
         required: true
         type: string
       plugin_name:
-        description: 'Plugin name (optional, will auto-detect if not provided)'
+        description: Plugin name (optional, will auto-detect if not provided)
         required: false
         type: string
       create_pr:
-        description: 'Create pull request with generated plugin'
+        description: Create pull request with generated plugin
         required: false
         default: true
         type: boolean
       test_plugin:
-        description: 'Test the generated plugin before creating PR'
+        description: Test the generated plugin before creating PR
         required: false
         default: true
         type: boolean

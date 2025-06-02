@@ -16,19 +16,22 @@ function withMockedRuntime<T>(
 ): Promise<T> {
 	const origGetRuntime = getRuntime;
 	// @ts-ignore
-	(global as any).getRuntime = () => runtime;
+	(global as typeof globalThis & { getRuntime: typeof getRuntime }).getRuntime =
+		() => runtime;
 	return fn().finally(() => {
 		// @ts-ignore
-		(global as any).getRuntime = origGetRuntime;
+		(
+			global as typeof globalThis & { getRuntime: typeof getRuntime }
+		).getRuntime = origGetRuntime;
 	});
 }
 
 test("runCommand returns error for unsupported runtime", async () => {
-	let error: any = null;
+	let error: Error | null = null;
 	try {
 		await runCommand("echo test", "unsupported");
 	} catch (e) {
-		error = e;
+		error = e as Error;
 	}
 	assert(error, "Should throw error");
 	assert(
@@ -40,11 +43,11 @@ test("runCommand returns error for unsupported runtime", async () => {
 });
 
 test("getAvailableTools throws on unsupported runtime", async () => {
-	let error: any = null;
+	let error: Error | null = null;
 	try {
 		await getAvailableTools("unsupported");
 	} catch (e) {
-		error = e;
+		error = e as Error;
 	}
 	assert(error, "Should throw error");
 	assert(
@@ -56,11 +59,11 @@ test("getAvailableTools throws on unsupported runtime", async () => {
 });
 
 test("promptUser throws on unsupported runtime", async () => {
-	let error: any = null;
+	let error: Error | null = null;
 	try {
 		await promptUser(["foo", "bar"], "unsupported");
 	} catch (e) {
-		error = e;
+		error = e as Error;
 	}
 	assert(error, "Should throw error");
 	assert(

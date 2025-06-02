@@ -588,7 +588,6 @@ export function testToolWithProto(
 					error instanceof Error ? error.message : String(error)
 				}`,
 			);
-			continue;
 		}
 	}
 
@@ -608,7 +607,7 @@ export function testToolWithProto(
 	} catch (error) {
 		// This might be expected if the tool requires arguments
 		console.log(
-			`    Tool execution without args failed (this might be normal)`,
+			"    Tool execution without args failed (this might be normal)",
 		);
 	}
 
@@ -747,11 +746,11 @@ NODE_VERSION=22.6.0
 
 export function createEventFile(
 	event: string,
-	inputs?: Record<string, any>,
+	inputs?: Record<string, unknown>,
 ): string {
 	const eventPath = ".act-event.json";
 
-	let eventData: any = {};
+	let eventData: Record<string, unknown> = {};
 
 	switch (event) {
 		case "workflow_dispatch":

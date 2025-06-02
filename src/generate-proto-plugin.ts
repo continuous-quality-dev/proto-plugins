@@ -4,14 +4,14 @@
  * Generate a proto plugin JSON from a GitHub release URL
  *
  * Cross-runtime compatible script that works with:
- * - Node.js: node --experimental-strip-types scripts/generate-proto-plugin.ts <github-url>
- * - Bun: bun scripts/generate-proto-plugin.ts <github-url>
- * - Deno: deno run -A scripts/generate-proto-plugin.ts <github-url>
+ * - Node.js: node --experimental-strip-types src/generate-proto-plugin.ts <github-url>
+ * - Bun: bun src/generate-proto-plugin.ts <github-url>
+ * - Deno: deno run -A src/generate-proto-plugin.ts <github-url>
  *
  * Usage:
- *   Interactive: <runtime> scripts/generate-proto-plugin.ts <github-url>
- *   Automated:   <runtime> scripts/generate-proto-plugin.ts --auto <github-url>
- *   Custom file: <runtime> scripts/generate-proto-plugin.ts --auto --output custom.json <github-url>
+ *   Interactive: <runtime> src/generate-proto-plugin.ts <github-url>
+ *   Automated:   <runtime> src/generate-proto-plugin.ts --auto <github-url>
+ *   Custom file: <runtime> src/generate-proto-plugin.ts --auto --output custom.json <github-url>
  */
 
 import { writeFileSync } from "node:fs";
@@ -30,7 +30,7 @@ import {
 	fetchGitHubRelease,
 	fetchGitHubRepo,
 	parseGitHubUrl,
-} from "./shared-utils.ts";
+} from "./utils.ts";
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -315,7 +315,7 @@ function parseArgs(args: string[]): {
 		} else if (arg === "--help" || arg === "-h") {
 			const runtime = detectRuntime();
 			consola.log(`
-Usage: ${runtime.command} scripts/generate-proto-plugin.ts [options] <github-url>
+Usage: ${runtime.command} src/generate-proto-plugin.ts [options] <github-url>
 
 Options:
   --auto, -a              Run in automated mode (no prompts)
@@ -326,13 +326,13 @@ Options:
 			consola.box({
 				title: `Examples (${runtime.name})`,
 				message: `# Interactive mode
-${runtime.command} scripts/generate-proto-plugin.ts https://github.com/terrastruct/d2
+${runtime.command} src/generate-proto-plugin.ts https://github.com/terrastruct/d2
 
 # Automated mode
-${runtime.command} scripts/generate-proto-plugin.ts --auto https://github.com/terrastruct/d2
+${runtime.command} src/generate-proto-plugin.ts --auto https://github.com/terrastruct/d2
 
 # Custom output file
-${runtime.command} scripts/generate-proto-plugin.ts --auto --output custom.json https://github.com/terrastruct/d2`,
+${runtime.command} src/generate-proto-plugin.ts --auto --output custom.json https://github.com/terrastruct/d2`,
 				style: {
 					borderColor: "green",
 					borderStyle: "round",
@@ -359,7 +359,7 @@ async function main(): Promise<void> {
 		if (args.length === 0) {
 			const runtime = detectRuntime();
 			consola.log(
-				`Usage: ${runtime.command} scripts/generate-proto-plugin.ts [--auto] <github-url>`,
+				`Usage: ${runtime.command} src/generate-proto-plugin.ts [--auto] <github-url>`,
 			);
 			consola.log("Use --help for more options");
 			process.exit(1);

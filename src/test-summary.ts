@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --experimental-strip-types
 /**
  * Test Summary Generator
  * Runs tests across all runtimes and generates a markdown table summary

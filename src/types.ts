@@ -96,6 +96,45 @@ export interface RuntimeInfo {
 }
 
 // ============================================================================
+// Proto Plugin Selection Types
+// ============================================================================
+
+export interface BaseProtoRegistryEntry {
+	id: string;
+	locator: string;
+	description: string;
+	author: string;
+}
+
+export interface ProtoRegistryEntry extends BaseProtoRegistryEntry {
+	name: string;
+	format: "wasm" | "toml";
+	homepageUrl: string;
+	repositoryUrl: string;
+	devicon: string;
+	bins: string[];
+}
+
+export interface LocalPlugin {
+	path: string;
+	name: string;
+	description: string;
+	locator: string;
+	author: string;
+}
+
+export interface ProtoToolsConfig {
+	plugins?: Record<string, string>;
+	[key: string]: unknown;
+}
+
+export interface CommandLineArgs {
+	install?: string[];
+	installAllLocal?: boolean;
+	interactive?: boolean;
+}
+
+// ============================================================================
 // Utility Types
 // ============================================================================
 

@@ -4,13 +4,13 @@
  * Test a proto plugin JSON file using proto to install and verify the tool
  *
  * Cross-runtime compatible script that works with:
- * - Node.js: node --experimental-strip-types scripts/test-proto-plugin-with-proto.ts <plugin-json-file>
- * - Bun: bun scripts/test-proto-plugin-with-proto.ts <plugin-json-file>
- * - Deno: deno run -A scripts/test-proto-plugin-with-proto.ts <plugin-json-file>
+ * - Node.js: node --experimental-strip-types src/test-proto-plugin-with-proto.ts <plugin-json-file>
+ * - Bun: bun src/test-proto-plugin-with-proto.ts <plugin-json-file>
+ * - Deno: deno run -A src/test-proto-plugin-with-proto.ts <plugin-json-file>
  *
  * Usage:
- *   <runtime> scripts/test-proto-plugin-with-proto.ts <plugin-json-file>
- *   <runtime> scripts/test-proto-plugin-with-proto.ts --version 1.0.0 <plugin-json-file>
+ *   <runtime> src/test-proto-plugin-with-proto.ts <plugin-json-file>
+ *   <runtime> src/test-proto-plugin-with-proto.ts --version 1.0.0 <plugin-json-file>
  */
 
 import { execSync } from "node:child_process";
@@ -30,7 +30,7 @@ import {
 	type TestOptions,
 	detectRuntime,
 	fetchLatestVersion,
-} from "./shared-utils.ts";
+} from "./utils.ts";
 
 function checkProtoInstalled(): void {
 	try {
@@ -338,7 +338,7 @@ function parseArgs(args: string[]): {
 		} else if (arg === "--help" || arg === "-h") {
 			const runtime = detectRuntime();
 			consola.log(`
-Usage: ${runtime.command} scripts/test-proto-plugin-with-proto.ts [options] <plugin-json-file>
+Usage: ${runtime.command} src/test-proto-plugin-with-proto.ts [options] <plugin-json-file>
 
 Options:
   --version, -v <version>    Test specific version (default: latest)
@@ -350,13 +350,13 @@ Options:
 			consola.box({
 				title: `Examples (${runtime.name})`,
 				message: `# Test with latest version
-${runtime.command} scripts/test-proto-plugin-with-proto.ts plugins/d2.json
+${runtime.command} src/test-proto-plugin-with-proto.ts plugins/d2.json
 
 # Test specific version
-${runtime.command} scripts/test-proto-plugin-with-proto.ts --version 0.7.0 plugins/d2.json
+${runtime.command} src/test-proto-plugin-with-proto.ts --version 0.7.0 plugins/d2.json
 
 # Keep tools installed for inspection
-${runtime.command} scripts/test-proto-plugin-with-proto.ts --no-cleanup plugins/d2.json`,
+${runtime.command} src/test-proto-plugin-with-proto.ts --no-cleanup plugins/d2.json`,
 				style: {
 					borderColor: "cyan",
 					borderStyle: "round",
@@ -383,7 +383,7 @@ async function main(): Promise<void> {
 		if (args.length === 0) {
 			const runtime = detectRuntime();
 			consola.log(
-				`Usage: ${runtime.command} scripts/test-proto-plugin-with-proto.ts <plugin-json-file>`,
+				`Usage: ${runtime.command} src/test-proto-plugin-with-proto.ts <plugin-json-file>`,
 			);
 			consola.log("Use --help for more options");
 			process.exit(1);

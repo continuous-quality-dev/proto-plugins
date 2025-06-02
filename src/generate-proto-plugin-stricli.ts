@@ -4,9 +4,9 @@
  * Generate a proto plugin JSON from a GitHub release URL using Stricli
  *
  * Cross-runtime compatible script that works with:
- * - Node.js: node --experimental-strip-types scripts/generate-proto-plugin-stricli.ts <github-url>
- * - Bun: bun scripts/generate-proto-plugin-stricli.ts <github-url>
- * - Deno: deno run -A scripts/generate-proto-plugin-stricli.ts <github-url>
+ * - Node.js: node --experimental-strip-types src/generate-proto-plugin-stricli.ts <github-url>
+ * - Bun: bun src/generate-proto-plugin-stricli.ts <github-url>
+ * - Deno: deno run -A src/generate-proto-plugin-stricli.ts <github-url>
  */
 
 import { writeFileSync } from "node:fs";
@@ -26,7 +26,7 @@ import {
 	fetchGitHubRepo,
 	parseGitHubUrl,
 	showHelp,
-} from "./shared-utils.ts";
+} from "./utils.ts";
 
 // Define types for the command context (for future stricli integration)
 interface CommandFlags {
@@ -372,7 +372,7 @@ function parseArgs(args: string[]): {
 			options.outputFile = args[++i];
 		} else if (arg === "--help" || arg === "-h") {
 			showHelp(
-				"scripts/generate-proto-plugin-stricli.ts",
+				"src/generate-proto-plugin-stricli.ts",
 				"[options] <github-url>",
 				[
 					"--auto, -a              Run in automated mode (no prompts)",
@@ -405,7 +405,7 @@ async function main(): Promise<void> {
 		if (args.length === 0) {
 			const runtime = detectRuntime();
 			consola.log(
-				`Usage: ${runtime.command} scripts/generate-proto-plugin-stricli.ts [--auto] <github-url>`,
+				`Usage: ${runtime.command} src/generate-proto-plugin-stricli.ts [--auto] <github-url>`,
 			);
 			consola.log("Use --help for more options");
 			process.exit(1);

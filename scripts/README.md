@@ -30,7 +30,7 @@ npm run generate-auto -- https://github.com/owner/repo
 npm run generate-interactive
 
 # Direct script execution
-node --experimental-strip-types ./scripts/generate-proto-plugin.ts --auto https://github.com/owner/repo
+node --experimental-strip-types ./src/generate-proto-plugin.ts --auto https://github.com/owner/repo
 ```
 
 #### `generate-proto-plugin-stricli.ts`
@@ -61,7 +61,7 @@ npm run generate-stricli:bun -- --auto https://github.com/owner/repo
 npm run generate-stricli:deno -- --auto https://github.com/owner/repo
 
 # Direct script execution
-node --experimental-strip-types ./scripts/generate-proto-plugin-stricli.ts --auto https://github.com/owner/repo
+node --experimental-strip-types ./src/generate-proto-plugin-stricli.ts --auto https://github.com/owner/repo
 ```
 
 ### Testing Scripts
@@ -206,15 +206,20 @@ npm run lint-all
 ## File Structure
 
 ```
-scripts/
-├── README.md                           # This file
+src/
 ├── generate-proto-plugin.ts            # Core plugin generator
 ├── generate-proto-plugin-stricli.ts    # Stricli-based plugin generator
 ├── test-proto-plugin-with-proto.ts     # Plugin testing with proto
 ├── test-workflows-with-act.ts          # Local workflow testing
-├── setup-act-testing.sh               # Act CLI setup script
-├── shared-utils.ts                     # Shared utilities and functions
-└── types.ts                           # TypeScript type definitions
+├── test-summary.ts                     # Cross-runtime test summary generator
+├── proto-plugin-selection.ts           # Plugin selection and management tool
+├── utils.ts                           # Shared utilities and functions
+├── types.ts                           # TypeScript type definitions
+└── *.test.ts                          # Test files
+
+scripts/
+├── README.md                           # This file
+└── setup-act-testing.sh               # Act CLI setup script
 ```
 
 ## TypeScript Support

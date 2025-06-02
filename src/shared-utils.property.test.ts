@@ -12,13 +12,13 @@ import { existsSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import * as fc from "fast-check";
 import { assert, describe, it } from "poku";
+import type { ProtoPlugin } from "./types.ts";
 import {
 	detectRuntime,
 	hasFlag,
 	parseGitHubUrl,
 	writeProtoPlugin,
-} from "./shared-utils.ts";
-import type { ProtoPlugin } from "./types.ts";
+} from "./utils.ts";
 
 describe("Property-Based Tests for Shared Utils", () => {
 	describe("parseGitHubUrl Properties", () => {
@@ -78,13 +78,15 @@ describe("Property-Based Tests for Shared Utils", () => {
 					let threwError = false;
 					try {
 						parseGitHubUrl(invalidUrl);
-					} catch (error) {
+					} catch (error: unknown) {
 						threwError = true;
 						assert(error instanceof Error, "Should throw Error instance");
-						assert(
-							error.message.includes("Invalid GitHub URL format"),
-							"Should have appropriate error message",
-						);
+						if (error instanceof Error) {
+							assert(
+								error.message.includes("Invalid GitHub URL format"),
+								"Should have appropriate error message",
+							);
+						}
 					}
 					assert(threwError, "Should throw error for invalid URL");
 				}),

@@ -22,7 +22,7 @@
     * e18n
 ✅ 20. update to node 24
 ✅ 21. the github workflows should install pnpm from the moonrepo/setup-toolchaino/toolchain action
-22. create a workflow that accepts a owner/repo and generates a plugin and creates a PR
+✅ 22. create a workflow that accepts a owner/repo and generates a plugin and creates a PR
 
 ## Done
 
@@ -35,3 +35,4 @@
 ✅ 7. update to node 24
 ✅ 8. update github workflows to use pnpm and proto toolchain
 ✅ 9. implement multi-architecture testing workflows
+✅ 10. create automated plugin generation workflow

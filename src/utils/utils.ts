@@ -15,7 +15,9 @@ import {
 import { homedir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import process from "node:process";
+
 import { consola } from "consola";
+
 import type {
 	ActTestOptions,
 	GitHubRelease,

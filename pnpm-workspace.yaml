@@ -9,10 +9,13 @@ catalog:
   "@typescript-eslint/parser": "^8.18.1"
   "@typescript-eslint/typescript-estree": "^8.33.0"
   "@typescript-eslint/eslint-plugin": "^8.33.0"
+  "@eslint/js": "^9.28.0"
+  "@types/eslint": "^9.6.1"
   "eslint": "^9.28.0"
   "eslint-plugin-import": "^2.31.0"
   "eslint-plugin-n": "^17.15.0"
   "eslint-plugin-promise": "^7.1.0"
+  "jiti": "^2.4.1"
   
   # Testing frameworks
   "danger": "^12.3.3"

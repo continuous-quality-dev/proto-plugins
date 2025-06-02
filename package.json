@@ -72,7 +72,12 @@
 		"generate-diagrams-changed": "node --experimental-strip-types src/diagrams/generate-diagrams-for-changed-files.ts",
 		"generate-complexity-comparison": "node --experimental-strip-types src/analysis/generate-complexity-comparison.ts",
 		"complexity-metrics": "node --experimental-strip-types src/diagrams/dangerfile.ts",
-		"test-complexity-comparison": "node --experimental-strip-types src/analysis/test-complexity-comparison.test.ts"
+		"test-complexity-comparison": "node --experimental-strip-types src/analysis/test-complexity-comparison.test.ts",
+
+		"// === Linting ===": "",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"lint:check": "eslint . --max-warnings 0"
 	},
 	"engines": {
 		"node": ">=22.6.0"
@@ -86,7 +91,9 @@
 		"consola": "catalog:"
 	},
 	"devDependencies": {
+		"@eslint/js": "catalog:",
 		"@stricli/core": "catalog:",
+		"@types/eslint": "catalog:",
 		"@typescript-eslint/eslint-plugin": "catalog:",
 		"@typescript-eslint/parser": "catalog:",
 		"@typescript-eslint/typescript-estree": "catalog:",
@@ -96,6 +103,7 @@
 		"eslint-plugin-n": "catalog:",
 		"eslint-plugin-promise": "catalog:",
 		"fast-check": "catalog:",
+		"jiti": "catalog:",
 		"poku": "catalog:",
 		"quibble": "catalog:"
 	}

@@ -6,7 +6,9 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
+
 import { parse } from "@typescript-eslint/typescript-estree";
+
 import type {
 	ComplexityMetrics,
 	ComplexityMetricsOutput,

@@ -12,7 +12,9 @@
 import { writeFileSync } from "node:fs";
 import process from "node:process";
 import readline from "node:readline";
+
 import { consola } from "consola";
+
 // Note: stricli imports are included for future enhancement
 // import { buildApplication, buildCommand, run } from "@stricli/core";
 import {

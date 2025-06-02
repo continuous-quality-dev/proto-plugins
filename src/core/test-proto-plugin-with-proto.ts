@@ -24,7 +24,9 @@ import {
 import { homedir } from "node:os";
 import { join } from "node:path";
 import process from "node:process";
+
 import { consola } from "consola";
+
 import {
 	type ProtoPlugin,
 	type TestOptions,

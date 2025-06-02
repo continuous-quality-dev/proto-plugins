@@ -9,6 +9,7 @@ import { execSync, spawn } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
+
 import type { ActTestOptions } from "../types/types.ts";
 
 function checkActInstallation(): boolean {

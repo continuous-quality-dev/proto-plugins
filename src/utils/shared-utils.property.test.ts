@@ -10,9 +10,12 @@
 
 import { existsSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
+
 import * as fc from "fast-check";
 import { assert, describe, it } from "poku";
+
 import type { ProtoPlugin } from "../types/types.ts";
+
 import {
 	detectRuntime,
 	hasFlag,

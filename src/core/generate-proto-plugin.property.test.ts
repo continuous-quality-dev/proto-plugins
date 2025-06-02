@@ -10,6 +10,7 @@
 
 import * as fc from "fast-check";
 import { assert, describe, it } from "poku";
+
 import type {
 	GitHubAsset,
 	PlatformAssets,

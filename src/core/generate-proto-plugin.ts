@@ -17,7 +17,9 @@
 import { writeFileSync } from "node:fs";
 import process from "node:process";
 import readline from "node:readline";
+
 import { consola } from "consola";
+
 import {
 	type AnalyzedAssets,
 	type GenerationOptions,

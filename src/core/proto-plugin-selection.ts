@@ -27,7 +27,9 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import process from "node:process";
+
 import { consola } from "consola";
+
 import {
 	type BaseProtoRegistryEntry,
 	type CommandLineArgs,
